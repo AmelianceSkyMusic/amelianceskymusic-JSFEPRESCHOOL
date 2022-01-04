@@ -23,6 +23,7 @@
 
 body {
     background-color: var(--bg-dark);
+    color: var(--white);
 }
 
 .container {
@@ -99,9 +100,13 @@ h5 {
     color: var(--white);
 }
 
-p {
+p, img {
     font-family: 'Inter', sans-serif;
     font-size: 18px;
     line-height: 200%;
     color: var(--white);
+}
+
+ul {
+    list-style: none;
 }
