@@ -179,7 +179,39 @@ body {
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    padding: 50px 20px;
 
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 200%;
+}
+
+.footer__text{
+    margin-right: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 200%;
+}
+
+.footer__github {
+    width: 200px;
+    display: flex;
+}
+
+.footer_social-icons{
+    width: 200px;
+}
+
+.footer__social-icons_item {
+    margin-left: 20px;
+}
 
 
 
