@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>portfolio</title>
+    <link rel="icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
@@ -19,17 +20,22 @@
     <!-- =========================================================================== -->
 
     <header>
-        <div class="container">
-            <img src="logo" alt="logo">
-            <ul class="menu-items">
-                <li class="menu-item"><a href="skills">Skills</a></li>
-                <li class="menu-item"><a href="portfolio">Portfolio</a></li>
-                <li class="menu-item"><a href="video">Video</a></li>
-                <li class="menu-item"><a href="price">Price</a></li>
-                <li class="menu-item"><a href="contacts">Contacts</a></li>
-            </ul>
-            <a href="">en</a> / 
-            <a href="">ru</a>
+        <div class="container header">
+            <a href="index.html"><img src="assets/svg/logo.svg" alt="logo"></a>
+            <div class="menu">
+                <ul class="menu-items">
+                    <li class="menu-item"><a href="#skills">Skills</a></li>
+                    <li class="menu-item"><a href="#portfolio">Portfolio</a></li>
+                    <li class="menu-item"><a href="#video">Video</a></li>
+                    <li class="menu-item"><a href="#price">Price</a></li>
+                    <li class="menu-item"><a href="#contacts">Contacts</a></li>
+                </ul>
+                <div class="language">
+                    <a href="">en</a> / 
+                    <a href="">ru</a>
+                </div>
+    
+            </div>
 
         </div>
         
@@ -45,70 +51,71 @@
 
 
 
-            <!-- ================================= section ================================= -->
-            <section class="hero">
+            <!-- ================================= hero ================================= -->
+            <section class="hero" id="hero">
                 <h1>Alexa Rise</h1>
                 <p class="header">Save sincere emotions, romantic feelings and happy moments of life together with professional photographer Alexa Rise</p>
-                <button>Hire me</button>
+                <button class="button-primary">Hire me</button>
                 <!-- <h2>Hero</h2>             -->
             </section>
 
-            <!-- ================================= section ================================= -->
-            <section class="skills">
+            <!-- ================================= skills ================================= -->
+            <section class="skills" id="skills">
                 <h2>Skills</h2>
                 <div class="skills-items">
                     <div class="skill-item">
-                        <img src="camera" alt="camera">
+                        <img src="assets/svg/camera.svg" alt="camera">
                         <h5>Digital photography</h5>
                         <p>High-quality photos in the studio and on the nature</p>
                     </div>
                     <div class="skill-item">
-                        <img src="video" alt="video">
+                        <img src="assets/svg/video.svg" alt="video">
                         <h5>Video shooting</h5>
                         <p>Capture your moments so that they always stay with you</p>
                     </div>
                     <div class="skill-item">
-                        <img src="image" alt="image">
+                        <img src="assets/svg/image.svg" alt="image">
                         <h5>Retouch</h5>
                         <p>I strive to make photography surpass reality</p>
                     </div>
                     <div class="skill-item">
-                        <img src="mic" alt="mic">
+                        <img src="assets/svg/mic.svg" alt="mic">
                         <h5>Audio</h5>
                         <p>Professional sounds recording for video, advertising, portfolio</p>
                     </div>
                 </div>
             </section>
 
-            <!-- ================================= section ================================= -->
-            <section class="portfolio">
+            <!-- ================================= portfolio ================================= -->
+            <section class="portfolio" id="portfolio">
                 <h2>Portfolio</h2>
                 <div class="portfolio-buttons">
-                    <button class="portfolio-button">Winter</button>
-                    <button class="portfolio-button">Spring</button>
-                    <button class="portfolio-button">Summer</button>
-                    <button class="portfolio-button">Autumn</button>
+                    <button class="button-secondary">Winter</button>
+                    <button class="button-secondary">Spring</button>
+                    <button class="button-secondary">Summer</button>
+                    <button class="button-primary">Autumn</button>
                 </div>
                 <div class="portfolio-images">
-                    <img class="portfolio-image" src="" alt="img">
-                    <img class="portfolio-image" src="" alt="img">
-                    <img class="portfolio-image" src="" alt="img">
-                    <img class="portfolio-image" src="" alt="img">
-                    <img class="portfolio-image" src="" alt="img">
-                    <img class="portfolio-image" src="" alt="img">
+                    <img class="portfolio-image" src="assets/img/portfolio-img-1.jpg" alt="portfolio image 1">
+                    <img class="portfolio-image" src="assets/img/portfolio-img-2.jpg" alt="portfolio image 2">
+                    <img class="portfolio-image" src="assets/img/portfolio-img-3.jpg" alt="portfolio image 3">
+                    <img class="portfolio-image" src="assets/img/portfolio-img-4.jpg" alt="portfolio image 4">
+                    <img class="portfolio-image" src="assets/img/portfolio-img-5.jpg" alt="portfolio image 5">
+                    <img class="portfolio-image" src="assets/img/portfolio-img-6.jpg" alt="portfolio image 6">
                 </div>
 
             </section>
 
-            <!-- ================================= section ================================= -->
-            <section class="video">
+            <!-- ================================= video ================================= -->
+            <section class="video" id="video">
                 <h2>Video</h2>
                 <!-- <video src=""></video> -->
-                <img src="video-holdplace" alt="video-holdplace">
+                <img src="assets/img/video-player.jpg" alt="video-player">
+                <img src="assets/svg/play.svg" alt="play">
             </section>
 
-            <!-- ================================= section ================================= -->
-            <section class="price">
+            <!-- ================================= price ================================= -->
+            <section class="price" id="price">
                 <h2>Price</h2>
                 <div class="price-items">
                     <div class="price-item">
@@ -121,7 +128,7 @@
                             <li><p>Readiness 2-3 weeks</p></li>
                             <li><p>Make up, visage</p></li>
                         </ul>
-                        <button>Order shooting</button>
+                        <button class="button-primary">Order shooting</button>
                     </div>
                     <div class="price-item">
                         <h3>Premium</h3>
@@ -133,7 +140,7 @@
                             <li><p>Readiness 1-2 weeks</p></li>
                             <li><p>Make up, visage</p></li>
                         </ul>
-                        <button>Order shooting</button>
+                        <button class="button-primary">Order shooting</button>
                     </div>
                     <div class="price-item">
                         <h3>Gold</h3>
@@ -145,19 +152,19 @@
                             <li><p>Readiness 1 week</p></li>
                             <li><p>Make up, visage, hairstyle</p></li>
                         </ul>
-                        <button>Order shooting</button>
+                        <button class="button-primary">Order shooting</button>
                     </div>
                 </div>
             </section>
 
-            <!-- ================================= section ================================= -->
-            <section class="contacts">
+            <!-- ================================= contacts ================================= -->
+            <section class="contacts" id="contacts">
                 <form action="">
                     <h2>Contact me</h2>
                     <input type="text" value="E-mail">
                     <input type="text" value="Phome">
                     <input type="text" value="Message">
-                    <button>Send message</button>
+                    <button class="button-primary">Send message</button>
                 </form>
 
             </section>
@@ -175,10 +182,10 @@
             <p>© 2022 github</p>
             <p>Rolling Scopes School</p>
             <div class="social-icons">
-                <img src="instagram" alt="instagram">
-                <img src="facebook" alt="facebook">
-                <img src="twitter" alt="twitter">
-                <img src="pinterest" alt="pinterest">
+                <img src="assets/svg/instagram.svg" alt="instagram">
+                <img src="assets/svg/facebook.svg" alt="facebook">
+                <img src="assets/svg/twitter.svg" alt="twitter">
+                <img src="assets/svg/pinterest.svg" alt="pinterest">
             </div>
         </div>
     </footer>

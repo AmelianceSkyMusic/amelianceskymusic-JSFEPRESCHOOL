@@ -18,7 +18,11 @@
     margin: 0;
     padding: 0;
     border: 0;
-    font-family: 'Merriweather', serif;
+    /* font-family: 'Merriweather', serif; */
+}
+
+html {
+    scroll-behavior: smooth; 
 }
 
 body {
@@ -28,6 +32,8 @@ body {
 
 .container {
     max-width: 1440px;
+    margin: 0 auto;
+    border: 1px solid var(--white);
 }
 
 /* ---------------------------------------------------------- */
@@ -35,8 +41,25 @@ body {
 /* ------------------------- HEADER ------------------------- */
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
+.header {
+    height: 90px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.menu {
+    display: flex;
+}
 
+.menu-items {
+    display: flex;
+}
+
+.languages {
+    display: flex;
+}
 
 
 
@@ -45,6 +68,29 @@ body {
 /* -------------------------- MAIN -------------------------- */
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
+
+.hero {
+    padding: 0px 20px;
+    background-image: url(assets/img/bg.jpg);
+}
+
+.skills {
+    padding: 0px 20px;
+}
+.portfolio {
+    padding: 0px 20px;
+}
+.video {
+    padding: 0px 20px;
+}
+.price {
+    padding: 0px 20px;
+}
+.contacts {
+    padding: 0px 20px;
+    background-image: url(assets/img/contacts.jpg);
+}
+
 
 
 
@@ -102,6 +148,7 @@ h5 {
 
 p, img {
     font-family: 'Inter', sans-serif;
+    font-weight: normal;
     font-size: 18px;
     line-height: 200%;
     color: var(--white);
@@ -109,4 +156,40 @@ p, img {
 
 ul {
     list-style: none;
+}
+/* ------------------------ BUTTONS ------------------------- */
+.button-primary {
+    width: 220px;
+    height: 55px;
+    /* padding: 8px 72px; */
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 200%;
+    background-color: var(--gold);
+    transition: color 0.3s;
+}
+
+.button-primary:hover {
+    color: var(--white);
+    cursor: pointer;
+}
+
+.button-secondary {
+    width: 220px;
+    height: 55px;
+    /* padding: 8px 72px; */
+    font-family: 'Inter', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 200%;
+    background-color: var(--bg-dark);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    transition: color 0.3s;
+}
+
+.button-secondary:hover {
+    color: var(--white);
+    cursor: pointer;
 }
