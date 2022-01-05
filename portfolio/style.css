@@ -33,9 +33,10 @@ body {
 .container {
     max-width: 1440px;
     margin: 0 auto;
+}
+section {
     border: 1px solid var(--white);
 }
-
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 /* ------------------------- HEADER ------------------------- */
@@ -112,11 +113,36 @@ body {
 /* -------------------------- MAIN -------------------------- */
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
-/*  */
+
+.header__title {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.header__title-h2 {
+    padding: 0 20px;
+    grid-column: 1;
+    grid-row: 1;
+    background-color: var(--bg-dark);
+}
+
+.line-decoration {
+    grid-column: 1;
+    grid-row: 1;
+    z-index: -1;
+    width: 700px;
+    border: none;
+    background-color: var(--gold);
+    height: 2px;
+}
+
+/* -------------------------- HERO -------------------------- */
+
 .hero {
     height: 820px;
     padding: 0px 20px;
-    border: 1px solid red;
 }
 
 .bg {
@@ -147,23 +173,59 @@ body {
     margin-top: 25px;
 }
 
-/*  */
+/* -------------------------- SKIILS -------------------------- */
 .skills {
+    height: 482px;
     padding: 0px 20px;
 }
-/*  */
+
+.skills__cards{
+    margin-top: 60px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.skills__card {
+    padding: 0 20px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.skills__card_image {
+    height: 50px;
+}
+
+.skills_card_title {
+    margin-top: 50px;
+}
+.skills_card_text {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+/* .skills_card_title,
+.skills_card_text {
+    text-align: center;
+    width: 280px;
+} */
+
+/* -------------------------- PORTFOLIO -------------------------- */
 .portfolio {
     padding: 0px 20px;
 }
-/*  */
+/* -------------------------- VIDEO -------------------------- */
 .video {
     padding: 0px 20px;
 }
-/*  */
+/* -------------------------- PRICE -------------------------- */
 .price {
     padding: 0px 20px;
 }
-/*  */
+/* -------------------------- CONTACTS -------------------------- */
 .contacts {
     padding: 0px 20px;
     background-image: url(assets/img/contacts.jpg);
