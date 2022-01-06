@@ -103,19 +103,19 @@
                     <hr class="line-decoration">
                 </div>
 
-                <div class="portfolio-buttons">
-                    <button class="button-secondary">Winter</button>
-                    <button class="button-secondary">Spring</button>
-                    <button class="button-secondary">Summer</button>
-                    <button class="button-primary">Autumn</button>
+                <div class="portfolio__buttons">
+                    <button class="portfolio__button button-secondary">Winter</button>
+                    <button class="portfolio__button button-secondary">Spring</button>
+                    <button class="portfolio__button button-secondary">Summer</button>
+                    <button class="portfolio__button button-primary">Autumn</button>
                 </div>
-                <div class="portfolio-images">
-                    <img class="portfolio-image" src="assets/img/portfolio-img-1.jpg" alt="portfolio image 1">
-                    <img class="portfolio-image" src="assets/img/portfolio-img-2.jpg" alt="portfolio image 2">
-                    <img class="portfolio-image" src="assets/img/portfolio-img-3.jpg" alt="portfolio image 3">
-                    <img class="portfolio-image" src="assets/img/portfolio-img-4.jpg" alt="portfolio image 4">
-                    <img class="portfolio-image" src="assets/img/portfolio-img-5.jpg" alt="portfolio image 5">
-                    <img class="portfolio-image" src="assets/img/portfolio-img-6.jpg" alt="portfolio image 6">
+                <div class="portfolio__images">
+                    <img class="portfolio__image" src="assets/img/portfolio-img-1.jpg" alt="portfolio image 1">
+                    <img class="portfolio__image" src="assets/img/portfolio-img-2.jpg" alt="portfolio image 2">
+                    <img class="portfolio__image" src="assets/img/portfolio-img-3.jpg" alt="portfolio image 3">
+                    <img class="portfolio__image" src="assets/img/portfolio-img-4.jpg" alt="portfolio image 4">
+                    <img class="portfolio__image" src="assets/img/portfolio-img-5.jpg" alt="portfolio image 5">
+                    <img class="portfolio__image" src="assets/img/portfolio-img-6.jpg" alt="portfolio image 6">
                 </div>
 
             </section>
@@ -129,8 +129,10 @@
                 </div>
 
                 <!-- <video src=""></video> -->
-                <img src="assets/img/video-player.jpg" alt="video-player">
-                <img src="assets/svg/play.svg" alt="play">
+                <div class="player">
+                    <img class="player__image" src="assets/img/video-player.jpg" alt="video-player">
+                    <img class="player__button" src="assets/svg/play.svg" alt="play">
+                </div>
             </section>
 
             <!-- ================================= price ================================= -->
@@ -141,54 +143,55 @@
                     <hr class="line-decoration">
                 </div>
 
-                <div class="price-items">
-                    <div class="price-item">
-                        <h3>Standard</h3>
-                        <h4>500 $</h4>
-                        <ul>
-                            <li><p>One location</p></li>
-                            <li><p>120 photos in color</p></li>
-                            <li><p>12 photos in retouch</p></li>
-                            <li><p>Readiness 2-3 weeks</p></li>
-                            <li><p>Make up, visage</p></li>
+                <div class="price-cards-block">
+                    <div class="price-card">
+                        <h3 class="price-card__header">Standard</h3>
+                        <h4 class="price-card__price">500 $</h4>
+                        <ul class="price-card-list">
+                            <li class="price-card-list-item"><p>One location</p></li>
+                            <li class="price-card-list-item"><p>120 photos in color</p></li>
+                            <li class="price-card-list-item"><p>12 photos in retouch</p></li>
+                            <li class="price-card-list-item"><p>Readiness 2-3 weeks</p></li>
+                            <li class="price-card-list-item"><p>Make up, visage</p></li>
                         </ul>
-                        <button class="button-primary">Order shooting</button>
+                        <button class="price-card__button button-primary">Order shooting</button>
                     </div>
-                    <div class="price-item">
-                        <h3>Premium</h3>
-                        <h4>700 $</h4>
-                        <ul>
-                            <li><p>One or two locations</p></li>
-                            <li><p>200 photos in color</p></li>
-                            <li><p>20 photos in retouch</p></li>
-                            <li><p>Readiness 1-2 weeks</p></li>
-                            <li><p>Make up, visage</p></li>
+                    <div class="price-card">
+                        <h3 class="price-card__header">Premium</h3>
+                        <h4 class="price-card__price">700 $</h4>
+                        <ul class="price-card-list">
+                            <li class="price-card-list-item">One or two locations</li>
+                            <li class="price-card-list-item">200 photos in color</li>
+                            <li class="price-card-list-item">20 photos in retouch</li>
+                            <li class="price-card-list-item">Readiness 1-2 weeks</li>
+                            <li class="price-card-list-item">Make up, visage</li>
                         </ul>
-                        <button class="button-primary">Order shooting</button>
+                        <button class="price-card__button button-primary">Order shooting</button>
                     </div>
-                    <div class="price-item">
-                        <h3>Gold</h3>
-                        <h4>1000 $</h4>
-                        <ul>
-                            <li><p>Three locations or more</p></li>
-                            <li><p>300 photos in color</p></li>
-                            <li><p>50 photos in retouch</p></li>
-                            <li><p>Readiness 1 week</p></li>
-                            <li><p>Make up, visage, hairstyle</p></li>
+                    <div class="price-card">
+                        <h3 class="price-card__header">Gold</h3>
+                        <h4 class="price-card__price">1000 $</h4>
+                        <ul class="price-card-list">
+                            <li class="price-card-list-item"><p>Three locations or more</p></li>
+                            <li class="price-card-list-item"><p>300 photos in color</p></li>
+                            <li class="price-card-list-item"><p>50 photos in retouch</p></li>
+                            <li class="price-card-list-item"><p>Readiness 1 week</p></li>
+                            <li class="price-card-list-item"><p>Make up, visage, hairstyle</p></li>
                         </ul>
-                        <button class="button-primary">Order shooting</button>
+                        <button class="price-card__button button-primary">Order shooting</button>
                     </div>
                 </div>
             </section>
 
             <!-- ================================= contacts ================================= -->
             <section class="contacts" id="contacts">
-                <form action="">
-                    <h2>Contact me</h2>
-                    <input type="text" value="E-mail">
-                    <input type="text" value="Phome">
-                    <input type="text" value="Message">
-                    <button class="button-primary">Send message</button>
+                <form class="contacts-form" action="">
+                    <h2 class="contacts-form__header">Contact me</h2>
+                    <input class="contacts-form__input" type="text" value="E-mail">
+                    <input class="contacts-form__input" type="text" value="Phone">
+                    <textarea class="contacts-form__textarea">Message</textarea>
+                    <!-- <textarea class="contacts-form__input contacts-form__input_big" type="text" value="Message"></textarea> -->
+                    <button class="contacts-form__buton button-primary">Send message</button>
                 </form>
 
             </section>
@@ -205,7 +208,7 @@
         <div class="container footer">
             <div class="footer__github">
                 <p class="footer__text">©</p>
-                <p class="footer__text">2020</p>
+                <p class="footer__text">2022</p>
                 <a class="footer__github_link link" href="https://github.com/AmelianceSkyMusic">github</a>
             </div>
             <a class="footer__rss_link link" href="https://rs.school/js-stage0/">Rolling Scopes School</a>
