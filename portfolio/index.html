@@ -8,7 +8,7 @@
     <link rel="icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,6 +18,9 @@
     <!-- ================================= HEADER ================================== -->
     <!-- =========================================================================== -->
     <!-- =========================================================================== -->
+    <div class="zero-block zero-block__hero-position">
+        <div class="zero-block__hero-bg"></div>
+    </div>
 
     <header>
         <div class="container header">
@@ -53,12 +56,12 @@
 
 
             <!-- ================================= hero ================================= -->
+
             <section class="hero" id="hero">
                 <div class="hero__title">
                     <h1>Alexa Rise</h1>
                     <p class="hero__description">Save sincere emotions, romantic feelings and happy moments of life together with professional photographer Alexa Rise</p>
                     <button class="hero__button button-primary">Hire me</button>
-                    <div class="hero__bg"></div>
                 </div>
             </section>
 
@@ -127,7 +130,8 @@
 
                 <!-- <video src=""></video> -->
                 <div class="player">
-                    <img class="player__image" src="assets/img/video-player.jpg" alt="video-player">
+                    <div class="player__image"></div>
+                    <!-- <img class="player__image" src="assets/img/video-player.jpg" alt="video-player"> -->
                     <button class="player__button"></button>
                 </div>
             </section>
@@ -181,6 +185,10 @@
             </section>
 
             <!-- ================================= contacts ================================= -->
+            <div class="zero-block">
+                <div class="zero-block__contacts-bg"></div>
+            </div>
+
             <section class="contacts" id="contacts">
                 <form class="contacts-form" action="index.js">
                     <h2 class="contacts-form__header section-title">Contact me</h2>
