@@ -1,0 +1,114 @@
+{
+	"files": [
+		{
+			"path": "portfolio/style.css",
+			"bookmarks": [
+				{
+					"line": 8,
+					"column": 3,
+					"label": ":root"
+				},
+				{
+					"line": 96,
+					"column": 4,
+					"label": "!--Header"
+				},
+				{
+					"line": 220,
+					"column": 1,
+					"label": "!--MAIN"
+				},
+				{
+					"line": 304,
+					"column": 16,
+					"label": "Hero"
+				},
+				{
+					"line": 424,
+					"column": 16,
+					"label": "Skills"
+				},
+				{
+					"line": 489,
+					"column": 15,
+					"label": "Portfolio"
+				},
+				{
+					"line": 534,
+					"column": 14,
+					"label": "Video"
+				},
+				{
+					"line": 615,
+					"column": 19,
+					"label": "Price"
+				},
+				{
+					"line": 651,
+					"column": 22,
+					"label": "Contacts"
+				},
+				{
+					"line": 773,
+					"column": 12,
+					"label": "!--FOOTER"
+				},
+				{
+					"line": 838,
+					"column": 6,
+					"label": "Elements"
+				},
+				{
+					"line": 897,
+					"column": 10,
+					"label": "Buttons"
+				}
+			]
+		},
+		{
+			"path": "portfolio/index.html",
+			"bookmarks": [
+				{
+					"line": 19,
+					"column": 4,
+					"label": "!--HEADER"
+				},
+				{
+					"line": 50,
+					"column": 3,
+					"label": "!--MAIN"
+				},
+				{
+					"line": 67,
+					"column": 12,
+					"label": "Skills"
+				},
+				{
+					"line": 97,
+					"column": 11,
+					"label": "Portfolio"
+				},
+				{
+					"line": 122,
+					"column": 12,
+					"label": "Video"
+				},
+				{
+					"line": 138,
+					"column": 11,
+					"label": "Price"
+				},
+				{
+					"line": 186,
+					"column": 8,
+					"label": "Contacts"
+				},
+				{
+					"line": 210,
+					"column": 4,
+					"label": "Footer"
+				}
+			]
+		}
+	]
+}
