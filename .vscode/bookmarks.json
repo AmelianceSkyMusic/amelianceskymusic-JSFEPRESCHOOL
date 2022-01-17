@@ -44,22 +44,22 @@
 					"label": "Price"
 				},
 				{
-					"line": 651,
+					"line": 665,
 					"column": 22,
 					"label": "Contacts"
 				},
 				{
-					"line": 773,
+					"line": 787,
 					"column": 12,
 					"label": "!--FOOTER"
 				},
 				{
-					"line": 838,
+					"line": 852,
 					"column": 6,
 					"label": "Elements"
 				},
 				{
-					"line": 897,
+					"line": 911,
 					"column": 10,
 					"label": "Buttons"
 				}

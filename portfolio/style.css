@@ -621,6 +621,14 @@ body {
     display: flex;
     justify-content: space-between;
 }
+@media (max-width: 768px) {
+    .price-cards-block {
+        padding-bottom: 80px;
+        justify-content: center;
+        row-gap: 50px;
+        flex-wrap: wrap;
+    }
+}
 
 .price-card {
     padding: 40px 0;
@@ -630,6 +638,12 @@ body {
     align-items: center;
     text-align: center;
     border: 3px solid var(--gold);
+}
+
+@media (max-width: 768px) {
+    .price-card {
+        width: 420px;
+    }
 }
 
 .price-card__price,
