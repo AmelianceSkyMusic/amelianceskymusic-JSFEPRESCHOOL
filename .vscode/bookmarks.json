@@ -9,57 +9,52 @@
 					"label": ":root"
 				},
 				{
-					"line": 95,
-					"column": 4,
-					"label": "!--Header"
-				},
-				{
-					"line": 268,
+					"line": 272,
 					"column": 1,
 					"label": "!--MAIN"
 				},
 				{
-					"line": 352,
+					"line": 356,
 					"column": 16,
 					"label": "Hero"
 				},
 				{
-					"line": 472,
+					"line": 476,
 					"column": 16,
 					"label": "Skills"
 				},
 				{
-					"line": 537,
+					"line": 541,
 					"column": 15,
 					"label": "Portfolio"
 				},
 				{
-					"line": 582,
+					"line": 586,
 					"column": 14,
 					"label": "Video"
 				},
 				{
-					"line": 663,
+					"line": 667,
 					"column": 19,
 					"label": "Price"
 				},
 				{
-					"line": 713,
+					"line": 717,
 					"column": 22,
 					"label": "Contacts"
 				},
 				{
-					"line": 886,
+					"line": 890,
 					"column": 12,
 					"label": "!--FOOTER"
 				},
 				{
-					"line": 1007,
+					"line": 1011,
 					"column": 6,
 					"label": "Elements"
 				},
 				{
-					"line": 1066,
+					"line": 1070,
 					"column": 10,
 					"label": "Buttons"
 				}

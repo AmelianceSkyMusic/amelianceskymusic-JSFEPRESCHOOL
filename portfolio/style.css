@@ -137,8 +137,9 @@ body {
         right: 0;
         transition: 0.5s;
     }
-    .header {
-        overflow-x: hidden
+    .header,
+    header {
+        overflow-x: hidden;
     }
     .nav {
         position: absolute;
@@ -156,6 +157,9 @@ body {
         color: var(--white);
         background-color: var(--bg-dark);
 
+    }
+    .open {
+        right: 0;
     }
 }
 
