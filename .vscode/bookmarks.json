@@ -14,52 +14,52 @@
 					"label": "!--Header"
 				},
 				{
-					"line": 219,
+					"line": 268,
 					"column": 1,
 					"label": "!--MAIN"
 				},
 				{
-					"line": 303,
+					"line": 352,
 					"column": 16,
 					"label": "Hero"
 				},
 				{
-					"line": 423,
+					"line": 472,
 					"column": 16,
 					"label": "Skills"
 				},
 				{
-					"line": 488,
+					"line": 537,
 					"column": 15,
 					"label": "Portfolio"
 				},
 				{
-					"line": 533,
+					"line": 582,
 					"column": 14,
 					"label": "Video"
 				},
 				{
-					"line": 614,
+					"line": 663,
 					"column": 19,
 					"label": "Price"
 				},
 				{
-					"line": 664,
+					"line": 713,
 					"column": 22,
 					"label": "Contacts"
 				},
 				{
-					"line": 837,
+					"line": 886,
 					"column": 12,
 					"label": "!--FOOTER"
 				},
 				{
-					"line": 958,
+					"line": 1007,
 					"column": 6,
 					"label": "Elements"
 				},
 				{
-					"line": 1017,
+					"line": 1066,
 					"column": 10,
 					"label": "Buttons"
 				}
@@ -74,37 +74,37 @@
 					"label": "!--HEADER"
 				},
 				{
-					"line": 50,
+					"line": 51,
 					"column": 3,
 					"label": "!--MAIN"
 				},
 				{
-					"line": 67,
+					"line": 68,
 					"column": 12,
 					"label": "Skills"
 				},
 				{
-					"line": 97,
+					"line": 98,
 					"column": 11,
 					"label": "Portfolio"
 				},
 				{
-					"line": 122,
+					"line": 123,
 					"column": 12,
 					"label": "Video"
 				},
 				{
-					"line": 138,
+					"line": 139,
 					"column": 11,
 					"label": "Price"
 				},
 				{
-					"line": 186,
+					"line": 187,
 					"column": 8,
 					"label": "Contacts"
 				},
 				{
-					"line": 210,
+					"line": 211,
 					"column": 4,
 					"label": "Footer"
 				}
