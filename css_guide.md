@@ -1,7 +1,7 @@
 declaration-order {
 
 
-    Позиционирование
+    ## Позиционирование
 
     position: absolute;
     top: 0;
@@ -11,7 +11,7 @@ declaration-order {
     z-index: 100;
 
 
-    Блочная модель
+    ## Блочная модель
 
     display: block;
     float: right;
@@ -21,7 +21,7 @@ declaration-order {
     padding: 10px;
 
 
-    Типографика
+    ## Типографика
 
     font-family: "Arial", sans-serif;
     font-style: normal;
@@ -32,7 +32,7 @@ declaration-order {
     color: #333333;
 
 
-    Оформление
+    ## Оформление
 
     background-color: #f5f5f5;
     border: 1px solid #e5e5e5;
@@ -40,12 +40,12 @@ declaration-order {
     opacity: 1;
 
 
-    Анимация
+    ## Анимация
 
     transition: color 1s;
 
 
-    Разное
+    ## Разное
 
     will-change: auto;
   }
