@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- <div class="test"> -->
+        <!-- <div class="test-one"></div> -->
+        <!-- <div class="test-two"></div> -->
+    <!-- </div> -->
     <div class="main-container">
 
     <!-- =========================================================================== -->
@@ -129,6 +133,21 @@
 
             </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- ================================= video ================================= -->
             <section class="video" id="video">
 
@@ -137,13 +156,36 @@
                     <hr class="line-decoration">
                 </div>
 
-                <!-- <video src=""></video> -->
                 <div class="player">
-                    <div class="player__image"></div>
-                    <!-- <img class="player__image" src="assets/img/video-player.jpg" alt="video-player"> -->
+                    <picture class="player__images-block">
+                        <source srcset="assets/img/video-player-768w.jpg" media="(max-width: 768px)">
+                        <img src="assets/img/video-player.jpg" alt="video-player">
+                    </picture>
                     <button class="player__button"></button>
                 </div>
+
             </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <!-- ================================= price ================================= -->
             <section class="price" id="price">
@@ -235,7 +277,6 @@
         </div>
     </footer>
 </div>
-
     <script src="index.js"></script>
 </body>
 </html>

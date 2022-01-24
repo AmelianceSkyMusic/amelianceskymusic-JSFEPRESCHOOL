@@ -13,4 +13,8 @@ function addOpenClasstoMenu() {
 icon.addEventListener('click', addOpenClasstoMenu);
 nav.addEventListener('click', addOpenClasstoMenu);
 
+
+var image = document.getElementsByClassName('zero-block__hero-bg');
+new simpleParallax(image);
+
 // console.log("Вёрстка валидная +10\nВёрстка семантическая +20\nВёрстка соответствует макету +48\nТребования к css + 12\nИнтерактивность, реализуемая через css +20\nИтого: 110")

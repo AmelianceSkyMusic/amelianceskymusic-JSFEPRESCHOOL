@@ -4,6 +4,11 @@
 			"path": "portfolio/style.css",
 			"bookmarks": [
 				{
+					"line": 0,
+					"column": 2,
+					"label": "🔴🔴CSS🔴🔴"
+				},
+				{
 					"line": 8,
 					"column": 3,
 					"label": ":root"
@@ -19,57 +24,57 @@
 					"label": "body"
 				},
 				{
-					"line": 100,
+					"line": 108,
 					"column": 7,
 					"label": "Header 🧿"
 				},
 				{
-					"line": 289,
+					"line": 313,
 					"column": 1,
 					"label": "❗--MAIN"
 				},
 				{
-					"line": 355,
+					"line": 402,
 					"column": 16,
 					"label": "1 Hero 🦸‍♂️"
 				},
 				{
-					"line": 464,
+					"line": 523,
 					"column": 16,
 					"label": "2 Skills 📈"
 				},
 				{
-					"line": 530,
+					"line": 612,
 					"column": 15,
 					"label": "3 Portfolio 📃"
 				},
 				{
-					"line": 577,
+					"line": 709,
 					"column": 14,
 					"label": "4 Video 📷"
 				},
 				{
-					"line": 670,
+					"line": 873,
 					"column": 19,
 					"label": "5 Price 💲"
 				},
 				{
-					"line": 720,
+					"line": 924,
 					"column": 22,
 					"label": "6 Contacts 📞"
 				},
 				{
-					"line": 912,
+					"line": 1119,
 					"column": 12,
 					"label": "❗--FOOTER"
 				},
 				{
-					"line": 1037,
+					"line": 1244,
 					"column": 6,
 					"label": "Elements"
 				},
 				{
-					"line": 1096,
+					"line": 1303,
 					"column": 10,
 					"label": "Buttons"
 				}
@@ -79,42 +84,47 @@
 			"path": "portfolio/index.html",
 			"bookmarks": [
 				{
-					"line": 20,
+					"line": 0,
+					"column": 4,
+					"label": "🔴🔴HTML🔴🔴"
+				},
+				{
+					"line": 24,
 					"column": 4,
 					"label": "!--HEADER"
 				},
 				{
-					"line": 57,
+					"line": 61,
 					"column": 3,
 					"label": "!--MAIN"
 				},
 				{
-					"line": 74,
+					"line": 78,
 					"column": 12,
 					"label": "Skills"
 				},
 				{
-					"line": 106,
+					"line": 110,
 					"column": 11,
 					"label": "Portfolio"
 				},
 				{
-					"line": 131,
+					"line": 150,
 					"column": 12,
 					"label": "Video"
 				},
 				{
-					"line": 147,
+					"line": 189,
 					"column": 11,
 					"label": "Price"
 				},
 				{
-					"line": 195,
+					"line": 237,
 					"column": 8,
 					"label": "Contacts"
 				},
 				{
-					"line": 219,
+					"line": 261,
 					"column": 4,
 					"label": "Footer"
 				}
