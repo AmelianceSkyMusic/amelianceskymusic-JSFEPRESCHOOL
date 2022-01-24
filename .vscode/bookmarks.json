@@ -1,0 +1,134 @@
+{
+	"files": [
+		{
+			"path": "portfolio/style.css",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 2,
+					"label": "🔴🔴CSS🔴🔴"
+				},
+				{
+					"line": 8,
+					"column": 3,
+					"label": ":root"
+				},
+				{
+					"line": 50,
+					"column": 3,
+					"label": "*"
+				},
+				{
+					"line": 61,
+					"column": 6,
+					"label": "body"
+				},
+				{
+					"line": 108,
+					"column": 7,
+					"label": "Header 🧿"
+				},
+				{
+					"line": 313,
+					"column": 1,
+					"label": "❗--MAIN"
+				},
+				{
+					"line": 402,
+					"column": 16,
+					"label": "1 Hero 🦸‍♂️"
+				},
+				{
+					"line": 523,
+					"column": 16,
+					"label": "2 Skills 📈"
+				},
+				{
+					"line": 612,
+					"column": 15,
+					"label": "3 Portfolio 📃"
+				},
+				{
+					"line": 709,
+					"column": 14,
+					"label": "4 Video 📷"
+				},
+				{
+					"line": 873,
+					"column": 19,
+					"label": "5 Price 💲"
+				},
+				{
+					"line": 924,
+					"column": 22,
+					"label": "6 Contacts 📞"
+				},
+				{
+					"line": 1119,
+					"column": 12,
+					"label": "❗--FOOTER"
+				},
+				{
+					"line": 1244,
+					"column": 6,
+					"label": "Elements"
+				},
+				{
+					"line": 1303,
+					"column": 10,
+					"label": "Buttons"
+				}
+			]
+		},
+		{
+			"path": "portfolio/index.html",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 4,
+					"label": "🔴🔴HTML🔴🔴"
+				},
+				{
+					"line": 24,
+					"column": 4,
+					"label": "!--HEADER"
+				},
+				{
+					"line": 61,
+					"column": 3,
+					"label": "!--MAIN"
+				},
+				{
+					"line": 78,
+					"column": 12,
+					"label": "Skills"
+				},
+				{
+					"line": 110,
+					"column": 11,
+					"label": "Portfolio"
+				},
+				{
+					"line": 150,
+					"column": 12,
+					"label": "Video"
+				},
+				{
+					"line": 189,
+					"column": 11,
+					"label": "Price"
+				},
+				{
+					"line": 237,
+					"column": 8,
+					"label": "Contacts"
+				},
+				{
+					"line": 261,
+					"column": 4,
+					"label": "Footer"
+				}
+			]
+		}
+	]
+}

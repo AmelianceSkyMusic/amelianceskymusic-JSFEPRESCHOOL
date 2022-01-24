@@ -8,38 +8,51 @@
     <link rel="icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- <div class="test"> -->
+        <!-- <div class="test-one"></div> -->
+        <!-- <div class="test-two"></div> -->
+    <!-- </div> -->
+    <div class="main-container">
 
     <!-- =========================================================================== -->
     <!-- =========================================================================== -->
     <!-- ================================= HEADER ================================== -->
     <!-- =========================================================================== -->
     <!-- =========================================================================== -->
+    <div class="zero-block zero-block__hero-position">
+        <div class="zero-block__hero-bg"></div>
+        <div class="blackout"></div>
+    </div>
 
     <header>
         <div class="container header">
             <a class="header__logo" href="index.html"></a>
-                <nav class="nav">
-                    <ul class="menu__items">
-                        <li class="menu__items_item"><a class="menu__items_link link" href="#skills">Skills</a></li>
-                        <li class="menu__items_item"><a class="menu__items_link link" href="#portfolio">Portfolio</a></li>
-                        <li class="menu__items_item"><a class="menu__items_link link" href="#video">Video</a></li>
-                        <li class="menu__items_item"><a class="menu__items_link link" href="#price">Price</a></li>
-                        <li class="menu__items_item"><a class="menu__items_link link" href="#contacts">Contacts</a></li>
-                    </ul>
-                </nav>
-                <div class="language">
-                    <ul class="language__items">
-                        <li class="language__items_item"><a class="language__en_active link" href="">en</a></li>
-                        <li class="language__items_item">/</li>
-                        <li class="language__items_item"><a class="language__ru link" href="">ru</a></li>
-                    </ul>
-                </div>
+            <nav class="nav">
+                <ul class="menu__items">
+                    <li class="menu__item"><a class="menu__link link" href="#skills">Skills</a></li>
+                    <li class="menu__item"><a class="menu__link link" href="#portfolio">Portfolio</a></li>
+                    <li class="menu__item"><a class="menu__link link" href="#video">Video</a></li>
+                    <li class="menu__item"><a class="menu__link link" href="#price">Price</a></li>
+                    <li class="menu__item"><a class="menu__link link" href="#contacts">Contacts</a></li>
+                </ul>
+            </nav>
+            <div class="language">
+                <a class="language__item language__en link language-active">en</a>
+                <span class="language__item">/</span>
+                <a class="language__item language__ru link" href="">ru</a>
+            </div>
+            <div class="hamburger-menu">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+            </div>
+            <!-- <div class="header__float-menu"></div> -->
         </div>
-        
+
     </header>
 
     <!-- =========================================================================== -->
@@ -54,20 +67,22 @@
 
 
             <!-- ================================= hero ================================= -->
+
             <section class="hero" id="hero">
                 <div class="hero__title">
                     <h1>Alexa Rise</h1>
                     <p class="hero__description">Save sincere emotions, romantic feelings and happy moments of life together with professional photographer Alexa Rise</p>
                     <button class="hero__button button-primary">Hire me</button>
-                    <div class="bg"></div>
                 </div>
             </section>
 
             <!-- ================================= skills ================================= -->
             <section class="skills" id="skills">
-                <div class="header__title">
-                    <h2 class="section-title">Skills</h2>
-                    <hr class="line-decoration">
+                <div class="header__title skills-header__title">
+                    <!-- <div class='line-decoration'></div> -->
+                    <h2 class="section-title skills-section-title">Skills</h2>
+                    <div class='line-decoration'></div>
+                    <!-- <hr class="line-decoration"> -->
                 </div>
                 <div class="skills__cards">
                     <div class="skills__card">
@@ -80,12 +95,12 @@
                         <h5 class="skills_card_title">Video shooting</h5>
                         <p class="skills_card_text">Capture your moments so that they always stay with you</p>
                     </div>
-                    <div class="skills__card">
+                    <div class="skills__card .skills__card_fix">
                         <img class="skills__card_image" src="assets/svg/image.svg" alt="image">
                         <h5 class="skills_card_title">Retouch</h5>
                         <p class="skills_card_text">I strive to make photography surpass reality</p>
                     </div>
-                    <div class="skills__card">
+                    <div class="skills__card .skills__card_fix">
                         <img class="skills__card_image" src="assets/svg/mic.svg" alt="mic">
                         <h5 class="skills_card_title">Audio</h5>
                         <p class="skills_card_text">Professional sounds recording for video, advertising, portfolio</p>
@@ -118,6 +133,21 @@
 
             </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- ================================= video ================================= -->
             <section class="video" id="video">
 
@@ -126,12 +156,36 @@
                     <hr class="line-decoration">
                 </div>
 
-                <!-- <video src=""></video> -->
                 <div class="player">
-                    <img class="player__image" src="assets/img/video-player.jpg" alt="video-player">
+                    <picture class="player__images-block">
+                        <source srcset="assets/img/video-player-768w.jpg" media="(max-width: 768px)">
+                        <img src="assets/img/video-player.jpg" alt="video-player">
+                    </picture>
                     <button class="player__button"></button>
                 </div>
+
             </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <!-- ================================= price ================================= -->
             <section class="price" id="price">
@@ -182,6 +236,10 @@
             </section>
 
             <!-- ================================= contacts ================================= -->
+            <div class="zero-block">
+                <div class="zero-block__contacts-bg"></div>
+            </div>
+
             <section class="contacts" id="contacts">
                 <form class="contacts-form" action="index.js">
                     <h2 class="contacts-form__header section-title">Contact me</h2>
@@ -189,9 +247,9 @@
                     <input class="contacts-form__input" type="tel" placeholder="Phone">
                     <textarea class="contacts-form__textarea" placeholder="Message"></textarea>
                     <!-- <textarea class="contacts-form__input contacts-form__input_big" type="text" value="Message"></textarea> -->
-                    <button class="contacts-form__buton button-primary">Send message</button>
+                    <button class="contacts-form__button button-primary">Send message</button>
                 </form>
-
+                <div class="contacts__bg"></div>
             </section>
 
         </div>
@@ -218,7 +276,7 @@
             </ul>
         </div>
     </footer>
-    
+</div>
     <script src="index.js"></script>
 </body>
 </html>
