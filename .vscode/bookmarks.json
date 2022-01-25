@@ -89,42 +89,42 @@
 					"label": "🔴🔴HTML🔴🔴"
 				},
 				{
-					"line": 24,
+					"line": 20,
 					"column": 4,
 					"label": "!--HEADER"
 				},
 				{
-					"line": 61,
+					"line": 57,
 					"column": 3,
 					"label": "!--MAIN"
 				},
 				{
-					"line": 78,
+					"line": 74,
 					"column": 12,
 					"label": "Skills"
 				},
 				{
-					"line": 110,
+					"line": 106,
 					"column": 11,
 					"label": "Portfolio"
 				},
 				{
-					"line": 150,
+					"line": 146,
 					"column": 12,
 					"label": "Video"
 				},
 				{
-					"line": 189,
+					"line": 185,
 					"column": 11,
 					"label": "Price"
 				},
 				{
-					"line": 237,
+					"line": 233,
 					"column": 8,
 					"label": "Contacts"
 				},
 				{
-					"line": 261,
+					"line": 257,
 					"column": 4,
 					"label": "Footer"
 				}
