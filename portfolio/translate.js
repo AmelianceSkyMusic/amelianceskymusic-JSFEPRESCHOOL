@@ -2,7 +2,7 @@
 const i18Obj = {
   'en': {
     'skills': 'Skills',
-    ' data-i18="skills"': 'Portfolio',
+    'portfolio': 'Portfolio',
     'video': 'Video',
     'price': 'Price',
     'contacts': 'Contacts',
@@ -38,6 +38,9 @@ const i18Obj = {
     'price-description-3-span-5': 'Make up, visage, hairstyle',
     'order': 'Order shooting',
     'contact-me': 'Contact me',
+    'form-email': 'E-mail',
+    'form-phone': 'Phone',
+    'form-message': 'Message',
     'send-message': 'Send message'
   },
   'ru': {
@@ -78,6 +81,9 @@ const i18Obj = {
     'price-description-3-span-5': 'Макияж, визаж, прическа',
     'order': 'Заказать съемку',
     'contact-me': 'Свяжитесь со мной',
+    'form-email': 'Электронная почта',
+    'form-phone': 'Телефон',
+    'form-message': 'Сообщение',
     'send-message': 'Отправить'
   }
 };

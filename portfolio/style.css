@@ -98,6 +98,18 @@ body {
     }
 }
 
+@media (max-width: 380px) {
+    .container {
+        position: relative;
+        max-width: 768px;
+        min-width: 320px;
+        padding: 0 4vw;
+        /* width: 768px; */
+        /* overflow: hidden; */
+    }
+}
+
+
 .zero-block {
     position: relative;
 }
@@ -262,6 +274,7 @@ body {
 .language {
     display: flex;
     padding-left: 31px;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -286,24 +299,51 @@ body {
 }
 .language__en {
     padding-right: 9px;
+    z-index: 8;
 
 }
 
 .language__ru {
     padding-left: 8px;
+    z-index: 8;
 }
 
 .language-active {
     color: var(--gold);
+    cursor: default;
 }
 
 
 
 @media (max-width: 768px) {
     .language__ru {
-        padding-right: 20px;
+        /* padding-right: 20px; */
         padding-left: 19px;
     }
+}
+
+.theme__icon {
+    cursor: pointer;
+    padding-left: 30px;
+    transition: 0.3s;
+    z-index: 8;
+}
+
+@media (max-width: 768px) {
+    .theme__icon {
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 380px) {
+    .theme__icon {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.theme__icon:hover {
+    filter: var(--filter-gold);
 }
 
 
@@ -530,7 +570,9 @@ body {
         /* /~ height: 729px; ~/ */
     /* } */
 /* } */
-
+/* .skills{ */
+    /* /~ background-color: red; ~/ */
+/* } */
 .skills-header__title {
     padding-bottom: 20px;
 }
@@ -768,6 +810,13 @@ body {
         width: 65px;
     }
 }
+
+@media (max-width: 380px) {
+    .player {
+        margin: 0 -4vw;
+    }
+}
+
 
 /* .player { */
     /* position: relative; */
@@ -1358,3 +1407,30 @@ ul {
     color: var(--white);
     cursor: pointer;
 }
+
+
+
+
+
+
+.light-theme {
+    background-color: var(--white);
+    color: var(--bg-dark);
+}
+.light-theme-dark-bg {
+    background-color: var(--bg-dark);
+}
+.light-theme-light-bg {
+    background-color: var(--white);
+}
+
+.light-theme-buttons {
+    color: var(--bg-dark);
+}
+.light-theme-buttons:hover {
+    color: var(--gold);
+}
+
+/* .light-theme:hover { */
+/* color: var(--gold); */
+/* } */
