@@ -521,15 +521,15 @@ body {
 }
 
 /* -------------------------- SKIILS -------------------------- */
-.skills {
-    /* height: 482px; */
-}
+/* .skills { */
+    /* /~ height: 482px; ~/ */
+/* } */
 
-@media (max-width: 768px) {
-    .skills {
-        /* height: 729px; */
-    }
-}
+/* @media (max-width: 768px) { */
+    /* .skills { */
+        /* /~ height: 729px; ~/ */
+    /* } */
+/* } */
 
 .skills-header__title {
     padding-bottom: 20px;
@@ -713,10 +713,10 @@ body {
     /* display: block; */
     /* background-color: rebeccapurple; */
 /* } */
-.video {
-    /* height: 945px; */
-    /* margin-bottom: -4px; */
-}
+/* .video { */
+    /* /~ height: 945px; ~/ */
+    /* /~ margin-bottom: -4px; ~/ */
+/* } */
 
 .player{
     position: relative;
@@ -877,8 +877,9 @@ body {
 
 
 /* -------------------------- PRICE -------------------------- */
-.price {
-}
+/* .price { */
+/* } */
+
 .price-cards-block {
     padding-bottom: 100px;
     display: flex;
