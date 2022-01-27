@@ -204,6 +204,7 @@ const ChangebleElemetnAll = [
     '.skills_card_text',
     '.price-card__header',
     '.price-card-list-item',
+    // '.nav .open'
     // '.portfolio__tab-button',
 
     // '.line-decoration',
@@ -237,6 +238,11 @@ function changeThemeVaribles() {
         // root.style.setProperty('--tab-prm—txt:', white);
         // root.style.setProperty('--tab-prm—txt-hover', black);
 
+        root.style.setProperty('--nav-bg', white);
+        root.style.setProperty('--nav-menu-item', black);
+        root.style.setProperty('--nav-menu-item-hover', gold);
+        root.style.setProperty('--nav-icon', black);
+
         root.style.setProperty('--tab-sec-bg', transparent);
         root.style.setProperty('--tab-sec-bg-hover', gold);
         root.style.setProperty('--tab-sec-border', gold);
@@ -254,6 +260,11 @@ function changeThemeVaribles() {
         // root.style.setProperty('--tab-prm—txt:', white);
         // root.style.setProperty('--tab-prm—txt-hover', black);
 
+        root.style.setProperty('--nav-bg', black);
+        root.style.setProperty('--nav-menu-item', white);
+        root.style.setProperty('--nav-menu-item-hover', gold);
+        root.style.setProperty('--nav-icon', white);
+
         root.style.setProperty('--tab-sec-bg', transparent);
         root.style.setProperty('--tab-sec-bg-hover', transparent);
         root.style.setProperty('--tab-sec-border', gold);
@@ -270,6 +281,7 @@ function changeIconTheme() {
         iconTheme.src = `./assets/svg/light.svg`;
     }
     localStorage.setItem('theme', theme);
+
 }
 
 function changeTheme(theme) {
@@ -297,8 +309,10 @@ iconTheme.addEventListener('click', () => changeTheme(theme));
 function getLocalStorage() {
     if(localStorage.getItem('lang')) {
       const lang = localStorage.getItem('lang');
-      const theme = localStorage.getItem('theme');
       setLanguage(lang);
+    }
+    if(localStorage.getItem('theme')) {
+      const theme = localStorage.getItem('theme');
       changeTheme(theme);
     }
 }
