@@ -30,7 +30,7 @@ nav.addEventListener('click', addOpenClasstoMenu);
 /* ---------------------------------------------------------- */
 const portfolioImages = document.querySelectorAll('.portfolio__image');
 
-const buttons = document.querySelector('.portfolio__buttons');
+const buttons = document.querySelector('.portfolio__tab-buttons');
 
 /* ---------------------------------------------------------- */
 /* ---------------------- Cash Images ----------------------- */
@@ -61,7 +61,7 @@ function changeImages(event) {
     const activePortfolioPhotosFolder = el.dataset.season; // get data-<season> atribute value
 
     // is element our button - check if element have needed class
-    if(el.classList.contains('portfolio__button')) {
+    if(el.classList.contains('portfolio__tab-button')) {
 
         // chagne src patn
             portfolioImages.forEach((img, index) => {
@@ -79,17 +79,17 @@ function changeButtonsToPrimaryAndResetOthers(event) {
     const allButtons = el.parentElement.children; // get all cheldrens from element parrent
 
     // is element our button - check if element have needed class
-    if(el.classList.contains('portfolio__button')) {
+    if(el.classList.contains('portfolio__tab-button')) {
 
         // reset all button classes to secondary
         Array.from(allButtons).forEach((btn, index) => { // Array.from(allButtons) convert NodeObject ot array
-            btn.classList.add('button-secondary');
-            btn.classList.remove('button-primary');
+            btn.classList.add('tab-button-secondary');
+            btn.classList.remove('tab-button-primary');
         });
 
         // set active button class to primary
-        el.classList.remove('button-secondary');
-        el.classList.add('button-primary');
+        el.classList.remove('tab-button-secondary');
+        el.classList.add('tab-button-primary');
 
     }
 }
@@ -167,73 +167,95 @@ enButton.addEventListener('click', setEn);
 /* --------------------- CHANGE THEME ----------------------- */
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
+const black = '#000000';
+const white = '#ffffff';
+const gold = '#bdae82';
+const transparent = 'transparent';
+
+const iconTheme = document.querySelector('.theme__icon');
+let root = document.documentElement;
 
 const ChangebleElemetnAll = [
-    // 'body',
-    // '.skills',
-    // '.portfolio',
-    // '.video',
-    // '.price',
-    // '.button-secondary',
     '.skills-section-title',
     '.portfolio-section-title',
     '.video-section-title',
     '.price-section-title',
-    // '.line-decoration',
-
     '.skills_card_title',
     '.skills_card_text',
     '.price-card__header',
     '.price-card-list-item',
+    // '.portfolio__tab-button',
 
+    // '.line-decoration',
 ];
 
-const ChangebleElemetnDarkBg = [
-    '.line-decoration',
-    '.footer',
-];
-const ChangebleElemetnButtons = [
-    '.button-secondary',
-];
-
-function changeElementThemeAll() {
+function setElementTheme() {
     ChangebleElemetnAll.forEach(item => {
         const elem = document.querySelectorAll(item);
         elem.forEach( el => {
             el.classList.toggle('light-theme');
         });
-    //     // elem.classList.toggle('light-theme');
     });
 }
+function changeTabTheme() {
+    if(document.querySelector('.light-theme')) {
+        console.log('Light on');
+        root.style.setProperty('--body-color', white);
 
-function changeElementThemeDarkBg() {
-    ChangebleElemetnDarkBg.forEach(item => {
-        const elem = document.querySelectorAll(item);
-        elem.forEach( el => {
-            el.classList.toggle('light-theme-dark-bg');
-        });
-    });
-}
+        root.style.setProperty('--line-decoration-bg', black);
 
-function changeElementThemeButtons() {
-    ChangebleElemetnButtons.forEach(item => {
-        const elem = document.querySelectorAll(item);
-        elem.forEach( el => {
-            el.classList.toggle('light-theme-buttons');
-        });
-    });
+        // root.style.setProperty('--tab-prm-bg', gold);
+        // root.style.setProperty('--tab-prm-bg-hover', transparent);
+        // root.style.setProperty('--tab-prm-border', gold);
+        // root.style.setProperty('--tab-prm—txt:', white);
+        // root.style.setProperty('--tab-prm—txt-hover', black);
+
+        root.style.setProperty('--tab-sec-bg', transparent);
+        root.style.setProperty('--tab-sec-bg-hover', gold);
+        root.style.setProperty('--tab-sec-border', gold);
+        root.style.setProperty('--tab-sec—txt', black);
+        root.style.setProperty('--tab-sec—txt-hover', white);
+    } else {
+        console.log('Light off');
+        root.style.setProperty('--body-color', black);
+
+        root.style.setProperty('--line-decoration-bg', gold);
+
+        // root.style.setProperty('--tab-prm-bg', gold);
+        // root.style.setProperty('--tab-prm-bg-hover', transparent);
+        // root.style.setProperty('--tab-prm-border', gold);
+        // root.style.setProperty('--tab-prm—txt:', white);
+        // root.style.setProperty('--tab-prm—txt-hover', black);
+
+        root.style.setProperty('--tab-sec-bg', transparent);
+        root.style.setProperty('--tab-sec-bg-hover', transparent);
+        root.style.setProperty('--tab-sec-border', gold);
+        root.style.setProperty('--tab-sec—txt', gold);
+        root.style.setProperty('--tab-sec—txt-hover', white);
+    }
 }
-const iconTheme = document.querySelector('.theme__icon');
-function changeTheme() {
-    document.querySelector('body').classList.toggle('light-theme-light-bg');
-    changeElementThemeAll();
-    changeElementThemeDarkBg();
-    changeElementThemeButtons();
+function changeIconTheme() {
     if (document.querySelector('.light-theme')) {
         iconTheme.src = `./assets/svg/dark.svg`;
     } else {
         iconTheme.src = `./assets/svg/light.svg`;
     }
+}
+
+function changeTheme() {
+    // document.querySelector('body').classList.toggle('light-theme');
+    setElementTheme();
+
+    // const elem = document.querySelectorAll('.light-theme');
+    // elem.forEach( el => {
+    //     el.style.backgroundColor = white;
+    //     el.style.color = black;
+    //     console.log(el);
+
+    // });
+
+    changeTabTheme();
+    changeIconTheme();
 }
 
 
