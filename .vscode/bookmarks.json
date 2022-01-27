@@ -164,52 +164,52 @@
 					"label": "---------JS---------"
 				},
 				{
-					"line": 11,
+					"line": 13,
 					"column": 2,
 					"label": "!--MENU"
 				},
 				{
-					"line": 29,
+					"line": 31,
 					"column": 6,
 					"label": "!--PORTFOLIO"
 				},
 				{
-					"line": 36,
+					"line": 38,
 					"column": 9,
 					"label": "Cash images"
 				},
 				{
-					"line": 56,
+					"line": 58,
 					"column": 11,
 					"label": "Change Images"
 				},
 				{
-					"line": 75,
+					"line": 77,
 					"column": 14,
 					"label": "Change Button Class"
 				},
 				{
-					"line": 106,
+					"line": 108,
 					"column": 12,
 					"label": "!--LANGUAGE"
 				},
 				{
-					"line": 112,
+					"line": 114,
 					"column": 5,
 					"label": "Sel Language"
 				},
 				{
-					"line": 138,
+					"line": 155,
 					"column": 5,
 					"label": "Change to ru"
 				},
 				{
-					"line": 152,
+					"line": 170,
 					"column": 5,
 					"label": "Change to en"
 				},
 				{
-					"line": 168,
+					"line": 188,
 					"column": 5,
 					"label": "!--THEME"
 				}

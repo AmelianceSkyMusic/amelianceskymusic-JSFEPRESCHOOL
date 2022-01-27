@@ -5,6 +5,8 @@ import i18Obj from './translate.js';
 /* ---------------------------------------------------------- */
 const Msg = msg => console.log(msg);
 
+let lang = 'en';
+let theme = 'dark';
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 /* -------------------------- MENU -------------------------- */
@@ -114,6 +116,7 @@ const enButton = document.querySelector('.language__en');
 function setLanguage(language) {
     const currentLanguageObj = i18Obj[language];
     const datai18 = document.querySelectorAll('[data-i18]');
+
     datai18.forEach( (elem) => {
         let elementDataAtribute = elem.dataset.i18;
 
@@ -125,13 +128,27 @@ function setLanguage(language) {
                 elem.placeholder = currentLanguageObj[elementDataAtribute];
                 elem.textContent = '';
             }
-            console.log('true');
-        } else {
-            console.log('false');
-            console.log(elementDataAtribute);
-
         }
     } );
+
+    // const langButtons = document.querySelectorAll('.language__item');
+    // langButtons.forEach( (elem) => {
+    //     elem.classList.remove('language-active');
+    // });
+
+    // event.target.classList.add('language-active');
+    console.log(language);
+
+
+    if (language === 'en') {
+        enButton.classList.add('language-active');
+        ruButton.classList.remove('language-active');
+        localStorage.setItem('lang', language);
+    } else if (language === 'ru') {
+        ruButton.classList.add('language-active');
+        enButton.classList.remove('language-active');
+        localStorage.setItem('lang', language);
+    }
 
 }
 /* ---------------------------------------------------------- */
@@ -144,9 +161,10 @@ function setRu(event) {
     });
     event.target.classList.add('language-active');
     setLanguage('ru');
+    lang = 'ru';
 }
 
-ruButton.addEventListener('click', setRu);
+// ruButton.addEventListener('click', setRu);
 
 /* ---------------------------------------------------------- */
 /* ---------------- change language to en  ------------------ */
@@ -158,9 +176,11 @@ function setEn(event) {
     });
     event.target.classList.add('language-active');
     setLanguage('en');
+    lang = 'en';
 }
 
-enButton.addEventListener('click', setEn);
+enButton.addEventListener('click', () => setLanguage('en'));
+ruButton.addEventListener('click', () => setLanguage('ru'));
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
@@ -192,12 +212,19 @@ const ChangebleElemetnAll = [
 function setElementTheme() {
     ChangebleElemetnAll.forEach(item => {
         const elem = document.querySelectorAll(item);
-        elem.forEach( el => {
-            el.classList.toggle('light-theme');
-        });
+        if (theme === 'dark') {
+            elem.forEach( el => {
+                el.classList.toggle('light-theme');
+            });
+        } else if (theme === 'light') {
+            elem.forEach( el => {
+                el.classList.toggle('light-theme');
+            });
+        }
     });
 }
-function changeTabTheme() {
+
+function changeThemeVaribles() {
     if(document.querySelector('.light-theme')) {
         console.log('Light on');
         root.style.setProperty('--body-color', white);
@@ -236,39 +263,45 @@ function changeTabTheme() {
 }
 function changeIconTheme() {
     if (document.querySelector('.light-theme')) {
+        theme = 'light';
         iconTheme.src = `./assets/svg/dark.svg`;
     } else {
+        theme = 'dark';
         iconTheme.src = `./assets/svg/light.svg`;
     }
+    localStorage.setItem('theme', theme);
 }
 
-function changeTheme() {
-    // document.querySelector('body').classList.toggle('light-theme');
-    setElementTheme();
-
-    // const elem = document.querySelectorAll('.light-theme');
-    // elem.forEach( el => {
-    //     el.style.backgroundColor = white;
-    //     el.style.color = black;
-    //     console.log(el);
-
-    // });
-
-    changeTabTheme();
+function changeTheme(theme) {
+    setElementTheme(theme);
+    changeThemeVaribles();
     changeIconTheme();
 }
 
 
-iconTheme.addEventListener('click', changeTheme);
+iconTheme.addEventListener('click', () => changeTheme(theme));
+
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+/* --------------------- SAVE SETTINGS ---------------------- */
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+// function setLocalStorage() {
+//     // localStorage.setItem('lang', lang);
+//     localStorage.setItem('theme', theme);
+// }
+
+// window.addEventListener('beforeunload', setLocalStorage);
+
+
+function getLocalStorage() {
+    if(localStorage.getItem('lang')) {
+      const lang = localStorage.getItem('lang');
+      const theme = localStorage.getItem('theme');
+      setLanguage(lang);
+      changeTheme(theme);
+    }
+}
+window.addEventListener('load', getLocalStorage);
 
 // console.log("Вёрстка соответствует макету. Ширина экрана 768px +48\nНи на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +15\nНа ширине экрана 768рх и меньше реализовано адаптивное меню +22\nИтого: 85")
-
-
-// function changeElementTheme() {
-//     ChangebleBlocks.forEach(item => {
-//         const elem = document.querySelectorAll(item);
-//         elem.forEach( el => {
-//             el.classList.add('light-theme');
-//         });
-//     });
-// }
