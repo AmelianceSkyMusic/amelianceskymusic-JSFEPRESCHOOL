@@ -6,7 +6,7 @@ import i18Obj from './translate.js';
 const Msg = msg => console.log(msg);
 
 let lang = 'en';
-let theme = 'dark';
+let theme = 'light';
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
 /* -------------------------- MENU -------------------------- */
@@ -78,7 +78,7 @@ function changeImages(event) {
 /* ---------------------------------------------------------- */
 function changeButtonsToPrimaryAndResetOthers(event) {
     const el = event.target; // get element
-    const allButtons = el.parentElement.children; // get all cheldrens from element parrent
+    const allButtons = el.parentElement.children; // get all children from element parrent
 
     // is element our button - check if element have needed class
     if(el.classList.contains('portfolio__tab-button')) {
@@ -154,33 +154,90 @@ function setLanguage(language) {
 /* ---------------------------------------------------------- */
 /* ---------------- change language to ru  ------------------ */
 /* ---------------------------------------------------------- */
-function setRu(event) {
-    const langButtons = document.querySelectorAll('.language__item');
-    langButtons.forEach( (elem) => {
-        elem.classList.remove('language-active');
-    });
-    event.target.classList.add('language-active');
-    setLanguage('ru');
-    lang = 'ru';
-}
+// function setRu(event) {
+//     const langButtons = document.querySelectorAll('.language__item');
+//     langButtons.forEach( (elem) => {
+//         elem.classList.remove('language-active');
+//     });
+//     event.target.classList.add('language-active');
+//     setLanguage('ru');
+//     lang = 'ru';
+// }
 
 // ruButton.addEventListener('click', setRu);
 
 /* ---------------------------------------------------------- */
 /* ---------------- change language to en  ------------------ */
 /* ---------------------------------------------------------- */
-function setEn(event) {
-    const langButtons = document.querySelectorAll('.language__item');
-    langButtons.forEach( (elem) => {
-        elem.classList.remove('language-active');
-    });
-    event.target.classList.add('language-active');
-    setLanguage('en');
-    lang = 'en';
-}
+// function setEn(event) {
+//     const langButtons = document.querySelectorAll('.language__item');
+//     langButtons.forEach( (elem) => {
+//         elem.classList.remove('language-active');
+//     });
+//     event.target.classList.add('language-active');
+//     setLanguage('en');
+//     lang = 'en';
+// }
 
 enButton.addEventListener('click', () => setLanguage('en'));
 ruButton.addEventListener('click', () => setLanguage('ru'));
+
+/* ---------------------------------------------------------- */
+/* ------------------ fx click on button -------------------- */
+/* ---------------------------------------------------------- */
+// document.querySelector('.button-primary').addEventListener('click', (event) => {
+//     event.target.classList.add('circle');
+// });
+
+function clickAnimation(elem) {
+
+    const e = elem;
+    const x = e.clientX;
+    const y = e.clientY;
+
+    const buttonTop = e.target.offsetTop;
+    const buttonLeft = e.target.offsetLeft;
+
+    const xInside = x - buttonLeft;
+    const yInside = y - buttonTop;
+
+    const circle = document.createElement('span');
+    circle.classList.add('circle');
+    circle.style.top = yInside + 'px';
+    circle.style.left = xInside + 'px';
+
+    this.appendChild(circle);
+
+    setTimeout(() => circle.remove(), 300);
+}
+
+const buttonsPrimary = document.querySelectorAll('.button-primary');
+
+buttonsPrimary.forEach((elem) => {
+    elem.addEventListener('click', clickAnimation);
+    // elem.classList.add('circle');
+});
+// buttonsPrimary.addEventListener('click', clickAnimation );
+// document.querySelectorAll('.tab-button-primary').addEventListener('click', clickAnimation );
+// document.querySelector('.button-primary').addEventListener('click', function (e) {
+//     const x = e.clientX;
+//     const y = e.clientY;
+
+//     const buttonTop = e.target.offsetTop;
+//     const buttonLeft = e.target.offsetLeft;
+
+//     const xInside = x - buttonLeft;
+//     const yInside = y - buttonTop;
+
+//     const circle = document.createElement('span');
+//     circle.classList.add('circle');
+//     circle.style.top = yInside + 'px';
+//     circle.style.left = xInside + 'px';
+
+//     this.appendChild(circle);
+
+//     setTimeout(() => circle.remove(), 500);
+//   });
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
@@ -210,23 +267,23 @@ const ChangebleElemetnAll = [
     // '.line-decoration',
 ];
 
-function setElementTheme() {
+function setElementTheme(thm) {
     ChangebleElemetnAll.forEach(item => {
         const elem = document.querySelectorAll(item);
-        if (theme === 'dark') {
+        if (thm === 'dark') {
             elem.forEach( el => {
-                el.classList.toggle('light-theme');
+                el.classList.remove('light-theme');
             });
-        } else if (theme === 'light') {
+        } else if (thm === 'light') {
             elem.forEach( el => {
-                el.classList.toggle('light-theme');
+                el.classList.add('light-theme');
             });
         }
     });
 }
 
-function changeThemeVaribles() {
-    if(document.querySelector('.light-theme')) {
+function changeThemeVaribles(thm) {
+    if(thm === 'light') {
         console.log('Light on');
         root.style.setProperty('--body-color', white);
 
@@ -272,50 +329,59 @@ function changeThemeVaribles() {
         root.style.setProperty('--tab-sec—txt-hover', white);
     }
 }
-function changeIconTheme() {
-    if (document.querySelector('.light-theme')) {
-        theme = 'light';
-        iconTheme.src = `./assets/svg/dark.svg`;
-    } else {
-        theme = 'dark';
-        iconTheme.src = `./assets/svg/light.svg`;
-    }
-    localStorage.setItem('theme', theme);
 
+function changeIconTheme(thm) {
+    let saveTheme
+    if (thm === 'light') {
+        theme = 'dark';
+        saveTheme = 'light';
+        iconTheme.src = `./assets/svg/moon.svg`;
+    } else {
+        theme = 'light';
+        saveTheme = 'dark';
+        iconTheme.src = `./assets/svg/sun.svg`;
+    }
+    // Msg(`save ${theme}`);
+    // theme = theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', saveTheme);
 }
 
-function changeTheme(theme) {
-    setElementTheme(theme);
-    changeThemeVaribles();
-    changeIconTheme();
+function changeTheme(thm) {
+    // thm = thm === 'dark' ? 'light' : 'dark';
+    setElementTheme(thm);
+    changeThemeVaribles(thm);
+    changeIconTheme(thm);
 }
 
 
 iconTheme.addEventListener('click', () => changeTheme(theme));
 
+
+
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
-/* --------------------- SAVE SETTINGS ---------------------- */
+/* --------------------- LOAD SETTINGS ---------------------- */
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
+function getLocalStorage() {
+    if(localStorage.getItem('lang')) {
+        const lang = localStorage.getItem('lang');
+        console.log('load ' + lang);
+        setLanguage(lang);
+    }
+    if(localStorage.getItem('theme')) {
+        const theme = localStorage.getItem('theme');
+        console.log('load ' + theme);
+        changeTheme(theme);
+    }
+}
+window.addEventListener('load', getLocalStorage);
+
 // function setLocalStorage() {
 //     // localStorage.setItem('lang', lang);
 //     localStorage.setItem('theme', theme);
 // }
 
 // window.addEventListener('beforeunload', setLocalStorage);
-
-
-function getLocalStorage() {
-    if(localStorage.getItem('lang')) {
-      const lang = localStorage.getItem('lang');
-      setLanguage(lang);
-    }
-    if(localStorage.getItem('theme')) {
-      const theme = localStorage.getItem('theme');
-      changeTheme(theme);
-    }
-}
-window.addEventListener('load', getLocalStorage);
 
 // console.log("Вёрстка соответствует макету. Ширина экрана 768px +48\nНи на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +15\nНа ширине экрана 768рх и меньше реализовано адаптивное меню +22\nИтого: 85")

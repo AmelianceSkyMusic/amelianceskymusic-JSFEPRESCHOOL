@@ -84,12 +84,12 @@
 					"label": "Tabs"
 				},
 				{
-					"line": 1565,
+					"line": 1588,
 					"column": 10,
 					"label": "LIght theme"
 				},
 				{
-					"line": 1590,
+					"line": 1613,
 					"column": 0,
 					"label": " "
 				}
@@ -209,9 +209,19 @@
 					"label": "Change to en"
 				},
 				{
-					"line": 188,
+					"line": 186,
+					"column": 2,
+					"label": "Button FX"
+				},
+				{
+					"line": 245,
 					"column": 5,
 					"label": "!--THEME"
+				},
+				{
+					"line": 364,
+					"column": 6,
+					"label": "!--LOAD SETTINGS"
 				}
 			]
 		}

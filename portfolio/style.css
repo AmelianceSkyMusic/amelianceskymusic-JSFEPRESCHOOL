@@ -769,7 +769,7 @@ body {
 
 @media (max-width: 768px) {
     .portfolio__tab-buttons {
-        margin: auto;
+        /* margin: auto; */
     }
 }
 
@@ -1554,12 +1554,35 @@ ul {
         cursor: pointer;
     }
 }
+
+.button-primary,
+.button-secondary,
+.tab-button-primary,
+.tab-button-secondary {
+    position: relative;
+    overflow: hidden;
+    z-index: 8;
+}
+
 .button-primary .circle,
 .button-secondary .circle,
 .tab-button-primary .circle,
 .tab-button-secondary .circle {
-
+    position: absolute;
+    background-color: #fff;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: scale 0.5s ease-out;
 }
+
+@keyframes scale {
+    to {
+      transform: translate(-50%, -50%) scale(3);
+      opacity: 0;
+    }
+  }
 
 
 /* ---------------------------------------------------------- */
