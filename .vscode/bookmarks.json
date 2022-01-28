@@ -6,7 +6,7 @@
 				{
 					"line": 0,
 					"column": 2,
-					"label": "🔴🔴CSS🔴🔴"
+					"label": "-------CSS--------"
 				},
 				{
 					"line": 8,
@@ -14,69 +14,69 @@
 					"label": ":root"
 				},
 				{
-					"line": 50,
-					"column": 3,
-					"label": "*"
-				},
-				{
-					"line": 61,
-					"column": 6,
-					"label": "body"
-				},
-				{
-					"line": 108,
-					"column": 7,
-					"label": "Header 🧿"
-				},
-				{
-					"line": 313,
+					"line": 444,
 					"column": 1,
 					"label": "❗--MAIN"
 				},
 				{
-					"line": 402,
+					"line": 533,
 					"column": 16,
 					"label": "1 Hero 🦸‍♂️"
 				},
 				{
-					"line": 523,
+					"line": 654,
 					"column": 16,
 					"label": "2 Skills 📈"
 				},
 				{
-					"line": 612,
+					"line": 745,
 					"column": 15,
 					"label": "3 Portfolio 📃"
 				},
 				{
-					"line": 715,
+					"line": 848,
 					"column": 14,
 					"label": "4 Video 📷"
 				},
 				{
-					"line": 879,
+					"line": 1023,
 					"column": 19,
 					"label": "5 Price 💲"
 				},
 				{
-					"line": 930,
+					"line": 1075,
 					"column": 22,
 					"label": "6 Contacts 📞"
 				},
 				{
-					"line": 1125,
+					"line": 1278,
 					"column": 12,
 					"label": "❗--FOOTER"
 				},
 				{
-					"line": 1250,
+					"line": 1407,
 					"column": 6,
 					"label": "Elements"
 				},
 				{
-					"line": 1309,
+					"line": 1466,
 					"column": 10,
 					"label": "Buttons"
+				},
+				{
+					"line": 1511,
+					"column": 17,
+					"label": "Tabs"
+				},
+				{
+					"line": 1588,
+					"column": 10,
+					"label": "LIght theme"
+				},
+				{
+					"line": 1613,
+					"column": 0,
+					"label": " "
 				}
 			]
 		},
@@ -86,47 +86,127 @@
 				{
 					"line": 0,
 					"column": 4,
-					"label": "🔴🔴HTML🔴🔴"
+					"label": "-------HTML-------"
 				},
 				{
 					"line": 24,
-					"column": 4,
-					"label": "!--HEADER"
+					"column": 2,
+					"label": "!--Header"
 				},
 				{
-					"line": 61,
+					"line": 62,
 					"column": 3,
 					"label": "!--MAIN"
 				},
 				{
-					"line": 78,
-					"column": 12,
+					"line": 69,
+					"column": 15,
+					"label": "Hero"
+				},
+				{
+					"line": 79,
+					"column": 16,
 					"label": "Skills"
 				},
 				{
-					"line": 110,
-					"column": 11,
+					"line": 111,
+					"column": 16,
 					"label": "Portfolio"
 				},
 				{
-					"line": 150,
-					"column": 12,
+					"line": 136,
+					"column": 53,
 					"label": "Video"
 				},
 				{
-					"line": 189,
-					"column": 11,
+					"line": 154,
+					"column": 18,
 					"label": "Price"
 				},
 				{
-					"line": 237,
-					"column": 8,
+					"line": 202,
+					"column": 25,
 					"label": "Contacts"
 				},
 				{
-					"line": 261,
-					"column": 4,
-					"label": "Footer"
+					"line": 226,
+					"column": 11,
+					"label": "!---Footer"
+				},
+				{
+					"line": 247,
+					"column": 0,
+					"label": " "
+				}
+			]
+		},
+		{
+			"path": "portfolio/index.js",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 1,
+					"label": "---------JS---------"
+				},
+				{
+					"line": 13,
+					"column": 2,
+					"label": "!--MENU"
+				},
+				{
+					"line": 31,
+					"column": 6,
+					"label": "!--PORTFOLIO"
+				},
+				{
+					"line": 38,
+					"column": 9,
+					"label": "Cash images"
+				},
+				{
+					"line": 58,
+					"column": 11,
+					"label": "Change Images"
+				},
+				{
+					"line": 77,
+					"column": 14,
+					"label": "Change Button Class"
+				},
+				{
+					"line": 108,
+					"column": 12,
+					"label": "!--LANGUAGE"
+				},
+				{
+					"line": 114,
+					"column": 5,
+					"label": "Sel Language"
+				},
+				{
+					"line": 155,
+					"column": 5,
+					"label": "Change to ru"
+				},
+				{
+					"line": 170,
+					"column": 5,
+					"label": "Change to en"
+				},
+				{
+					"line": 186,
+					"column": 2,
+					"label": "Button FX"
+				},
+				{
+					"line": 245,
+					"column": 5,
+					"label": "!--THEME"
+				},
+				{
+					"line": 364,
+					"column": 6,
+					"label": "!--LOAD SETTINGS"
 				}
 			]
 		}
