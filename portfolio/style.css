@@ -750,7 +750,7 @@ body {
     align-items: center;
 }
 
-.portfolio__data-i18s {
+.portfolio__tab-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -769,7 +769,7 @@ body {
 
 @media (max-width: 768px) {
     .portfolio__tab-buttons {
-        /* margin: auto; */
+        margin: auto;
     }
 }
 
