@@ -58,14 +58,13 @@ function preloadImages() {
 /* --------------------- Change Images ---------------------- */
 /* ---------------------------------------------------------- */
 function changeImages(event) {
-
     const el = event.target; // get element
     const activePortfolioPhotosFolder = el.dataset.season; // get data-<season> atribute value
 
     // is element our button - check if element have needed class
     if(el.classList.contains('portfolio__tab-button')) {
 
-        // chagne src patn
+        // chagne src path
             portfolioImages.forEach((img, index) => {
             img.src = `./assets/img/${activePortfolioPhotosFolder}/${index + 1}.jpg`;
         });
@@ -131,15 +130,6 @@ function setLanguage(language) {
         }
     } );
 
-    // const langButtons = document.querySelectorAll('.language__item');
-    // langButtons.forEach( (elem) => {
-    //     elem.classList.remove('language-active');
-    // });
-
-    // event.target.classList.add('language-active');
-    console.log(language);
-
-
     if (language === 'en') {
         enButton.classList.add('language-active');
         ruButton.classList.remove('language-active');
@@ -151,93 +141,10 @@ function setLanguage(language) {
     }
 
 }
-/* ---------------------------------------------------------- */
-/* ---------------- change language to ru  ------------------ */
-/* ---------------------------------------------------------- */
-// function setRu(event) {
-//     const langButtons = document.querySelectorAll('.language__item');
-//     langButtons.forEach( (elem) => {
-//         elem.classList.remove('language-active');
-//     });
-//     event.target.classList.add('language-active');
-//     setLanguage('ru');
-//     lang = 'ru';
-// }
-
-// ruButton.addEventListener('click', setRu);
-
-/* ---------------------------------------------------------- */
-/* ---------------- change language to en  ------------------ */
-/* ---------------------------------------------------------- */
-// function setEn(event) {
-//     const langButtons = document.querySelectorAll('.language__item');
-//     langButtons.forEach( (elem) => {
-//         elem.classList.remove('language-active');
-//     });
-//     event.target.classList.add('language-active');
-//     setLanguage('en');
-//     lang = 'en';
-// }
 
 enButton.addEventListener('click', () => setLanguage('en'));
 ruButton.addEventListener('click', () => setLanguage('ru'));
 
-/* ---------------------------------------------------------- */
-/* ------------------ fx click on button -------------------- */
-/* ---------------------------------------------------------- */
-// document.querySelector('.button-primary').addEventListener('click', (event) => {
-//     event.target.classList.add('circle');
-// });
-
-function clickAnimation(elem) {
-
-    const e = elem;
-    const x = e.clientX;
-    const y = e.clientY;
-
-    const buttonTop = e.target.offsetTop;
-    const buttonLeft = e.target.offsetLeft;
-
-    const xInside = x - buttonLeft;
-    const yInside = y - buttonTop;
-
-    const circle = document.createElement('span');
-    circle.classList.add('circle');
-    circle.style.top = yInside + 'px';
-    circle.style.left = xInside + 'px';
-
-    this.appendChild(circle);
-
-    setTimeout(() => circle.remove(), 300);
-}
-
-const buttonsPrimary = document.querySelectorAll('.button-primary');
-
-buttonsPrimary.forEach((elem) => {
-    elem.addEventListener('click', clickAnimation);
-    // elem.classList.add('circle');
-});
-// buttonsPrimary.addEventListener('click', clickAnimation );
-// document.querySelectorAll('.tab-button-primary').addEventListener('click', clickAnimation );
-// document.querySelector('.button-primary').addEventListener('click', function (e) {
-//     const x = e.clientX;
-//     const y = e.clientY;
-
-//     const buttonTop = e.target.offsetTop;
-//     const buttonLeft = e.target.offsetLeft;
-
-//     const xInside = x - buttonLeft;
-//     const yInside = y - buttonTop;
-
-//     const circle = document.createElement('span');
-//     circle.classList.add('circle');
-//     circle.style.top = yInside + 'px';
-//     circle.style.left = xInside + 'px';
-
-//     this.appendChild(circle);
-
-//     setTimeout(() => circle.remove(), 500);
-//   });
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
@@ -261,10 +168,6 @@ const ChangebleElemetnAll = [
     '.skills_card_text',
     '.price-card__header',
     '.price-card-list-item',
-    // '.nav .open'
-    // '.portfolio__tab-button',
-
-    // '.line-decoration',
 ];
 
 function setElementTheme(thm) {
@@ -284,7 +187,6 @@ function setElementTheme(thm) {
 
 function changeThemeVaribles(thm) {
     if(thm === 'light') {
-        console.log('Light on');
         root.style.setProperty('--body-color', white);
 
         root.style.setProperty('--line-decoration-bg', black);
@@ -306,7 +208,6 @@ function changeThemeVaribles(thm) {
         root.style.setProperty('--tab-sec—txt', black);
         root.style.setProperty('--tab-sec—txt-hover', white);
     } else {
-        console.log('Light off');
         root.style.setProperty('--body-color', black);
 
         root.style.setProperty('--line-decoration-bg', gold);
@@ -331,7 +232,7 @@ function changeThemeVaribles(thm) {
 }
 
 function changeIconTheme(thm) {
-    let saveTheme
+    let saveTheme;
     if (thm === 'light') {
         theme = 'dark';
         saveTheme = 'light';
@@ -341,13 +242,11 @@ function changeIconTheme(thm) {
         saveTheme = 'dark';
         iconTheme.src = `./assets/svg/sun.svg`;
     }
-    // Msg(`save ${theme}`);
-    // theme = theme === 'dark' ? 'light' : 'dark';
+
     localStorage.setItem('theme', saveTheme);
 }
 
 function changeTheme(thm) {
-    // thm = thm === 'dark' ? 'light' : 'dark';
     setElementTheme(thm);
     changeThemeVaribles(thm);
     changeIconTheme(thm);
@@ -357,6 +256,72 @@ function changeTheme(thm) {
 iconTheme.addEventListener('click', () => changeTheme(theme));
 
 
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+/* ------------------ fx click on button -------------------- */
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+
+
+function clickAnimation(elem) {
+
+    const e = elem;
+    let x = e.clientX; // mouse from visible
+    let y = e.clientY; // click from visible
+    var buttonPosAndSize = e.target.getBoundingClientRect();
+
+
+    x = x - buttonPosAndSize.left; //x position within the element.
+    y = y - buttonPosAndSize.top;  //y position within the element.
+
+    const circle = document.createElement('span'); // create <span>
+    circle.classList.add('circle'); // add .circle to <span>
+    circle.style.left = x + 'px'; // set <span> x position inside button
+    circle.style.top = y + 'px'; // set <span> x position inside button
+
+    this.appendChild(circle); // insert span
+
+    setTimeout(() => circle.remove(), 300);
+}
+
+const coverClickFx = document.querySelectorAll('.cover-click-fx');
+
+coverClickFx.forEach((elem) => {
+    elem.addEventListener('click', clickAnimation);
+});
+
+
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+/* ----------------------- CLICK FX ------------------------- */
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+
+const clickContainer = document.querySelector('.click-container');
+
+clickContainer.addEventListener('click', (e) => {
+
+    const docWidth = document.documentElement.clientWidth;
+    let x = e.pageX;
+    let y = e.pageY;
+
+    if (docWidth > 1440) {
+        x -= (docWidth-1440)/2;
+    } else {
+        x = e.pageX;
+    }
+
+
+    const circle = document.createElement('span'); // create <span>
+    circle.classList.add('circle'); // add .circle to <span>
+    circle.style.left = x + 'px';
+    circle.style.top = y + 'px';
+
+
+    clickContainer.append(circle); // insert span
+
+    setTimeout(() => circle.remove(), 300);
+});
 
 /* ---------------------------------------------------------- */
 /* ---------------------------------------------------------- */
@@ -366,15 +331,14 @@ iconTheme.addEventListener('click', () => changeTheme(theme));
 function getLocalStorage() {
     if(localStorage.getItem('lang')) {
         const lang = localStorage.getItem('lang');
-        console.log('load ' + lang);
         setLanguage(lang);
     }
     if(localStorage.getItem('theme')) {
         const theme = localStorage.getItem('theme');
-        console.log('load ' + theme);
         changeTheme(theme);
     }
 }
+
 window.addEventListener('load', getLocalStorage);
 
 // function setLocalStorage() {
