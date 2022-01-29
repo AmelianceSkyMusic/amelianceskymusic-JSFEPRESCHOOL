@@ -102,6 +102,12 @@
     border: 0;
 }
 
+*,
+*::before,
+*::after{
+    -webkit-tap-highlight-color: transparent;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -118,6 +124,7 @@ body {
     margin: 0 auto;
     overflow-x: hidden;
 }
+
 
 .container {
     max-width: 1440px;
@@ -887,6 +894,7 @@ body {
     background-image: url('assets/svg/play.svg');
 
         background-size: contain;
+    transition: 0.3s;
     /* background-repeat: no-repeat; */
     /* background-position: center; */
 
@@ -1555,19 +1563,13 @@ ul {
     }
 }
 
-.button-primary,
-.button-secondary,
-.tab-button-primary,
-.tab-button-secondary {
+.cover-click-fx {
     position: relative;
     overflow: hidden;
     z-index: 8;
 }
 
-.button-primary .circle,
-.button-secondary .circle,
-.tab-button-primary .circle,
-.tab-button-secondary .circle {
+.cover-click-fx .circle {
     position: absolute;
     background-color: #fff;
     width: 200px;
@@ -1575,6 +1577,7 @@ ul {
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
     animation: scale 0.5s ease-out;
+    z-index: 5000;
 }
 
 @keyframes scale {
@@ -1582,7 +1585,7 @@ ul {
       transform: translate(-50%, -50%) scale(3);
       opacity: 0;
     }
-  }
+}
 
 
 /* ---------------------------------------------------------- */
@@ -1613,3 +1616,44 @@ ul {
 /* .light-theme:hover { */
 /* color: var(--gold); */
 /* } */
+
+/* ---------------------------------------------------------- */
+/* ------------------------- Click FX ----------------------- */
+/* ---------------------------------------------------------- */
+
+@media not all and (hover: hover) {
+    .click-container {
+        position: relative;
+        max-width: 1440px;
+        margin: 0 auto;
+        overflow-x: hidden;
+    }
+
+    .click-container .circle {
+        position: absolute;
+        background-color: var(--white);
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        animation: scale 0.5s ease-out;
+        animation: scaleDown 0.5s ease-out;
+        animation: scale 0.5s ease-out;
+        z-index: 5000;
+    }
+
+    @keyframes scale {
+        to {
+          transform: translate(-50%, -50%) scale(3);
+          opacity: 0;
+        }
+    }
+
+
+    @keyframes scaleDown {
+        to {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 100;
+        }
+    }
+}
