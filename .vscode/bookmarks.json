@@ -14,67 +14,67 @@
 					"label": ":root"
 				},
 				{
-					"line": 444,
+					"line": 451,
 					"column": 1,
 					"label": "❗--MAIN"
 				},
 				{
-					"line": 533,
+					"line": 540,
 					"column": 16,
 					"label": "1 Hero 🦸‍♂️"
 				},
 				{
-					"line": 654,
+					"line": 661,
 					"column": 16,
 					"label": "2 Skills 📈"
 				},
 				{
-					"line": 745,
+					"line": 752,
 					"column": 15,
 					"label": "3 Portfolio 📃"
 				},
 				{
-					"line": 848,
+					"line": 855,
 					"column": 14,
 					"label": "4 Video 📷"
 				},
 				{
-					"line": 1023,
+					"line": 1031,
 					"column": 19,
 					"label": "5 Price 💲"
 				},
 				{
-					"line": 1075,
+					"line": 1083,
 					"column": 22,
 					"label": "6 Contacts 📞"
 				},
 				{
-					"line": 1278,
+					"line": 1286,
 					"column": 12,
 					"label": "❗--FOOTER"
 				},
 				{
-					"line": 1407,
+					"line": 1415,
 					"column": 6,
 					"label": "Elements"
 				},
 				{
-					"line": 1466,
+					"line": 1474,
 					"column": 10,
 					"label": "Buttons"
 				},
 				{
-					"line": 1511,
+					"line": 1519,
 					"column": 17,
 					"label": "Tabs"
 				},
 				{
-					"line": 1588,
+					"line": 1591,
 					"column": 10,
 					"label": "LIght theme"
 				},
 				{
-					"line": 1613,
+					"line": 1616,
 					"column": 0,
 					"label": " "
 				}
@@ -169,42 +169,32 @@
 					"label": "Change Images"
 				},
 				{
-					"line": 77,
+					"line": 76,
 					"column": 14,
 					"label": "Change Button Class"
 				},
 				{
-					"line": 108,
+					"line": 107,
 					"column": 12,
 					"label": "!--LANGUAGE"
 				},
 				{
-					"line": 114,
+					"line": 113,
 					"column": 5,
 					"label": "Sel Language"
 				},
 				{
-					"line": 155,
-					"column": 5,
-					"label": "Change to ru"
-				},
-				{
-					"line": 170,
-					"column": 5,
-					"label": "Change to en"
-				},
-				{
-					"line": 186,
-					"column": 2,
-					"label": "Button FX"
-				},
-				{
-					"line": 245,
+					"line": 152,
 					"column": 5,
 					"label": "!--THEME"
 				},
 				{
-					"line": 364,
+					"line": 262,
+					"column": 0,
+					"label": "BUTTON FX"
+				},
+				{
+					"line": 329,
 					"column": 6,
 					"label": "!--LOAD SETTINGS"
 				}
