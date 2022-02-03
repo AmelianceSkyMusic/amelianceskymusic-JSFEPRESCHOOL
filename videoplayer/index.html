@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+
+<div class="container">
+    <div class="player">
+        <video class="player__video viewer" src="./assets/video/video.mp4"></video>
+
+        <div class="player__controls">
+            <div class="progress">
+                <div class="progress__filled"></div>
+            </div>
+            <div class="wrapper-controls">
+                <div class="wrapper-settings">
+                    <button class="player__button player__button-fullscreen"></button>
+                    <button class="player__button player__button-volume" title="Toggle Volume"></button>
+                    <input class="player__slider" type="range" name="volume" min="0" max="1" step="0.05" value="1">
+                </div>
+                <div class="wrapper-play">
+                    <p class="player__time">04:31 / 05:15</p>
+                    <button class="player__button player__button-backward" data-scip="-10"></button>
+                    <button class="player__button player__button-play toogle" title="Toggle Player"></button>
+                    <button class="player__button player__button-rewind" data-scip="25"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
