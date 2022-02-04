@@ -14,7 +14,7 @@
   --font-line-p: 160%;
   --font-p: 18px;
   --font-weight-regular: 400;
-  --font-lato: 'Lato', sans-serif;
+  --font-lato: "Lato", sans-serif;
 }
 
 * {
@@ -169,7 +169,7 @@ body {
           filter: var(--player-icon);
 }
 
-.player__button-play {
+.player__button-play-toggle {
   background-image: url("../assets/svg/play.svg");
 }
 
@@ -199,22 +199,12 @@ body {
   height: 24px;
 }
 
-.progress {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
+.progress-bar {
+  width: calc(100% + 50px);
   height: 24px;
   margin-bottom: 20px;
-  background: var(--player-slider-bg);
-  border-radius: 1000px;
-  cursor: pointer;
-}
-
-.progress__filled {
-  width: 20%;
-  background: var(--player-slider-progress);
+  margin-left: -25px;
+  margin-right: -25px;
   border-radius: 1000px;
 }
 
@@ -225,6 +215,13 @@ input[type=range] {
        appearance: none;
   width: 240px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1000px;
+}
+
+input[type=range].player__slider-progress {
+  --slider-width: 50%;
 }
 
 input[type=range]:focus {
@@ -237,9 +234,9 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 8px;
   background: var(--player-slider-bg);
   border-radius: 1000px;
-  background: -webkit-gradient(linear, left top, right top, from(var(--player-slider-progress)), color-stop(50%, var(--player-slider-progress)), color-stop(0%, var(--player-slider-bg)), to(var(--player-slider-bg)));
-  background: -webkit-linear-gradient(left, var(--player-slider-progress) 0%, var(--player-slider-progress) 50%, var(--player-slider-bg) 0%, var(--player-slider-bg) 100%);
-  background: linear-gradient(to right, var(--player-slider-progress) 0%, var(--player-slider-progress) 50%, var(--player-slider-bg) 0%, var(--player-slider-bg) 100%);
+  background: -webkit-gradient(linear, left top, right top, from(var(--player-slider-progress)), to(var(--player-slider-bg)));
+  background: -webkit-linear-gradient(left, var(--player-slider-progress) var(--slider-width), var(--player-slider-bg) var(--slider-width));
+  background: linear-gradient(to right, var(--player-slider-progress) var(--slider-width), var(--player-slider-bg) var(--slider-width));
 }
 
 input[type=range]::-moz-range-track {
@@ -247,7 +244,7 @@ input[type=range]::-moz-range-track {
   height: 8px;
   background: var(--player-slider-bg);
   border-radius: 1000px;
-  background: linear-gradient(to right, var(--player-slider-progress) 0%, var(--player-slider-progress) 50%, var(--player-slider-bg) 0%, var(--player-slider-bg) 100%);
+  background: linear-gradient(to right, var(--player-slider-progress) 0%, var(--player-slider-progress) var(--slider-width), var(--player-slider-bg) 0%, var(--player-slider-bg) 100%);
 }
 
 input[type=range]::-webkit-slider-thumb {

@@ -1,8 +1,6 @@
-// ^------------------------------------------------------------
-// ^------------------------------------------------------------
-// ^------------------------- MIXINS ---------------------------
-// ^------------------------------------------------------------
-// ^------------------------------------------------------------
+// >----------------------------------------------------------------<
+// >                            MIXINS                              <
+// >----------------------------------------------------------------<
 // @mixin createSVGButton($img, $filter, $filter-hover) { // image.svg, filter color — icon, filter color — hover
 //     background-image: url('../assets/svg/'+$img);
 //     filter: var($filter);
@@ -12,14 +10,12 @@
 // }
 
 @mixin bgImgSVG($img) { // image.svg
-    background-image: url('../assets/svg/'+$img);
+    background-image: url("../assets/svg/"+$img);
 }
 
-// ^------------------------------------------------------------
-// ^------------------------------------------------------------
-// ^-------------------------- ROOT ----------------------------
-// ^------------------------------------------------------------
-// ^------------------------------------------------------------
+// >----------------------------------------------------------------<
+// >                              ROOT                              <
+// >----------------------------------------------------------------<
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 :root {
@@ -41,7 +37,7 @@
     --font-p: 18px;
     // --font-weight-bold: 700;
     --font-weight-regular: 400;
-    --font-lato: 'Lato', sans-serif;
+    --font-lato: "Lato", sans-serif;
 
     // --player-bg: linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .0));
 }
@@ -64,11 +60,9 @@ body {
     background-color: var(--bg);
 }
 
-// ^------------------------------------------------------------
-// ^------------------------------------------------------------
-// ^----------------------- CONTAINER --------------------------
-// ^------------------------------------------------------------
-// ^------------------------------------------------------------
+// >----------------------------------------------------------------<
+// >                         CONTAINER                              <
+// >----------------------------------------------------------------<
 
 .container {
     width: 100vw;
@@ -78,11 +72,9 @@ body {
     align-items: center;
 }
 
-// ^------------------------------------------------------------
-// ^------------------------------------------------------------
-// ^------------------------- PLAYER ---------------------------
-// ^------------------------------------------------------------
-// ^------------------------------------------------------------
+// >----------------------------------------------------------------<
+// >                           PLAYER                               <
+// >----------------------------------------------------------------<
 
 .player {
     position: relative;
@@ -103,13 +95,13 @@ body {
         width: 100%;
     }
 
-    // ^------------------------- Video ---------------------------
+    // ^-------------------------- Video ----------------------------
     &__video {
         width: 960px;
         height: auto;
     }
 
-    // ^------------------------- Controls ---------------------------
+    // ^------------------------- Controls --------------------------
     &__controls {
         position: absolute;
         bottom: 0;
@@ -148,7 +140,7 @@ body {
         color: var(--time-text);
     }
 
-    // ^------------------------- Wrapper controls ---------------------------
+    // ^---------------------- Wrapper controls ---------------------
     .wrapper-controls {
         display: flex;
         justify-content: space-between;
@@ -182,32 +174,32 @@ body {
         transition: 0.3s;
         filter: var(--player-icon);
 
-        &-play {
-            @include bgImgSVG('play.svg');
+        &-play-toggle {
+            @include bgImgSVG("play.svg");
         }
         &-rewind {
-            @include bgImgSVG('rewind.svg');
+            @include bgImgSVG("rewind.svg");
         }
         &-backward {
-            @include bgImgSVG('backward.svg');
+            @include bgImgSVG("backward.svg");
         }
         &-fullscreen {
-            @include bgImgSVG('fullscreen.svg');
+            @include bgImgSVG("fullscreen.svg");
         }
         &-volume {
-            @include bgImgSVG('volume.svg');
+            @include bgImgSVG("volume.svg");
         }
 
         &:hover {
             filter: var(--player-icon-hover);
         }
 
-        &:focus {
+        // &:focus {
             // transition: none;
             // filter: none;
             // outline: 2px solid var(--focus);
             // outline-offset: 2px;
-        }
+        // }
     }
 
     &__slider {
@@ -216,50 +208,49 @@ body {
     }
 }
 
-// ^------------------------- Progress ---------------------------
-
-.progress {
-
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 24px;
-    margin-bottom: 20px;
-    background: var(--player-slider-bg);
-    border-radius: 1000px;
-    cursor: pointer;
-
-    &__filled {
-        width:20%;
-        background:var(--player-slider-progress);
-        border-radius: 1000px;
-      }
-}
+// ^-------------------------- Progress -----------------------------
 
 // .progress {
-//     flex:10;
+
 //     position: relative;
-//     display:flex;
-//     flex-basis:100%;
-//     height:5px;
-//     transition:height 0.3s;
-//     background:rgba(0,0,0,0.5);
-//     cursor:ew-resize;
-//   }
+//     display: flex;
+//     width: 100%;
+//     height: 24px;
+//     margin-bottom: 20px;
+//     background: var(--player-slider-bg);
+//     border-radius: 1000px;
+//     cursor: pointer;
 
-//   .progress__filled {
-//     width:50%;
-//     background:#ffc600;
-//     flex:0;
-//     flex-basis:50%;
-//   }
+//     &__filled {
+//         // width:30%;
+//         flex-basis: 0.1%;
+//         background:var(--player-slider-progress);
+//         border-radius: 1000px;
+//       }
+// }
+
+.progress-bar {
+
+    // position: relative;
+    // display: flex;
+    width: calc(100% + 50px);
+    height: 24px;
+    margin-bottom: 20px;
+    margin-left: -25px;
+    margin-right: -25px;
+    // background: var(--player-slider-bg);
+    border-radius: 1000px;
+    // cursor: pointer;
+}
 
 
 
 
 
 
-// ^------------------------- Range ---------------------------
+
+
+// ^---------------------------- Range ------------------------------
 // %message-shared {
 //     background: #053a5f;
 //     height: 24px;
@@ -271,7 +262,19 @@ input[type=range] {
     appearance: none;
     width: 240px;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1000px;
 
+    &.player__slider-progress{
+        --slider-width: 50%;
+    }
+
+    // --slider-progress: linear-gradient( to right,
+    // var(--player-slider-progress) 0%,
+    // var(--player-slider-progress) 50%,
+    // var(--player-slider-bg) 0%,
+    // var(--player-slider-bg) 100% );
 
     &:focus { /* reseet default focus style */
     outline: none;
@@ -285,17 +288,15 @@ input[type=range] {
         // }
     }
 
-    // *------------------------- Slider ---------------------------
+    // *------------------------- Slider ----------------------------
     &::-webkit-slider-runnable-track { /* chrome slider */
         height: 8px;
         background: var(--player-slider-bg);
         border-radius: 1000px;
-        background: linear-gradient( to right,
-            var(--player-slider-progress) 0%,
-            var(--player-slider-progress) 50%,
-            var(--player-slider-bg) 0%,
-            var(--player-slider-bg) 100%
-        );
+        background: linear-gradient(to right,
+                    var(--player-slider-progress) var(--slider-width),
+                    var(--player-slider-bg) var(--slider-width));
+
     }
 
     &::-moz-range-track { /* moz slider */
@@ -304,13 +305,13 @@ input[type=range] {
         border-radius: 1000px;
         background: linear-gradient( to right,
             var(--player-slider-progress) 0%,
-            var(--player-slider-progress) 50%,
+            var(--player-slider-progress) var(--slider-width),
             var(--player-slider-bg) 0%,
             var(--player-slider-bg) 100%
         );
     }
 
-    // *------------------------- Thumb ---------------------------
+    // *-------------------------- Thumb ----------------------------
     &::-webkit-slider-thumb {
         -webkit-appearance: none; /* reset default style */
         width: 20px;
@@ -329,16 +330,14 @@ input[type=range] {
         border-radius: 1000px;
     }
 
-    // // &::-moz-range-progress {
-    // //     background-color: #43e5f7;
-    // // }
-    // // &::-moz-range-track {
-    // //     background-color: #9a905d;
-    // // }
-    // // &::-ms-fill-lower {
-    // //     background-color: #43e5f7;
-    // // }
-    // // &::-ms-fill-upper {
-    // //     background-color: #9a905d;
-    // // }
+    // &.player__slider-progress::before {
+    //     position: absolute;
+    //     content: '';
+    //     height: 8px; /* equal to height of runnable track */
+    //     width: var(--slider-width); /* make this bigger than the widest range input element */
+    //     left: 0px; /* this should be -2px - width */
+    //     top: 8px; /* don't change this */
+    //     border-radius: 1000px;
+    //     background: rgb(255, 0, 0);
+    // }
 }
