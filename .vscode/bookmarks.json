@@ -204,9 +204,19 @@
 			"path": "videoplayer/scss/style.scss",
 			"bookmarks": [
 				{
-					"line": 66,
+					"line": 70,
 					"column": 1,
 					"label": "container"
+				}
+			]
+		},
+		{
+			"path": "videoplayer/index.js",
+			"bookmarks": [
+				{
+					"line": 11,
+					"column": 35,
+					"label": ""
 				}
 			]
 		}
