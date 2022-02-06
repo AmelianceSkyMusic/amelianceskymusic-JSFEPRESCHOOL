@@ -5,12 +5,84 @@
 
 const Msg = msg => console.log(msg);
 
+// >----------------------------------------------------------------<
+// >                          CASH IMAGES                           <
+// >----------------------------------------------------------------<
 
+const playerImages = [
+    './assets/svg/backward.svg',
+    './assets/svg/boost-x.svg',
+    './assets/svg/boost.svg',
+    './assets/svg/fullscreen.svg',
+    './assets/svg/go-to-start.svg',
+    './assets/svg/maximize.svg',
+    './assets/svg/minimize.svg',
+    './assets/svg/pause.svg',
+    './assets/svg/play-big-button.svg',
+    './assets/svg/play.svg',
+    './assets/svg/rewind.svg',
+    './assets/svg/settings.svg',
+    './assets/svg/stop.svg',
+    './assets/svg/volume-more.svg',
+    './assets/svg/volume-x.svg',
+    './assets/svg/volume.svg',
+];
+
+const preloadImages = (imagesArr) => {
+        //cash images
+        for (let key of imagesArr) {
+            const img = new Image();
+            img.src = key;
+        }
+};
+
+preloadImages(playerImages);
 
 // >----------------------------------------------------------------<
 // >                              INIT                              <
 // >----------------------------------------------------------------<
 
+// var context = new AudioContext(),
+//     audioSource = context.createMediaElementSource(document.getElementById("my-video")),
+//     filter = context.createBiquadFilter();
+// audioSource.connect(filter);
+// filter.connect(context.destination);
+const getAudioContext = (boost) => {
+    // if (context) {
+    //     context.resume().then(() => {
+    //         console.log('Playback resumed successfully');
+    //     });
+    // }
+    let context = new AudioContext();
+    let audioSource = context.createMediaElementSource(document.getElementById("my-video"));
+    let gainItem = context.createGain();
+    audioSource.connect(gainItem);
+    gainItem.connect(context.destination);
+
+    // gainItem.gain.value = boost;
+    // context.resume();
+    return gainItem;
+};
+
+// window.addEventListener('load', () => {
+//     if (context) {
+//         context.resume().then(() => {
+//             console.log('Playback resumed successfully');
+//         });
+//     }
+//         context = new AudioContext();
+//     let audioSource = context.createMediaElementSource(document.getElementById("my-video")),
+//         gainItem = context.createGain();
+//     audioSource.connect(gainItem);
+//     gainItem.connect(context.destination);
+
+//     gainItem.gain.value = 1;
+// });
+
+// // Configure filter
+// filter.type = "lowshelf";
+// filter.frequency.value = 1000;
+// filter.gain.value = 25;
 
 // ^--------------------------- get items ---------------------------
 
@@ -31,7 +103,7 @@ const buttonMaximize = player.querySelector('.player__button-maximize');
 const buttonVolume = player.querySelector('.player__button-volume');
 const rangeVolume = player.querySelector('.player__slider-volume-progress');
 
-// const buttonAudioBoost = player.querySelector('.player__button-audio-boost');
+const buttonAudioBoost = player.querySelector('.player__button-audio-boost');
 
 const playerTime = player.querySelector('.player__time');
 
@@ -309,7 +381,7 @@ video.addEventListener('timeupdate', videoProgressBarUpdate);
 
 const videoScrub = (elem) => {
     const el = elem.target; // get target element
-    const position = el.value / (1 / video.duration); // get current position value
+    const position = el.value / (1 / video.duration); // get current position sec
     const progress = `${(1 / video.duration) * position * 100}%`; // convert position value to percent
 
     video.currentTime = position;
@@ -321,16 +393,46 @@ const videoScrub = (elem) => {
 
 rangeProgressBar.addEventListener('input', videoScrub);
 
+// ^----------------- volume range update via scroll ----------------
+
+const videoProgressBarUpdateScroll = (elem) => {
+
+    const el = elem.target; // get target element
+    const position = el.value / (1 / video.duration); // get current position sec
+    const scroll = Math.round(elem.deltaY * -0.01); // get scroll direction
+
+    let newPosition = position + (scroll * 10);
+
+    newPosition = Math.round(newPosition * 100) / 100;
+    newPosition = newPosition < 0 ? 0 : newPosition;
+    newPosition = newPosition > video.duration ? video.duration : newPosition;
+
+    video.currentTime = newPosition;
+};
+
+rangeProgressBar.addEventListener('wheel', videoProgressBarUpdateScroll);
+// player.addEventListener('wheel', videoProgressBarUpdateScroll);
+
+
+
+// ^---------------------- show player controll ---------------------
+
 let playerControlShownTimeOut;
+
 const showPlayerControlPanel = () => {
+
     clearTimeout(playerControlShownTimeOut);
     playerControls.classList.add('player__controls-show');
     playerControlShownTimeOut = setTimeout(() => {
         playerControls.classList.remove('player__controls-show');
     }, 3000);
+
 };
+
 player.addEventListener('mousemove', showPlayerControlPanel);
 player.addEventListener('click', showPlayerControlPanel);
+player.addEventListener('wheel', showPlayerControlPanel);
+
 
 
 // >----------------------------------------------------------------<
@@ -574,10 +676,7 @@ window.addEventListener('load', timeUpdate);
 
 
 // // ^--------------------- toggle audio booster ----------------------
-// audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-// myAudio = document.querySelector('.viewer');
-// source = audioCtx.createMediaElementSource(myAudio);
-// gainNode = audioCtx.createGain();
+
 
 // const boostAudio = (elem) => {
 //     const el = elem.target;
@@ -601,3 +700,109 @@ window.addEventListener('load', timeUpdate);
 //     }
 // };
 // buttonAudioBoost.addEventListener('click', boostAudio);
+// window.addEventListener('onload', () => {
+//     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+//     myAudio = document.querySelector('.viewer');
+//     source = audioCtx.createMediaElementSource(myAudio);
+//     gainNode = audioCtx.createGain();
+
+//     source.connect(gainNode);
+//     gainNode.connect(audioCtx.destination);
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+let GP = {
+    boost : 1,
+};
+
+const boostAudio = (elem) => {
+    const el = elem.target;
+
+    if(!GP.tempGainItem) {
+        GP.tempGainItem = getAudioContext();
+    }
+
+    if (GP.boost === 1) {
+        el.style.backgroundImage = 'url("./assets/svg/boost.svg")';
+        GP.boost = 3;
+        GP.tempGainItem.gain.value = GP.boost;
+    } else {
+        el.style.backgroundImage = 'url("./assets/svg/boost-x.svg")';
+        GP.boost = 1;
+        GP.tempGainItem.gain.value = GP.boost;
+    }
+};
+
+buttonAudioBoost.addEventListener('click', boostAudio);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const sendKey = (elem) => {
+
+    switch (elem.key) {
+        case 'ArrowRight': Msg('r'); break;
+        case 'ArrowLeft': Msg('l'); break;
+        case 'ArrowUp': Msg('u'); break;
+        case 'ArrowDown': Msg('d'); break;
+        default: break;
+    }
+    showPlayerControlPanel();
+};
+
+document.addEventListener('keyup', sendKey);
+
+
+
+
+
+
+
+
+
+
+
+
+// var g_6z;
+// function cI_6z() {
+//     var ctx_6z = new AudioContext();
+//     var el_6z = document.querySelector("video") ? document.querySelector("video") : document.querySelector("audio")? document.querySelector("audio"):alert('Media DOM not exist. Aborting.');
+//     if (el_6z) {
+//         g_6z = ctx_6z.createGain();
+//         g_6z.gain.value = 1;
+//         var src_6z = ctx_6z.createMediaElementSource(el_6z);
+//         src_6z.connect(g_6z).connect(ctx_6z.destination);
+//         var p = document.createElement("div");
+//         p.innerHTML = `<div class=vpc_6z id=vpc_6z><style>.vpc_6z{float:right;width:25%;position:fixed;bottom:0;padding:20px 20px;z-index:9999999;background:#444;color:#fff}.vpc_6z-hide{position:fixed;background:#444;padding:0;width:80px;height:30px;bottom:0;z-index:999999}.vpi_6z-hide{display:none}</style><button onclick='d=document.getElementById("vpi_6z"),"vpi_6z"==d.getAttribute("class")?d.setAttribute("class","vpi_6z-hide"):d.setAttribute("class","vpi_6z"),c=document.getElementById("vpc_6z"),"vpc_6z"==c.getAttribute("class")?c.setAttribute("class","vpc_6z-hide"):c.setAttribute("class","vpc_6z")'style=float:right;cursor:pointer;width:80px;height:30px>Toggle VP</button><div class=vpi_6z id=vpi_6z><button onclick='document.getElementById("vpc_6z").remove()'>Destroy Panel</button><h1>Volume Gain: <span ></span></h1><input max=100 min=1 onchange='v=this.value,cG_6z(v),document.getElementById("volumeControl_e").innerHTML=1*v+100,console.log(v)'style=width:100% type=range value=1></div></div>`;
+//         document.body.appendChild(p);
+//     }
+// };
+// function cG_6z(v) {
+//     g_6z.gain.value = v;
+// };
+// cI_6z(1);
