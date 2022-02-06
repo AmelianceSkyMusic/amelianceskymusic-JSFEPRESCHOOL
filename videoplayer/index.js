@@ -5,6 +5,10 @@
 
 const Msg = msg => console.log(msg);
 
+
+
+
+
 // >----------------------------------------------------------------<
 // >                          CASH IMAGES                           <
 // >----------------------------------------------------------------<
@@ -38,51 +42,48 @@ const preloadImages = (imagesArr) => {
 
 preloadImages(playerImages);
 
+
+
+
+
+// >----------------------------------------------------------------<
+// >                       GET AUDIO CONTEXT                        <
+// >----------------------------------------------------------------<
+
+// ******************************************************************
+// * Get concept from https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_manipulation
+// ******************************************************************
+
+// ^------------- get audio context and return work item-------------
+
+const getAudioContext = (boost) => {
+
+    let context = new AudioContext();
+    let audioSource = context.createMediaElementSource(document.getElementById("my-video"));
+    let gainItem = context.createGain();
+
+    audioSource.connect(gainItem);
+    gainItem.connect(context.destination);
+
+    return gainItem;
+};
+
+
+
+
+
 // >----------------------------------------------------------------<
 // >                              INIT                              <
 // >----------------------------------------------------------------<
 
-// var context = new AudioContext(),
-//     audioSource = context.createMediaElementSource(document.getElementById("my-video")),
-//     filter = context.createBiquadFilter();
-// audioSource.connect(filter);
-// filter.connect(context.destination);
-const getAudioContext = (boost) => {
-    // if (context) {
-    //     context.resume().then(() => {
-    //         console.log('Playback resumed successfully');
-    //     });
-    // }
-    let context = new AudioContext();
-    let audioSource = context.createMediaElementSource(document.getElementById("my-video"));
-    let gainItem = context.createGain();
-    audioSource.connect(gainItem);
-    gainItem.connect(context.destination);
-
-    // gainItem.gain.value = boost;
-    // context.resume();
-    return gainItem;
+// ^------------------------ player settings ------------------------
+let PS = { // player settings
+    boost : 1, // boostAudio()
+    isPlayerInit : false,
+    isPause : true,
 };
 
-// window.addEventListener('load', () => {
-//     if (context) {
-//         context.resume().then(() => {
-//             console.log('Playback resumed successfully');
-//         });
-//     }
-//         context = new AudioContext();
-//     let audioSource = context.createMediaElementSource(document.getElementById("my-video")),
-//         gainItem = context.createGain();
-//     audioSource.connect(gainItem);
-//     gainItem.connect(context.destination);
 
-//     gainItem.gain.value = 1;
-// });
-
-// // Configure filter
-// filter.type = "lowshelf";
-// filter.frequency.value = 1000;
-// filter.gain.value = 25;
 
 // ^--------------------------- get items ---------------------------
 
@@ -112,12 +113,17 @@ const buttonGoToStart = player.querySelector('.player__button-go-to-start');
 const playToggleBtn = player.querySelector('.player__button-play-toggle');
 
 
-// const progressBar = player.querySelector('.progress-bar');
+
+
 
 // >----------------------------------------------------------------<
 // >                          FULLSCREEN                            <
 // >----------------------------------------------------------------<
+
+// ^--------------------------- fullscreen --------------------------
+
 const setFullscreenToggle = () => {
+
     if (video.requestFullscreen) {
         video.requestFullscreen();
       } else if (video.mozRequestFullScreen) {
@@ -129,19 +135,24 @@ const setFullscreenToggle = () => {
       }
 
     player.classList.toggle('player-fullscreen');
-    // openFullscreen(player);
+
 };
 
+
+
+// ^---------------------------- maximize ---------------------------
 
 buttonFullscreen.addEventListener('click', setFullscreenToggle);
 
 const setMaximizeToggle = (elem) => {
     const el = elem.target;
+
     if (player.classList.contains('player-maximize')) {
         el.style.backgroundImage = 'url("./assets/svg/maximize.svg")';
     } else {
         el.style.backgroundImage = 'url("./assets/svg/minimize.svg")';
     }
+
     player.classList.toggle('player-maximize');
     video.classList.toggle('player-maximize');
 };
@@ -150,33 +161,57 @@ const setMaximizeToggle = (elem) => {
 buttonMaximize.addEventListener('click', setMaximizeToggle);
 
 
+
+
+
 // >----------------------------------------------------------------<
 // >                         PLAY BUTTONS                           <
 // >----------------------------------------------------------------<
 
+// ^-------------------------- init player --------------------------
+if (!PS.isPlayerInit) {
+    const initPlayer = () => {
+        playerControls.classList.remove('player__controls-before-init');
+        PS.isPlayerInit = true;
+        showPlayerControlPanel();
+    };
 
+    playBigButton.addEventListener('click', initPlayer);
+    video.addEventListener('click', initPlayer);
+}
 
 // ^----------------------- play / pause video ----------------------
 
-// const togglePlay = () => {
-//     let isPlay = video.paused ? video.play() : video.pause();
-//     // video[state]();
-// };
+const togglePlayPlayer = () => {
+    if (video.paused) {
+        video.play();
+        PS.isPause = false;
+    } else {
+        video.pause();
+        PS.isPause = true;
+        playerControls.classList.remove('player__controls-show');
+    }
+};
 
-// playBigButton.addEventListener('click', togglePlay);
+video.addEventListener('click', togglePlayPlayer);
+playerBlackout.addEventListener('click', togglePlayPlayer);
+playBigButton.addEventListener('click', togglePlayPlayer);
+
 
 
 // ^----------------------- play / pause video ----------------------
 
 const togglePlay = () => {
-    let isPlay = video.paused ? video.play() : video.pause();
-    // video[state]();
+    if (video.paused) {
+        video.play();
+        PS.isPause = false;
+    } else {
+        video.pause();
+        PS.isPause = true;
+    }
 };
 
-video.addEventListener('click', togglePlay);
 playToggleBtn.addEventListener('click', togglePlay);
-playBigButton.addEventListener('click', togglePlay);
-playerBlackout.addEventListener('click', togglePlay);
 
 
 
@@ -203,7 +238,6 @@ video.addEventListener('pause', updatePlayToggleButton);
 
 const skip = (el) => {
     video.currentTime += parseFloat(el.target.dataset.skip);
-    // Msg(video.currentTime);
 };
 
 skipButtons.forEach(button => button.addEventListener('click', skip));
@@ -215,10 +249,11 @@ skipButtons.forEach(button => button.addEventListener('click', skip));
 const goToStart = () => {
     video.pause();
     video.currentTime = 0;
-    // Msg(video.currentTime);
 };
 
 buttonGoToStart.addEventListener('click', goToStart);
+
+
 
 
 
@@ -296,9 +331,14 @@ window.addEventListener('load', () => {
     rangeVolume.style.setProperty('--slider-width', progress);
 });
 
+
+
 // ^---------------------- save volume before unload ---------------------
+
 window.addEventListener('beforeunload', () => {
+
     const volume = Math.floor(rangeVolume.value * 100) / 100;
+
     if (volume <= 0) {
         localStorage.setItem('volumeButtonMute', true);
     } else {
@@ -307,21 +347,26 @@ window.addEventListener('beforeunload', () => {
 });
 
 
+
 // ^---------------------- update volume button ---------------------
 
 const updateVolumeButton = () => {
+
     const volume = Math.floor(rangeVolume.value * 100) / 100;
+
     if (volume <= 0) {
+
         buttonVolume.style.backgroundImage = 'url("./assets/svg/volume-x.svg")';
-        // localStorage.setItem('volumeButtonMute', true);
+
     } else {
+
         if (volume > 0.50){
             buttonVolume.style.backgroundImage = 'url("./assets/svg/volume-more.svg")';
         } else {
             buttonVolume.style.backgroundImage = 'url("./assets/svg/volume.svg")';
         }
+
         localStorage.setItem('volume', volume);
-        // localStorage.setItem('volumeButtonMute', false);
     }
 };
 
@@ -330,7 +375,9 @@ video.addEventListener('volumechange', updateVolumeButton);
 
 // ^------------------- toggle mute volume button -------------------
 const toggleMute = () => {
+
     let volume;
+
     if (video[rangeVolume.name] > 0) {
         volume = 0;
     } else {
@@ -348,9 +395,6 @@ const toggleMute = () => {
 };
 
 buttonVolume.addEventListener('click', toggleMute);
-
-
-
 
 
 
@@ -380,6 +424,7 @@ video.addEventListener('timeupdate', videoProgressBarUpdate);
 // ^------------------- video progress bar scrub  ------------------
 
 const videoScrub = (elem) => {
+
     const el = elem.target; // get target element
     const position = el.value / (1 / video.duration); // get current position sec
     const progress = `${(1 / video.duration) * position * 100}%`; // convert position value to percent
@@ -392,6 +437,8 @@ const videoScrub = (elem) => {
 };
 
 rangeProgressBar.addEventListener('input', videoScrub);
+
+
 
 // ^----------------- volume range update via scroll ----------------
 
@@ -415,23 +462,39 @@ rangeProgressBar.addEventListener('wheel', videoProgressBarUpdateScroll);
 
 
 
-// ^---------------------- show player controll ---------------------
+
+
+// >----------------------------------------------------------------<
+// >                         CONTROL PANEL                          <
+// >----------------------------------------------------------------<
+
+// ^---------------------- show player control ---------------------
 
 let playerControlShownTimeOut;
 
 const showPlayerControlPanel = () => {
 
-    clearTimeout(playerControlShownTimeOut);
-    playerControls.classList.add('player__controls-show');
-    playerControlShownTimeOut = setTimeout(() => {
-        playerControls.classList.remove('player__controls-show');
-    }, 3000);
+    if (!PS.isPlayerInit) {
+        return;
+    }
+
+    if (!PS.isPause) {
+        clearTimeout(playerControlShownTimeOut); // clear timout — prevert close panel
+
+        playerControls.classList.add('player__controls-show'); // show panel
+
+        playerControlShownTimeOut = setTimeout(() => { // close panel after 3sec
+            playerControls.classList.remove('player__controls-show');
+        }, 3000);
+    }
 
 };
 
 player.addEventListener('mousemove', showPlayerControlPanel);
 player.addEventListener('click', showPlayerControlPanel);
 player.addEventListener('wheel', showPlayerControlPanel);
+
+
 
 
 
@@ -494,10 +557,12 @@ const convertNumberToTime = (sec, format = 'HHMMSS') => {
 
 
     let date = new Date(null);
-    date.setSeconds(sec); // specify value for SECONDS here
-    let result = date.toISOString().substr(from, length);
+    date.setSeconds(sec); // convert sec to date
+    date = date.toISOString(); // convert data to ISO string format 1970-01-01T00:00:01.000Z
+    let result = date.substr(from, length); // cut needed data
     return result;
 };
+
 
 
 // ^-------------------------- time update --------------------------
@@ -519,227 +584,27 @@ window.addEventListener('load', timeUpdate);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ^------------------------- video progress ------------------------
-
-// const videoProgressUpdate = () => {
-//     const positionInPercent = (video.currentTime / video.duration) * 100;
-//     progressFilled.style.flexBasis = `${positionInPercent}%`;
-
-// };
-
-// video.addEventListener('timeupdate', videoProgressUpdate);
-
-
-
-// // ^-------------------------- video scrub --------------------------
-
-// const videoScrub = (elem) => {
-//     video.currentTime = elem.offsetX / progress.offsetWidth * video.duration;
-//     // const positionInPercent = (video.currentTime / video.duration) * 100;
-//     // progressFilled.style.flexBasis = `${positionInPercent}%`;
-
-// };
-
-// progress.addEventListener('click', videoScrub);
-// progress.addEventListener('input', videoScrub);
-
-// // let mousedown = false;
-// // progress.addEventListener('mousedown', () => mousedown = true);
-// // progress.addEventListener('mousedown', () => mousedown = false);
-// // progress.addEventListener('mousemove', (el) => mousedown && videoScrub);
-
-
-
-
-
-
-
-
-
-
-// // ^------------------- prograsbar via <progress> ---------------------
-
-// const videoProgressBarUpdate = () => {
-//     const positionInPercent = (video.currentTime / video.duration) * 100;
-//     progressBar.value = positionInPercent;
-// };
-// video.addEventListener('timeupdate', videoProgressBarUpdate);
-
-
-
-// // ^---------------------------------------------------------------------
-
-// const videoScrub = (elem) => {
-//     video.currentTime = elem.offsetX / progressBar.offsetWidth * video.duration;
-//     // const positionInPercent = (video.currentTime / video.duration) * 100;
-//     // progressFilled.style.flexBasis = `${positionInPercent}%`;
-
-// };
-
-// progressBar.addEventListener('click', videoScrub);
-// // progressBar.addEventListener('input', videoScrub);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // ! >--------------------------------------------------------------<
-// // ! >--------------------------------------------------------------<
-// // ! >                       FROM INTERNET                          <
-// // ! >--------------------------------------------------------------<
-// // ! >--------------------------------------------------------------<
-// let audioCtx, myAudio, source, gainNode;
-
-// const I_audioBooster = (boost) => {
-
-//     // Создаём MediaElementAudioSourceNode
-//     // На основе HTMLMediaElement
-
-
-//     // Создаём узел контроля громкости (усиления)
-
-
-//     gainNode.gain.value = boost; // double the volume
-
-
-//     // Последний шаг - построение графа
-//     // Подсоединяем AudioBufferSourceNode к gainNode
-//     // а gainNode, в свою очередь, к конечному узлу вывода
-//     source.connect(gainNode);
-//     gainNode.connect(audioCtx.destination);
-
-
-
-//         // // create an audio context and hook up the video element as the source
-//         // let audioCtx = new AudioContext();
-//         // if (this.source === undefined) {
-//         //     this.source = audioCtx.createMediaElementSource(audio);
-//         // }
-//         // this.scriptNode = window.audioCtx.createScriptProcessor(4096, 1, 1);
-//         // this.source.connect(this.scriptNode);
-//         // this.scriptNode.connect(window.audioCtx.destination);
-
-//         // // create a gain node
-//         // let gainNode = audioCtx.createGain();
-//         // gainNode.gain.value = boost; // double the volume
-//         // source.connect(gainNode);
-
-//         // // connect the gain node to an output destination
-//         // gainNode.connect(audioCtx.destination);
-// };
-
-
-// // ^--------------------- toggle audio booster ----------------------
-
-
-// const boostAudio = (elem) => {
-//     const el = elem.target;
-//     let isBoosted;
-
-//     if(localStorage.getItem('boosted')) {
-//         isBoosted = localStorage.getItem('boosted');
-//         isBoosted = isBoosted === 'true' ? true : false;
-//     } else {
-//         isBoosted = false;
-//     }
-
-//     if (isBoosted) {
-//         el.style.backgroundImage = 'url("./assets/svg/boost-x.svg")';
-//         localStorage.setItem('boosted', 'false');
-//         I_audioBooster(1);
-//     } else {
-//         el.style.backgroundImage = 'url("./assets/svg/boost.svg")';
-//         localStorage.setItem('boosted', 'true');
-//         I_audioBooster(4);
-//     }
-// };
-// buttonAudioBoost.addEventListener('click', boostAudio);
-// window.addEventListener('onload', () => {
-//     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-//     myAudio = document.querySelector('.viewer');
-//     source = audioCtx.createMediaElementSource(myAudio);
-//     gainNode = audioCtx.createGain();
-
-//     source.connect(gainNode);
-//     gainNode.connect(audioCtx.destination);
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-let GP = {
-    boost : 1,
-};
+// >----------------------------------------------------------------<
+// >                         BOOST AUDIO                            <
+// >----------------------------------------------------------------<
+
+// ^--------------------- toggle audio booster ----------------------
 
 const boostAudio = (elem) => {
     const el = elem.target;
 
-    if(!GP.tempGainItem) {
-        GP.tempGainItem = getAudioContext();
+    if(!PS.tempGainItem) {
+        PS.tempGainItem = getAudioContext();
     }
 
-    if (GP.boost === 1) {
+    if (PS.boost === 1) {
         el.style.backgroundImage = 'url("./assets/svg/boost.svg")';
-        GP.boost = 3;
-        GP.tempGainItem.gain.value = GP.boost;
+        PS.boost = 3;
+        PS.tempGainItem.gain.value = PS.boost;
     } else {
         el.style.backgroundImage = 'url("./assets/svg/boost-x.svg")';
-        GP.boost = 1;
-        GP.tempGainItem.gain.value = GP.boost;
+        PS.boost = 1;
+        PS.tempGainItem.gain.value = PS.boost;
     }
 };
 
@@ -753,15 +618,11 @@ buttonAudioBoost.addEventListener('click', boostAudio);
 
 
 
+// >----------------------------------------------------------------<
+// >                              TEST                              <
+// >----------------------------------------------------------------<
 
-
-
-
-
-
-
-
-
+// Get concept from https://developer.mozilla.org/ru/docs/Web/API/Element/keyup_event
 
 const sendKey = (elem) => {
 
@@ -776,33 +637,3 @@ const sendKey = (elem) => {
 };
 
 document.addEventListener('keyup', sendKey);
-
-
-
-
-
-
-
-
-
-
-
-
-// var g_6z;
-// function cI_6z() {
-//     var ctx_6z = new AudioContext();
-//     var el_6z = document.querySelector("video") ? document.querySelector("video") : document.querySelector("audio")? document.querySelector("audio"):alert('Media DOM not exist. Aborting.');
-//     if (el_6z) {
-//         g_6z = ctx_6z.createGain();
-//         g_6z.gain.value = 1;
-//         var src_6z = ctx_6z.createMediaElementSource(el_6z);
-//         src_6z.connect(g_6z).connect(ctx_6z.destination);
-//         var p = document.createElement("div");
-//         p.innerHTML = `<div class=vpc_6z id=vpc_6z><style>.vpc_6z{float:right;width:25%;position:fixed;bottom:0;padding:20px 20px;z-index:9999999;background:#444;color:#fff}.vpc_6z-hide{position:fixed;background:#444;padding:0;width:80px;height:30px;bottom:0;z-index:999999}.vpi_6z-hide{display:none}</style><button onclick='d=document.getElementById("vpi_6z"),"vpi_6z"==d.getAttribute("class")?d.setAttribute("class","vpi_6z-hide"):d.setAttribute("class","vpi_6z"),c=document.getElementById("vpc_6z"),"vpc_6z"==c.getAttribute("class")?c.setAttribute("class","vpc_6z-hide"):c.setAttribute("class","vpc_6z")'style=float:right;cursor:pointer;width:80px;height:30px>Toggle VP</button><div class=vpi_6z id=vpi_6z><button onclick='document.getElementById("vpc_6z").remove()'>Destroy Panel</button><h1>Volume Gain: <span ></span></h1><input max=100 min=1 onchange='v=this.value,cG_6z(v),document.getElementById("volumeControl_e").innerHTML=1*v+100,console.log(v)'style=width:100% type=range value=1></div></div>`;
-//         document.body.appendChild(p);
-//     }
-// };
-// function cG_6z(v) {
-//     g_6z.gain.value = v;
-// };
-// cI_6z(1);

@@ -109,6 +109,10 @@ body {
 
     &__copyright {
         color: #303030;
+        text-decoration: none;
+        &:hover {
+            color: #505050;
+        }
     }
     &__icon-github {
         font-size: 0;
@@ -247,6 +251,11 @@ video::-webkit-media-controls {
     .player__controls-show{
         transform: translateY(0);
         opacity: 100%;
+    }
+
+    .player__controls-before-init {
+        opacity: 0%;
+        pointer-events: none;
     }
 
     &__time {

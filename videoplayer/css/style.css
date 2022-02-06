@@ -84,6 +84,11 @@ body {
 
 .footer__copyright {
   color: #303030;
+  text-decoration: none;
+}
+
+.footer__copyright:hover {
+  color: #505050;
 }
 
 .footer__icon-github {
@@ -214,6 +219,11 @@ video::-webkit-media-controls {
       -ms-transform: translateY(0);
           transform: translateY(0);
   opacity: 100%;
+}
+
+.player .player__controls-before-init {
+  opacity: 0%;
+  pointer-events: none;
 }
 
 .player__time {
