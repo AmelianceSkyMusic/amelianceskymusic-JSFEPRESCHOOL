@@ -97,6 +97,7 @@ body {
   background-image: url("../assets/svg/github-icon.svg");
   height: 40px;
   width: 40px;
+  margin-right: 72px;
   -webkit-transform: scale(0.6);
       -ms-transform: scale(0.6);
           transform: scale(0.6);
@@ -139,11 +140,15 @@ video::-webkit-media-controls {
   position: relative;
   max-width: 960px;
   min-width: 640px;
-  height: auto;
   overflow: hidden;
   font-style: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   border: var(--player-border) solid 4px;
   border-radius: 32px;
+  width: 100%;
+  height: auto;
   font-weight: var(--font-weight-regular);
   font-size: var(--font-p);
   line-height: var(--font-line-p);
