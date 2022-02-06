@@ -120,6 +120,8 @@ body {
         @include bgImgSVG("github-icon.svg");
         height: 40px;
         width: 40px;
+        margin-right: 72px;
+        // margin-right: auto;
         transform: scale(0.6);
         filter: invert(11%) sepia(0%) saturate(0%) hue-rotate(183deg) brightness(103%) contrast(94%); //#222222
 

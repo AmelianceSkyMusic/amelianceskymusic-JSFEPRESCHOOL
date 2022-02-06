@@ -97,6 +97,7 @@ body {
   background-image: url("../assets/svg/github-icon.svg");
   height: 40px;
   width: 40px;
+  margin-right: 72px;
   -webkit-transform: scale(0.6);
       -ms-transform: scale(0.6);
           transform: scale(0.6);
