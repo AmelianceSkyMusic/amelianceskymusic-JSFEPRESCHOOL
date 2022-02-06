@@ -156,12 +156,14 @@ video::-webkit-media-controls {
     position: relative;
     max-width: 960px;
     min-width: 640px;
-    height: auto;
     overflow: hidden;
     font-style: 0;
+    display: flex;
     border: var(--player-border) solid 4px;
     border-radius: 32px;
     // filter: blur(0.5px);
+    width: 100%;
+    height: auto;
 
     font-weight: var(--font-weight-regular);
     font-size: var(--font-p);
