@@ -1,0 +1,527 @@
+// >----------------------------------------------------------------<
+// >                            MIXINS                              <
+// >----------------------------------------------------------------<
+// @mixin createSVGButton($img, $filter, $filter-hover) { // image.svg, filter color — icon, filter color — hover
+//     background-image: url('../assets/svg/'+$img);
+//     filter: var($filter);
+//     &:hover {
+//         filter: var($filter-hover);
+//     }
+// }
+
+@mixin bgImgSVG($img) { // image.svg
+    background-image: url("../assets/svg/"+$img);
+}
+
+// >----------------------------------------------------------------<
+// >                              ROOT                              <
+// >----------------------------------------------------------------<
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+:root {
+    --bg: #0f0f0f;
+    --footer-color: #ffffff30;
+    --focus: #4285F4;
+    --time-text: #dddddd;
+    --button-text: #dddddd;
+    // --button-border-focus: #ffffff;
+    --player-slider-bg: #ffffff30;
+    // --player-slider-bg: #050505;
+    --player-slider-progress: #ffd04faf;
+    --player-blackout: #00000000;
+    --player-blackout-blur: 0px;
+    --player-blackout-show: #00000050;
+    --player-blackout-blur-show: 2px;
+    --player-border: #111111;
+    --player-slider-thumb: #dddddd;
+    --player-bg: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, .0));
+    --player-icon: invert(96%) sepia(0%) saturate(0%) hue-rotate(110deg) brightness(93%) contrast(93%);
+    --player-icon-hover: invert(74%) sepia(1%) saturate(5%) hue-rotate(358deg) brightness(83%) contrast(87%);
+
+    --player-button-size: 24px;
+
+    --font-line-p: 160%;
+    --font-p: 16px;
+    // --font-weight-bold: 700;
+    --font-weight-regular: 400;
+    --font-lato: "Lato", sans-serif;
+
+    // --player-bg: linear-gradient(to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .0));
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+*,  *::before, *::after {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: var(--bg);
+
+    font-style: 0;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-p);
+    line-height: var(--font-line-p);
+    font-family: var(--font-lato);
+}
+
+// >----------------------------------------------------------------<
+// >                         CONTAINER                              <
+// >----------------------------------------------------------------<
+
+.container {
+    // display: flex;
+    // flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.footer{
+    // max-width: 960px;
+    // min-width: 640px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 64px;
+    // z-index: -1000;
+    margin: 0 auto;
+    opacity: 50%;
+
+
+    // transform: translate(-50%, -50%);
+    // transform-origin: 0% 0%;
+
+    &__copyright {
+        color: #303030;
+        text-decoration: none;
+        &:hover {
+            color: #505050;
+        }
+    }
+    &__icon-github {
+        font-size: 0;
+        line-height: 0;
+        @include bgImgSVG("github-icon.svg");
+        height: 40px;
+        width: 40px;
+        transform: scale(0.6);
+        filter: invert(11%) sepia(0%) saturate(0%) hue-rotate(183deg) brightness(103%) contrast(94%); //#222222
+
+        &:hover {
+            filter: invert(27%) sepia(3%) saturate(14%) hue-rotate(319deg) brightness(88%) contrast(97%); //#404040
+        }
+    }
+
+    &__icon-rsschool {
+        font-size: 0;
+        line-height: 0;
+        @include bgImgSVG("rs_school_js-logo.svg");
+        height: 40px;
+        width: 112px;
+        transform: scale(0.6);
+        filter: invert(11%) sepia(0%) saturate(0%) hue-rotate(183deg) brightness(103%) contrast(94%); //#222222
+        &:hover {
+            filter: invert(27%) sepia(3%) saturate(14%) hue-rotate(319deg) brightness(88%) contrast(97%); //#404040
+        }
+    }
+}
+
+// >----------------------------------------------------------------<
+// >                           PLAYER                               <
+// >----------------------------------------------------------------<
+video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+video::-webkit-media-controls {
+    display:none !important;
+}
+
+.player {
+    position: relative;
+    max-width: 960px;
+    min-width: 640px;
+    height: auto;
+    overflow: hidden;
+    font-style: 0;
+    border: var(--player-border) solid 4px;
+    border-radius: 32px;
+    // filter: blur(0.5px);
+
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-p);
+    line-height: var(--font-line-p);
+    font-family: var(--font-lato);
+    z-index: 0;
+
+    box-shadow: 0px 4px 50px 20px rgba(0, 0, 0, 0.8);
+    // filter: drop-shadow(30px 10px 4px #4444dd);
+
+    // &:fullscreen {
+    //     max-width: none;
+    //     width: 100%;
+    // }
+    &-maximize {
+        position: fixed;
+        left: 0;
+        top: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: auto;
+        z-index: 100000;
+        border: none;
+        border-radius: 0;
+        // background: url(polina.jpg) no-repeat;
+        // background-size: cover;
+    }
+
+    // ^-------------------------- Video ----------------------------
+    &__video {
+        width: 100%;
+        height: auto;
+        box-shadow: inset 0px 4px 40px #000000;
+    }
+    &__video.player-maximize {
+        position: fixed;
+        left: 0;
+        top: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: 100%;
+        height: auto;
+    }
+
+    // ^------------------------- Controls --------------------------
+    &__controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        display: flex;
+        flex-direction: column;
+        // width: 100%;
+        width: calc(100% - 48px);
+        height: 68px;
+        // padding-right: 25px;
+        // padding-bottom: 20px;
+        // padding-left: 25px;
+        // padding-top: 20px;
+        padding: 20px 24px;
+
+        // margin: 0 25px 20px 25px;
+
+        background: var(--player-bg);
+        transition:all 0.8s ease-in-out;
+        // height: calc(100% / 12);
+        transform: translateY(100%) translateY(-60px);
+        opacity: 30%;
+        // flex-wrap:wrap;
+        // align-items: end;
+        z-index: 2147483645;
+        // transition: all 0.5s ease-in-out;
+
+        & > * {
+            flex:1;
+        }
+        // &:hover {
+        //     // transform: translateY(0);
+        // }
+
+    }
+    // & .player__controls {
+    //     transition:all .5s ease-in-out;
+    //     transform: translateY(100%) translateY(-60px);
+    // }
+    .player__controls-show{
+        transform: translateY(0);
+        opacity: 100%;
+    }
+
+    .player__controls-before-init {
+        opacity: 0%;
+        pointer-events: none;
+    }
+
+    &__time {
+        color: var(--time-text);
+    }
+
+    // ^---------------------- Wrapper controls ---------------------
+    .wrapper-controls {
+        display: flex;
+        justify-content: space-between;
+    }
+    .wrapper-settings {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .wrapper-play {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    // ^------------------------- blackout --------------------------
+    // &__blackout {
+    //     background-color: var(--player-blackout);
+    //     backdrop-filter: blur(var(--player-blackout-blur));
+    //     transition: all 0.1s ease-in-out;
+    // }
+    &__blackout-show {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        // background-color: var(--player-blackout);
+        background-color: var(--player-blackout-show);
+        backdrop-filter: blur(var(--player-blackout-blur-show));
+        z-index: 2147483640;
+        user-select: none;
+    }
+
+    // ^------------------------- big buttons -----------------------
+    &__play-big-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 136px;
+        height: 136px;
+        background: none;
+        --play-big-button-scale: 1;
+        transform: scale(var(--play-big-button-scale)) translate(-50%, -50%);
+        transform-origin: 0% 0%;
+        filter: var(--player-icon);
+        @include bgImgSVG("play-big-button.svg");
+        z-index: 2147483647;
+        // border: none;
+        // outline: 0;
+        // padding: 0;
+        font-size: 0;
+        line-height: 0;
+        opacity: 100%;
+        transition: 0.1s ease-in-out;
+        // z-index: 1;
+        cursor: pointer;
+    }
+    &__play-big-button-hide {
+        opacity: 0%;
+        // z-index: -1000;
+        --play-big-button-scale: 0;
+    }
+
+    // ^------------------------- Buttons ---------------------------
+    &__button {
+        width: var(--player-button-size);
+        // max-width: 50px;
+        height: var(--player-button-size);
+        padding: 0;
+        font-size: 0;
+        line-height: 0;
+        // color: var(--button-text);
+        // background: rgba(255, 0, 0, 0.5);
+        border: none;
+        background: none;
+        outline: 0;
+        cursor: pointer;
+        transition: 0.3s;
+        filter: var(--player-icon);
+
+        &-play-toggle {
+            @include bgImgSVG("play.svg");
+            // transition: all 0.1s ease-in-out;
+        }
+        &-go-to-start {
+            @include bgImgSVG("go-to-start.svg");
+        }
+        &-rewind {
+            @include bgImgSVG("rewind.svg");
+        }
+        &-backward {
+            @include bgImgSVG("backward.svg");
+        }
+        &-fullscreen {
+            @include bgImgSVG("fullscreen.svg");
+        }
+        &-maximize {
+            @include bgImgSVG("maximize.svg");
+        }
+        &-volume {
+            @include bgImgSVG("volume.svg");
+        }
+        &-audio-boost {
+            @include bgImgSVG("boost-x.svg");
+        }
+
+        &:hover {
+            filter: var(--player-icon-hover);
+        }
+
+        // &:focus {
+            // transition: none;
+            // filter: none;
+            // outline: 2px solid var(--focus);
+            // outline-offset: 2px;
+        // }
+    }
+
+    &__slider {
+        width: 10px;
+        height: 24px;
+    }
+}
+
+// ^-------------------------- Progress -----------------------------
+
+// .progress {
+
+//     position: relative;
+//     display: flex;
+//     width: 100%;
+//     height: 24px;
+//     margin-bottom: 20px;
+//     background: var(--player-slider-bg);
+//     border-radius: 1000px;
+//     cursor: pointer;
+
+//     &__filled {
+//         // width:30%;
+//         flex-basis: 0.1%;
+//         background:var(--player-slider-progress);
+//         border-radius: 1000px;
+//       }
+// }
+
+
+.progress-bar {
+
+    // // position: relative;
+    // // display: flex;
+    // width: calc(100% + 50px);
+    width: 100%;
+    // height: 24px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    // margin-left: -25px;
+    // margin-right: -25px;
+    // // background: var(--player-slider-bg);
+    // border-radius: 1000px;
+    // // cursor: pointer;
+}
+
+
+
+
+
+
+
+
+// ^---------------------------- Range ------------------------------
+// %message-shared {
+//     background: #053a5f;
+//     height: 24px;
+// }
+
+input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+    appearance: none;
+    // width: 160px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1000px;
+
+    &.player__slider-volume-progress{
+        width: 160px;
+        --slider-width: 50%;
+    }
+
+    &.player__slider-progress-bar{
+        width: 100%;
+        --slider-width: 0%;
+    }
+
+    // --slider-volume-progress: linear-gradient( to right,
+    // var(--player-slider-progress) 0%,
+    // var(--player-slider-progress) 50%,
+    // var(--player-slider-bg) 0%,
+    // var(--player-slider-bg) 100% );
+
+    &:focus { /* reseet default focus style */
+    outline: none;
+        // &::-webkit-slider-thumb {
+        //     outline: 2px solid var(--focus);
+        //     outline-offset: 2px;
+        // }
+        // &::-moz-range-thumb {
+        //     outline: 2px solid var(--focus);
+        //     outline-offset: 2px;
+        // }
+    }
+
+    // *------------------------- Slider ----------------------------
+    &::-webkit-slider-runnable-track { /* chrome slider */
+        height: 8px;
+        background: var(--player-slider-bg);
+        border-radius: 1000px;
+        background: linear-gradient(to right,
+                    var(--player-slider-progress) var(--slider-width),
+                    var(--player-slider-bg) var(--slider-width));
+    }
+
+    &::-moz-range-track { /* moz slider */
+        height: 8px;
+        background: var(--player-slider-bg);
+        border-radius: 1000px;
+        background: linear-gradient(to right,
+                    var(--player-slider-progress) var(--slider-width),
+                    var(--player-slider-bg) var(--slider-width));
+    }
+
+    // *-------------------------- Thumb ----------------------------
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none; /* reset default style */
+        width: 16px;
+        height: 16px;
+        margin-top: -4px; /* align thumb */
+        background-color: var(--player-slider-thumb);
+        border-radius: 1000px;
+        appearance: none;
+    }
+
+    &::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        background-color: var(--player-slider-thumb);
+        border: none; /* remove mozila border default */
+        border-radius: 1000px;
+    }
+
+    // &.player__slider-progress::before {
+    //     position: absolute;
+    //     content: '';
+    //     height: 8px; /* equal to height of runnable track */
+    //     width: var(--slider-width); /* make this bigger than the widest range input element */
+    //     left: 0px; /* this should be -2px - width */
+    //     top: 8px; /* don't change this */
+    //     border-radius: 1000px;
+    //     background: rgb(255, 0, 0);
+    // }
+}
