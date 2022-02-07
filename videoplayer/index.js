@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+/* jshint esversion: 9 */
 // /*jshint -W033 */
 
 // ^................... ( Msg from console.log ) ....................
@@ -17,7 +17,9 @@ const playerImages = [
     './assets/svg/backward.svg',
     './assets/svg/boost-x.svg',
     './assets/svg/boost.svg',
+    './assets/svg/fullscreen-off.svg',
     './assets/svg/fullscreen.svg',
+    './assets/svg/github-icon.svg',
     './assets/svg/go-to-start.svg',
     './assets/svg/maximize.svg',
     './assets/svg/minimize.svg',
@@ -25,6 +27,7 @@ const playerImages = [
     './assets/svg/play-big-button.svg',
     './assets/svg/play.svg',
     './assets/svg/rewind.svg',
+    './assets/svg/rs_school_js-logo.svg',
     './assets/svg/settings.svg',
     './assets/svg/stop.svg',
     './assets/svg/volume-more.svg',
@@ -73,17 +76,85 @@ const getAudioContext = (boost) => {
 
 
 // >----------------------------------------------------------------<
-// >                              INIT                              <
+// >                           SETTINGS                             <
 // >----------------------------------------------------------------<
 
 // ^------------------------ player settings ------------------------
-let PS = { // player settings
-    boost : 1, // boostAudio()
-    isPlayerInit : false,
-    isPause : true,
-};
+// let PS = { // player settings
+//     boost : 1, // boostAudio()
+//     isPlayerInit : false,
+//     isPause : true,
+//     isOnControls: false,
+//     isFullscreen: false,
+//     isMaximize: false,
+// };
+
+let PS = {}; // player settings
+
+// ^--------------------- INIT and load settings --------------------
+
+window.addEventListener('load', () => {
+
+    PS = { // player settings
+        volume              : 0.5, // 0-1
+        volumeWatcher    : 0.5, // 0-1
+        currentTimePosition : 0, // 0-1
+
+        isMute  : false,
 
 
+        // SESSION settings - not loaded from settings
+        boost   : 1, // boostAudio() boost autio varible 1 or 3
+        tempGainItem    : undefined,
+
+
+        isPlayerInit    : false,
+        isPause         : true,
+        isOnControls    : false,
+        isFullscreen    : false,
+        isMaximize      : false,
+
+    };
+
+    if(localStorage.getItem('playerSettings')) {
+        let receivedPlayerSettings = JSON.parse(localStorage.getItem('playerSettings')); // read\
+        PS = {...PS, ...receivedPlayerSettings};
+        // Msg('try to load settings');
+    }
+});
+
+
+// ^------------------------ save settings --------------------------
+
+window.addEventListener('beforeunload', () => {
+
+
+    let savingPlayerSettings = {
+        volume              : PS.volume, // 0-1
+        volumeWatcher       : PS.volumeWatcher, // 0-1
+        currentTimePosition : PS.currentTimePosition, // 0-1
+
+        isMute  : PS.isMute,
+
+        // SESSION settings - not loaded from settings
+        // boost           : PS.boost,
+        // tempGainItem      : PS.tempGainItem,
+
+        // isPlayerInit    : PS.isPlayerInit,
+        // isPause         : PS.isPause,
+        // isOnControls    : PS.isOnControls,
+        // isFullscreen    : PS.isFullscreen,
+        // isMaximize      : PS.isMaximize,
+
+    };
+
+    localStorage.setItem('playerSettings', JSON.stringify(savingPlayerSettings)); // write
+});
+
+
+// >----------------------------------------------------------------<
+// >                              INIT                              <
+// >----------------------------------------------------------------<
 
 // ^--------------------------- get items ---------------------------
 
@@ -124,33 +195,56 @@ const playToggleBtn = player.querySelector('.player__button-play-toggle');
 
 const setFullscreenToggle = () => {
 
-    if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.mozRequestFullScreen) {
-        video.mozRequestFullScreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
-      }
+    if (PS.isMaximize) {
+        setMaximizeToggle();
+        PS.isMaximize = false;
+    }
 
-    player.classList.toggle('player-fullscreen');
+    if (player.requestFullscreen) {
+        player.requestFullscreen();
+
+    } else if (player.webkitRequestFullscreen) {
+        player.webkitRequestFullscreen();
+    }
+
+    if (document.fullscreenElement) {
+        document.exitFullscreen()
+        .then(() => console.log("Document Exited from Full screen mode"))
+        .catch((err) => console.error(err));
+    } else if (document.webkitFullscreenElement) {
+        document.webkitExitFullscreen();
+    }
+
+    if (!document.fullscreenElement) {
+        PS.isFullscreen = true;
+        buttonFullscreen.style.backgroundImage = 'url("./assets/svg/fullscreen-off.svg")';
+    } else {
+        PS.isFullscreen = false;
+        buttonFullscreen.style.backgroundImage = 'url("./assets/svg/fullscreen.svg")';
+    }
 
 };
 
 
 
-// ^---------------------------- maximize ---------------------------
-
 buttonFullscreen.addEventListener('click', setFullscreenToggle);
 
-const setMaximizeToggle = (elem) => {
-    const el = elem.target;
+// ^---------------------------- maximize ---------------------------
+
+const setMaximizeToggle = () => {
+
+
+    if (PS.isFullscreen) {
+        setFullscreenToggle();
+        PS.isFullscreen = false;
+    }
 
     if (player.classList.contains('player-maximize')) {
-        el.style.backgroundImage = 'url("./assets/svg/maximize.svg")';
+        PS.isMaximize = false;
+        buttonMaximize.style.backgroundImage = 'url("./assets/svg/maximize.svg")';
     } else {
-        el.style.backgroundImage = 'url("./assets/svg/minimize.svg")';
+        PS.isMaximize = true;
+        buttonMaximize.style.backgroundImage = 'url("./assets/svg/minimize.svg")';
     }
 
     player.classList.toggle('player-maximize');
@@ -191,6 +285,7 @@ const togglePlayPlayer = () => {
         PS.isPause = true;
         playerControls.classList.remove('player__controls-show');
     }
+
 };
 
 video.addEventListener('click', togglePlayPlayer);
@@ -310,41 +405,40 @@ rangeVolume.addEventListener('wheel', rangeUpdateScroll);
 
 window.addEventListener('load', () => {
 
-    let volume;
     if(localStorage.getItem('volume')) {
-        volume = localStorage.getItem('volume');
+        // volume = localStorage.getItem('volume');
+        PS.volume = PS.volumeWatcher;
     } else {
-        volume = 0.5;
+        PS.volume = 0.5;
     }
 
 
-    if(localStorage.getItem('volumeButtonMute')) {
-        const isMuted = localStorage.getItem('volumeButtonMute') === 'true' ? true : false;
-        if (isMuted === true) volume = 0;
-    }
+    if (PS.isMute === true) PS.volume = 0;
 
-    rangeVolume.value = volume; // set range new value
-    video[rangeVolume.name] = volume; // set volume new value
+    rangeVolume.value = PS.volume; // set range new value
+    video[rangeVolume.name] = PS.volume; // set volume new value
 
     // change new value to CSS
-    let progress = `${volume * 100}%`;
+    let progress = `${PS.volume * 100}%`;
     rangeVolume.style.setProperty('--slider-width', progress);
 });
 
 
 
-// ^---------------------- save volume before unload ---------------------
+// // ^---------------------- save volume before unload ---------------------
 
-window.addEventListener('beforeunload', () => {
+// window.addEventListener('beforeunload', () => {
 
-    const volume = Math.floor(rangeVolume.value * 100) / 100;
+//     // const volume = Math.floor(rangeVolume.value * 100) / 100;
 
-    if (volume <= 0) {
-        localStorage.setItem('volumeButtonMute', true);
-    } else {
-        localStorage.setItem('volumeButtonMute', false);
-    }
-});
+//     if (PS.volume <= 0) {
+//         // localStorage.setItem('volumeButtonMute', true);
+//         PS.isMute = true;
+//     } else {
+//         // localStorage.setItem('volumeButtonMute', false);
+//         PS.isMute = false;
+//     }
+// });
 
 
 
@@ -352,21 +446,24 @@ window.addEventListener('beforeunload', () => {
 
 const updateVolumeButton = () => {
 
-    const volume = Math.floor(rangeVolume.value * 100) / 100;
+    PS.volume = Math.floor(rangeVolume.value * 100) / 100;
 
-    if (volume <= 0) {
+    if (PS.volume <= 0) {
 
         buttonVolume.style.backgroundImage = 'url("./assets/svg/volume-x.svg")';
+        PS.isMute = true;
 
     } else {
 
-        if (volume > 0.50){
+        if (PS.volume > 0.50){
             buttonVolume.style.backgroundImage = 'url("./assets/svg/volume-more.svg")';
         } else {
             buttonVolume.style.backgroundImage = 'url("./assets/svg/volume.svg")';
         }
-
-        localStorage.setItem('volume', volume);
+        PS.isMute = false;
+        // localStorage.setItem('volume', volume);
+        PS.volumeWatcher = PS.volume;
+        // localStorage.setItem('playerSettings', JSON.stringify(PS)); // write
     }
 };
 
@@ -376,19 +473,19 @@ video.addEventListener('volumechange', updateVolumeButton);
 // ^------------------- toggle mute volume button -------------------
 const toggleMute = () => {
 
-    let volume;
-
     if (video[rangeVolume.name] > 0) {
-        volume = 0;
+        PS.volume = 0;
+        PS.isMute = true;
     } else {
-        volume = localStorage.getItem('volume');
+        PS.volume = PS.volumeWatcher;
+        PS.isMute = false;
     }
 
-    video[rangeVolume.name] = volume; // set video volume to 0
-    rangeVolume.value = volume; // set range value to 0
+    video[rangeVolume.name] = PS.volume; // set video volume to 0
+    rangeVolume.value = PS.volume; // set range value to 0
 
     // change new value to CSS
-    let progress = `${volume * 100}%`;
+    let progress = `${PS.volume * 100}%`;
     rangeVolume.style.setProperty('--slider-width', progress);
 
 
@@ -408,10 +505,10 @@ buttonVolume.addEventListener('click', toggleMute);
 
 const videoProgressBarUpdate = () => {
 
-    const position = (video.currentTime / video.duration); // get position value
-    const progress = `${position * 100}%`; // convert position value to percent
+    PS.currentTimePosition = (video.currentTime / video.duration); // get position value
+    const progress = `${PS.currentTimePosition * 100}%`; // convert position value to percent
 
-    rangeProgressBar.value = position; // set position value
+    rangeProgressBar.value = PS.currentTimePosition; // set position value
 
     rangeProgressBar.style.setProperty('--slider-width', progress); // draw progress bar position (set percent to class style gradient)
 
@@ -426,10 +523,10 @@ video.addEventListener('timeupdate', videoProgressBarUpdate);
 const videoScrub = (elem) => {
 
     const el = elem.target; // get target element
-    const position = el.value / (1 / video.duration); // get current position sec
-    const progress = `${(1 / video.duration) * position * 100}%`; // convert position value to percent
+    PS.currentTimePosition = el.value / (1 / video.duration); // get current position sec
+    const progress = `${(1 / video.duration) * PS.currentTimePosition * 100}%`; // convert position value to percent
 
-    video.currentTime = position;
+    video.currentTime = PS.currentTimePosition;
 
     rangeProgressBar.style.setProperty('--slider-width', progress); // draw progress bar position (set percent to class style gradient)
 
@@ -445,10 +542,10 @@ rangeProgressBar.addEventListener('input', videoScrub);
 const videoProgressBarUpdateScroll = (elem) => {
 
     const el = elem.target; // get target element
-    const position = el.value / (1 / video.duration); // get current position sec
+    PS.currentTimePosition = el.value / (1 / video.duration); // get current position sec
     const scroll = Math.round(elem.deltaY * -0.01); // get scroll direction
 
-    let newPosition = position + (scroll * 10);
+    let newPosition = PS.currentTimePosition + (scroll * 10);
 
     newPosition = Math.round(newPosition * 100) / 100;
     newPosition = newPosition < 0 ? 0 : newPosition;
@@ -483,9 +580,11 @@ const showPlayerControlPanel = () => {
 
         playerControls.classList.add('player__controls-show'); // show panel
 
-        playerControlShownTimeOut = setTimeout(() => { // close panel after 3sec
-            playerControls.classList.remove('player__controls-show');
-        }, 3000);
+        if (!PS.isOnControls) {
+            playerControlShownTimeOut = setTimeout(() => { // close panel after 3sec
+                playerControls.classList.remove('player__controls-show');
+            }, 3000);
+        }
     }
 
 };
@@ -494,6 +593,19 @@ player.addEventListener('mousemove', showPlayerControlPanel);
 player.addEventListener('click', showPlayerControlPanel);
 player.addEventListener('wheel', showPlayerControlPanel);
 
+
+
+// ^---------------------- show player control ---------------------
+playerControls.addEventListener('mouseover', () => {
+    PS.isOnControls = true;
+} );
+
+playerControls.addEventListener('mouseleave', () => {
+    PS.isOnControls = false;
+    playerControlShownTimeOut = setTimeout(() => { // close panel after 3sec
+        playerControls.classList.remove('player__controls-show');
+    }, 3000);
+} );
 
 
 
@@ -592,7 +704,6 @@ window.addEventListener('load', timeUpdate);
 
 const boostAudio = (elem) => {
     const el = elem.target;
-
     if(!PS.tempGainItem) {
         PS.tempGainItem = getAudioContext();
     }

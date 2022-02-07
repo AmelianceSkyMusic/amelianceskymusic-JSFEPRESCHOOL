@@ -110,8 +110,10 @@ body {
     &__copyright {
         color: #303030;
         text-decoration: none;
-        &:hover {
-            color: #505050;
+        @media (hover: hover) {
+            &:hover {
+                color: #505050;
+            }
         }
     }
     &__icon-github {
@@ -124,9 +126,10 @@ body {
         // margin-right: auto;
         transform: scale(0.6);
         filter: invert(11%) sepia(0%) saturate(0%) hue-rotate(183deg) brightness(103%) contrast(94%); //#222222
-
-        &:hover {
-            filter: invert(27%) sepia(3%) saturate(14%) hue-rotate(319deg) brightness(88%) contrast(97%); //#404040
+        @media (hover: hover) {
+            &:hover {
+                filter: invert(27%) sepia(3%) saturate(14%) hue-rotate(319deg) brightness(88%) contrast(97%); //#404040
+            }
         }
     }
 
@@ -138,8 +141,10 @@ body {
         width: 112px;
         transform: scale(0.6);
         filter: invert(11%) sepia(0%) saturate(0%) hue-rotate(183deg) brightness(103%) contrast(94%); //#222222
-        &:hover {
-            filter: invert(27%) sepia(3%) saturate(14%) hue-rotate(319deg) brightness(88%) contrast(97%); //#404040
+        @media (hover: hover) {
+            &:hover {
+                filter: invert(27%) sepia(3%) saturate(14%) hue-rotate(319deg) brightness(88%) contrast(97%); //#404040
+            }
         }
     }
 }
@@ -180,6 +185,15 @@ video::-webkit-media-controls {
     //     max-width: none;
     //     width: 100%;
     // }
+
+    &:fullscreen {
+        border: none;
+    }
+
+    &:-webkit-full-screen {
+        border: 0px;
+    }
+
     &-maximize {
         position: fixed;
         left: 0;
@@ -215,30 +229,35 @@ video::-webkit-media-controls {
     &__controls {
         position: absolute;
         bottom: 0;
-        left: 0;
+        left: 50%;
 
         display: flex;
         flex-direction: column;
-        // width: 100%;
+
         width: calc(100% - 48px);
         height: 68px;
-        // padding-right: 25px;
-        // padding-bottom: 20px;
-        // padding-left: 25px;
-        // padding-top: 20px;
         padding: 20px 24px;
 
-        // margin: 0 25px 20px 25px;
-
         background: var(--player-bg);
-        transition:all 0.8s ease-in-out;
+        transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
         // height: calc(100% / 12);
-        transform: translateY(100%) translateY(-60px);
+        transform: translateY(100%) translateY(-60px) translateX(-50%);;
+        transform-origin: 0% 0%;
+
         opacity: 30%;
-        // flex-wrap:wrap;
-        // align-items: end;
+
         z-index: 2147483645;
-        // transition: all 0.5s ease-in-out;
+
+
+        .player:fullscreen &{
+            height: 100%;
+            width: 100%;
+        }
+
+        .player:-webkit-full-screen &{
+            height: 108px;
+            width: 100%;
+        }
 
         & > * {
             flex:1;
@@ -253,7 +272,7 @@ video::-webkit-media-controls {
     //     transform: translateY(100%) translateY(-60px);
     // }
     .player__controls-show{
-        transform: translateY(0);
+        transform: translateY(0) translateX(-50%);
         opacity: 100%;
     }
 
@@ -373,10 +392,11 @@ video::-webkit-media-controls {
             @include bgImgSVG("boost-x.svg");
         }
 
-        &:hover {
-            filter: var(--player-icon-hover);
+        @media (hover: hover) {
+            &:hover {
+                filter: var(--player-icon-hover);
+            }
         }
-
         // &:focus {
             // transition: none;
             // filter: none;
@@ -413,21 +433,22 @@ video::-webkit-media-controls {
 // }
 
 
-.progress-bar {
+// .progress-bar {
 
-    // // position: relative;
-    // // display: flex;
-    // width: calc(100% + 50px);
-    width: 100%;
-    // height: 24px;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    // margin-left: -25px;
-    // margin-right: -25px;
-    // // background: var(--player-slider-bg);
-    // border-radius: 1000px;
-    // // cursor: pointer;
-}
+//     // // position: relative;
+//     // // display: flex;
+//     // width: calc(100% + 50px);
+//     width: 100%;
+
+//     // height: 24px;
+//     margin-bottom: 20px;
+//     margin-top: 10px;
+//     // margin-left: -25px;
+//     // margin-right: -25px;
+//     // // background: var(--player-slider-bg);
+//     // border-radius: 1000px;
+//     // // cursor: pointer;
+// }
 
 
 
