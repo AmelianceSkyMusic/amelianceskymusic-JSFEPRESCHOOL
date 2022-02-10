@@ -134,3 +134,26 @@ body {
     }
 
 }
+
+
+
+.input-text {
+    font-family: var(--font-two);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-p);
+
+    border-radius: 1000px;
+    padding: 12px 24px;
+    width: 288px;
+    color: var(--input-color);
+
+    //input border gradient
+    border: double 3px transparent;
+    background-image: linear-gradient(var(--input-bg-color), var(--input-bg-color)),
+                        linear-gradient(180deg, #070707 0%, #3B3B3B 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    &:focus {
+        outline: none !important;
+    }
+}
