@@ -79,14 +79,14 @@
     --font-h3-weight: var(--font-weight-bold);
     --font-h3-line-height: var(--font-line-height);
 
-    --font-p2-size: 14px;
+    --font-p2-size: 12px;
     --font-p2-color: var(--white-dark);
     --font-p2-weight: var(--font-weight-light);
     --font-p2-line-height: var(--font-line-height);
 
-    --font-p1-size: 18px;
+    --font-p1-size: 16px;
     --font-p1-color: var(--white-dark);
-    --font-p1-weight: var(--font-weight-regular);
+    --font-p1-weight: var(--font-weight-light);
     --font-p1-line-height: var(--font-line-height);
 
     --logo-color: var(--white-light);
@@ -120,10 +120,27 @@ body {
     background: var(--bg); //linear-gradient(var(--bg-deg), var(--bg-top-color) var(--bg-top-percent), var(--bg-bottom-color) var(--bg-bottom-percent));
 
     font-style: 0;
-    font-weight: var(--font-weight-regular);
-    font-size: var(--font-p);
-    line-height: var(--font-line-p);
     font-family: var(--font-two);
+    font-size: var(--font-p1-size);
+    font-weight: var(--font-p1-weight);
+    color: var(--font-p1-color);
+    line-height: var(--font-p1-line-height);
+
+    &::-webkit-scrollbar {
+        width: 16px;
+        background-color: var(--gray-dark);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 2px;
+        background-color: var(--gray);
+    }
+
+    &::-webkit-scrollbar-track {
+        // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+        border-radius: 2px;
+        background-color: linear-gradient(180deg, #181818 0%, #101010 100%)
+    }
 }
 
 // ^------------------------ Noise bg image -------------------------
@@ -261,16 +278,25 @@ body {
             overflow: hidden;
             border-radius: 4px;
             // * add border gradient
-            // border: double var(--card-border-width) transparent; // border width
-            // background-image: linear-gradient(180deg, #181818 0%, #101010 100%), // bg color
-            //                     linear-gradient(180deg, rgba(0, 0, 0, 0.5) 99%, rgba(255, 255, 255, 0.2) 100%); // border color
-            // background-origin: border-box;
-            // background-clip: padding-box, border-box;
-            background-color: var(--white-dark);
+            border: double var(--card-border-width) transparent; // border width
+            background-image: linear-gradient(180deg, #181818 0%, #101010 100%), // bg color
+                                linear-gradient(180deg, rgba(0, 0, 0, 0.5) 99%, rgba(255, 255, 255, 0.2) 100%); // border color
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+
+            &:hover .movie-card__image{
+                transform: translateY(-100%);
+                // opacity: 0%;
+            }
+            // &:hover .movie-card__movie-info{
+            //     transform: translateY(0);
+            //     opacity: 100%;
+            // }
         }
 
         &__image {
             position: relative;
+            display: block;
             top: 0;
             width: 100%;
             font-size: 0;
@@ -284,10 +310,40 @@ body {
                 // }
 
                 // transform: translateY(-100%)
-                transition: transform 0.5s ease-in-out;
+                transition: transform 0.5s ease-out;
+                z-index: 1;
+        }
 
-            &:hover {
-                transform: translateY(-100%)
+        &__movie-info {
+            padding: 12px;
+            height: calc(100% - 24px);
+            overflow:auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--font-p1-color);
+            font-family: var(--font-two);
+            font-weight: var(--font-p1-weight);
+            line-height: var(--font-p1-line-height);
+            font-size: var(--font-p1-size);
+            // opacity: 0%;
+            // transform: translateY(100%);
+            // transition: transform 1s ease-out, opacity 0.8s;
+
+            &::-webkit-scrollbar {
+                width: 8px;
+                background-color: linear-gradient(180deg, #181818 0%, #101010 100%);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 1000px;
+                background-color: var(--gray);
+            }
+
+            &::-webkit-scrollbar-track {
+                // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+                border-radius: 2px;
+                background-color: linear-gradient(180deg, #181818 0%, #101010 100%)
             }
         }
 
@@ -359,6 +415,73 @@ body {
             cursor: pointer;
             &:hover {
                 filter: invert(98%) sepia(3%) saturate(6%) hue-rotate(202deg) brightness(113%) contrast(80%);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+.footer{
+    // max-width: 960px;
+    // min-width: 640px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 64px;
+    // z-index: -1000;
+    margin: 0 auto;
+    opacity: 50%;
+
+
+    // transform: translate(-50%, -50%);
+    // transform-origin: 0% 0%;
+
+    &__copyright {
+        font-weight: var(--font-weight-bold);
+        color: #3c3c3c;
+        text-decoration: none;
+        @media (hover: hover) {
+            &:hover {
+                color: #cccccc;
+            }
+        }
+    }
+    &__icon-github {
+        font-size: 0;
+        line-height: 0;
+        @include bgImgSVG("github-icon.svg");
+        height: 40px;
+        width: 40px;
+        margin-right: 72px;
+        // margin-right: auto;
+        transform: scale(0.6);
+        filter: invert(22%) sepia(0%) saturate(13%) hue-rotate(209deg) brightness(92%) contrast(109%); // 2c2c2c
+        @media (hover: hover) {
+            &:hover {
+                filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%); //cccccc
+            }
+        }
+    }
+
+    &__icon-rsschool {
+        font-size: 0;
+        line-height: 0;
+        @include bgImgSVG("rs_school_js-logo.svg");
+        height: 40px;
+        width: 112px;
+        transform: scale(0.6);
+        filter: invert(22%) sepia(0%) saturate(13%) hue-rotate(209deg) brightness(92%) contrast(109%); // 2c2c2c
+        @media (hover: hover) {
+            &:hover {
+                filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%); //cccccc
             }
         }
     }
