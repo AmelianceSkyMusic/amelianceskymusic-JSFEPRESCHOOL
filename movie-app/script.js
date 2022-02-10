@@ -22,8 +22,8 @@ async function getMovieData() {
 
 const showMovieData = (data) => {
 
-    const createDiv = (divClass, parentName) => {
-        const divName = document.createElement('div');
+    const createElem = (parentName, divClass, element = 'div') => {
+        const divName = document.createElement(element);
         divName.classList.add(divClass);
         parentName.append(divName);
         return divName;
@@ -33,53 +33,46 @@ const showMovieData = (data) => {
 
     let result = data.results.map((key) => {
 
+        // ----------------- card decoration element ----------------
+        const wrapperCardDecor = createElem(moviesContainer, 'wrapper-card-decor', 'div');
 
-        // const wrapperCardDecor = document.createElement('div');
-        // wrapperCardDecor.classList.add('wrapper-card-decor');
-        // moviesContainer.append(wrapperCardDecor);
-
-        const wrapperCardDecor = createDiv('wrapper-card-decor', moviesContainer);
-
-            const moviesContainerCard = createDiv('movie-card', wrapperCardDecor);
-
-            // const moviesContainerCard = document.createElement('div');
-            // moviesContainerCard.classList.add('movie-card');
-            // wrapperCardDecor.append(moviesContainerCard);
-
-                const image = document.createElement('img');
-                image.classList.add('movie-card__image');
-                image.src = `https://image.tmdb.org/t/p/w500${key.poster_path}`;
-                image.alt = key.title;
-                moviesContainerCard.append(image);
-
-                const title = document.createElement('p');
-                title.classList.add('movie-card__title');
-                title.innerText = key.title;
-                moviesContainerCard.append(title);
-
-                // const date = document.createElement('p');
-                // date.classList.add('movie-card__date');
-                // const splitDate = key.release_date.split("-");
-                // date.innerText = splitDate[0];
-                // moviesContainerCard.append(date);
-
-                // const moviesCardVoteWrapper = document.createElement('div');
-                // moviesCardVoteWrapper.classList.add('movie-card__vote-wrapper');
-                // moviesContainerCard.append(moviesCardVoteWrapper);
-
-                const moviesCardVoteWrapper = createDiv('movie-card__vote-wrapper', moviesContainerCard);
-
-                    const voteIcon = document.createElement('div');
-                    voteIcon.classList.add('movie-card__vote-icon');
-                    voteIcon.style.backgroundImage = 'url("./assets/svg/vote.svg")';
-                    moviesCardVoteWrapper.append(voteIcon);
-
-                    const vote = document.createElement('p');
-                    vote.classList.add('movie-card__vote');
-                    vote.innerText = key.vote_average;
-                    moviesCardVoteWrapper.append(vote);
+            // ----------------------- card -------------------------
+            const moviesContainerCard = createElem(wrapperCardDecor, 'movie-card', 'div'); // main card container
 
 
+                const imageDecorWrapper = createElem(moviesContainerCard, 'movie-card__image-decor-wrapper', 'div'); // image decorate div
+
+                    const image = createElem(imageDecorWrapper, 'movie-card__image', 'img');
+                    image.src = `https://image.tmdb.org/t/p/w500${key.poster_path}`;
+                    image.alt = key.title;
+
+
+                // ----------------------- text block -------------------------
+                const movieCardTextWrapper = createElem(moviesContainerCard, 'movie-card__text-wrapper', 'div');
+
+
+
+                    // const date = document.createElement('p');
+                    // date.classList.add('movie-card__date');
+                    // const splitDate = key.release_date.split("-");
+                    // date.innerText = splitDate[0];
+                    // moviesContainerCard.append(date);
+                    const moviesCardInfoTitleWrapper = createElem(movieCardTextWrapper, 'movie-card__info-titile-wrapper', 'div');
+
+                        const moviesCardVoteWrapper = createElem(moviesCardInfoTitleWrapper, 'movie-card__vote-wrapper', 'div');
+
+                            const voteIcon = createElem(moviesCardVoteWrapper, 'movie-card__vote-icon', 'div');
+                            voteIcon.style.backgroundImage = 'url("./assets/svg/vote.svg")';
+
+                            const vote = createElem(moviesCardVoteWrapper, 'movie-card__vote', 'p');
+                            vote.innerText = key.vote_average;
+
+                        const infoIcon = createElem(moviesCardInfoTitleWrapper, 'movie-card__info-icon', 'div');
+                        infoIcon.style.backgroundImage = 'url("./assets/svg/info.svg")';
+
+
+                    const title = createElem(movieCardTextWrapper, 'movie-card__title', 'p');
+                    title.innerText = key.title;
 
     });
 };
