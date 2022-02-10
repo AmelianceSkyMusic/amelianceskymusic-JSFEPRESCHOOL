@@ -46,6 +46,9 @@ const showMovieData = (data) => {
                     image.src = `https://image.tmdb.org/t/p/w500${key.poster_path}`;
                     image.alt = key.title;
 
+                    const movieInfo = createElem(imageDecorWrapper, 'movie-card__movie-info', 'p');
+                    movieInfo.innerText = `${key.overview}`;
+
 
                 // ----------------------- text block -------------------------
                 const movieCardTextWrapper = createElem(moviesContainerCard, 'movie-card__text-wrapper', 'div');

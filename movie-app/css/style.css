@@ -52,13 +52,13 @@
   --font-h3-color: var(--white-light);
   --font-h3-weight: var(--font-weight-bold);
   --font-h3-line-height: var(--font-line-height);
-  --font-p2-size: 14px;
+  --font-p2-size: 12px;
   --font-p2-color: var(--white-dark);
   --font-p2-weight: var(--font-weight-light);
   --font-p2-line-height: var(--font-line-height);
-  --font-p1-size: 18px;
+  --font-p1-size: 16px;
   --font-p1-color: var(--white-dark);
-  --font-p1-weight: var(--font-weight-regular);
+  --font-p1-weight: var(--font-weight-light);
   --font-p1-line-height: var(--font-line-height);
   --logo-color: var(--white-light);
   --logo-font-size: 28px;
@@ -88,10 +88,26 @@ body {
   min-height: 100vh;
   background: var(--bg);
   font-style: 0;
-  font-weight: var(--font-weight-regular);
-  font-size: var(--font-p);
-  line-height: var(--font-line-p);
   font-family: var(--font-two);
+  font-size: var(--font-p1-size);
+  font-weight: var(--font-p1-weight);
+  color: var(--font-p1-color);
+  line-height: var(--font-p1-line-height);
+}
+
+body::-webkit-scrollbar {
+  width: 16px;
+  background-color: var(--gray-dark);
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: var(--gray);
+}
+
+body::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background-color: linear-gradient(180deg, #181818 0%, #101010 100%);
 }
 
 .body::before,
@@ -219,27 +235,64 @@ body {
   width: calc(100% - 48px);
   overflow: hidden;
   border-radius: 4px;
-  background-color: var(--white-dark);
+  border: double var(--card-border-width) transparent;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#101010)), -webkit-gradient(linear, left top, left bottom, color-stop(99%, rgba(0, 0, 0, 0.5)), to(rgba(255, 255, 255, 0.2)));
+  background-image: -webkit-linear-gradient(top, #181818 0%, #101010 100%), -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 99%, rgba(255, 255, 255, 0.2) 100%);
+  background-image: -o-linear-gradient(top, #181818 0%, #101010 100%), -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 99%, rgba(255, 255, 255, 0.2) 100%);
+  background-image: linear-gradient(180deg, #181818 0%, #101010 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.5) 99%, rgba(255, 255, 255, 0.2) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.movies-container .movie-card__image-decor-wrapper:hover .movie-card__image {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
 }
 
 .movies-container .movie-card__image {
   position: relative;
+  display: block;
   top: 0;
   width: 100%;
   font-size: 0;
   line-height: 0;
   cursor: pointer;
-  -webkit-transition: -webkit-transform 0.5s ease-in-out;
-  transition: -webkit-transform 0.5s ease-in-out;
-  -o-transition: transform 0.5s ease-in-out;
-  transition: transform 0.5s ease-in-out;
-  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-out;
+  transition: -webkit-transform 0.5s ease-out;
+  -o-transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out, -webkit-transform 0.5s ease-out;
+  z-index: 1;
 }
 
-.movies-container .movie-card__image:hover {
-  -webkit-transform: translateY(-100%);
-      -ms-transform: translateY(-100%);
-          transform: translateY(-100%);
+.movies-container .movie-card__movie-info {
+  padding: 12px;
+  height: calc(100% - 24px);
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--font-p1-color);
+  font-family: var(--font-two);
+  font-weight: var(--font-p1-weight);
+  line-height: var(--font-p1-line-height);
+  font-size: var(--font-p1-size);
+}
+
+.movies-container .movie-card__movie-info::-webkit-scrollbar {
+  width: 8px;
+  background-color: linear-gradient(180deg, #181818 0%, #101010 100%);
+}
+
+.movies-container .movie-card__movie-info::-webkit-scrollbar-thumb {
+  border-radius: 1000px;
+  background-color: var(--gray);
+}
+
+.movies-container .movie-card__movie-info::-webkit-scrollbar-track {
+  border-radius: 2px;
+  background-color: linear-gradient(180deg, #181818 0%, #101010 100%);
 }
 
 .movies-container .movie-card__text-wrapper {
@@ -312,4 +365,73 @@ body {
 .movies-container .movie-card__info-icon:hover {
   -webkit-filter: invert(98%) sepia(3%) saturate(6%) hue-rotate(202deg) brightness(113%) contrast(80%);
           filter: invert(98%) sepia(3%) saturate(6%) hue-rotate(202deg) brightness(113%) contrast(80%);
+}
+
+.footer {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 64px;
+  margin: 0 auto;
+  opacity: 50%;
+}
+
+.footer__copyright {
+  font-weight: var(--font-weight-bold);
+  color: #3c3c3c;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .footer__copyright:hover {
+    color: #cccccc;
+  }
+}
+
+.footer__icon-github {
+  font-size: 0;
+  line-height: 0;
+  background-image: url("../assets/svg/github-icon.svg");
+  height: 40px;
+  width: 40px;
+  margin-right: 72px;
+  -webkit-transform: scale(0.6);
+      -ms-transform: scale(0.6);
+          transform: scale(0.6);
+  -webkit-filter: invert(22%) sepia(0%) saturate(13%) hue-rotate(209deg) brightness(92%) contrast(109%);
+          filter: invert(22%) sepia(0%) saturate(13%) hue-rotate(209deg) brightness(92%) contrast(109%);
+}
+
+@media (hover: hover) {
+  .footer__icon-github:hover {
+    -webkit-filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%);
+            filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%);
+  }
+}
+
+.footer__icon-rsschool {
+  font-size: 0;
+  line-height: 0;
+  background-image: url("../assets/svg/rs_school_js-logo.svg");
+  height: 40px;
+  width: 112px;
+  -webkit-transform: scale(0.6);
+      -ms-transform: scale(0.6);
+          transform: scale(0.6);
+  -webkit-filter: invert(22%) sepia(0%) saturate(13%) hue-rotate(209deg) brightness(92%) contrast(109%);
+          filter: invert(22%) sepia(0%) saturate(13%) hue-rotate(209deg) brightness(92%) contrast(109%);
+}
+
+@media (hover: hover) {
+  .footer__icon-rsschool:hover {
+    -webkit-filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%);
+            filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%);
+  }
 }
