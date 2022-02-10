@@ -1,0 +1,136 @@
+// >----------------------------------------------------------------<
+// >                            MIXINS                              <
+// >----------------------------------------------------------------<
+// @mixin createSVGButton($img, $filter, $filter-hover) { // image.svg, filter color — icon, filter color — hover
+//     background-image: url('../assets/svg/'+$img);
+//     filter: var($filter);
+//     &:hover {
+//         filter: var($filter-hover);
+//     }
+// }
+
+@mixin bgImgSVG($img) { // image.svg
+    background-image: url("../assets/svg/"+$img);
+}
+
+// >----------------------------------------------------------------<
+// >                              ROOT                              <
+// >----------------------------------------------------------------<
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Yeseva+One&display=swap');
+
+:root {
+    --white-light: #E5E5E5;
+    --white-dark: #CCCCCC;
+    --black: #000000;
+    --black-dark: #0A0A0A;
+    --gray-dark: #0E0E0E;
+    --gray: #1C1C1C;
+
+    --bg-deg: 180deg;
+    --bg-top-color: var(--white-dark);
+    --bg-bottom-color: var(--gray-dark);
+    --bg-top-percent: 0%;
+    --bg-bottom-percent: 100%;
+
+    // --bg: linear-gradient(var(--bg-deg), var(--bg-top-color) var(--bg-top-percent), var(--bg-bottom-color) var(--bg-bottom-percent));
+    --bg: linear-gradient(180deg, #0F0F0F 0%, #0A0A0A 100%);
+    --font-one: "Yeseva One", serif;
+    --font-two: "Lato", sans-serif;
+
+
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
+
+    --font-line-height: 150%;
+
+    --font-h3-size: 22px;
+    --font-h3-color: var(--white-light);
+    --font-h3-weight: var(--font-weight-bold);
+    --font-h3-line-height: var(--font-line-height);
+
+    --font-p2-size: 14px;
+    --font-p2-color: var(--white-dark);
+    --font-p2-weight: var(--font-weight-light);
+    --font-p2-line-height: var(--font-line-height);
+
+    --font-p1-size: 18px;
+    --font-p1-color: var(--white-dark);
+    --font-p1-weight: var(--font-weight-regular);
+    --font-p1-line-height: var(--font-line-height);
+
+    --logo-color: var(--white-light);
+    --logo-font-size: 28px;
+    --logo-font-family: var(--font-one);
+
+    --input-bg-color: var(--black-dark);
+    --input-color: var(--white-dark);
+
+    --font-p: 18px;
+    --font-line-p: auto;
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+*,  *::before, *::after {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    // position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg); //linear-gradient(var(--bg-deg), var(--bg-top-color) var(--bg-top-percent), var(--bg-bottom-color) var(--bg-bottom-percent));
+
+    font-style: 0;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-p);
+    line-height: var(--font-line-p);
+    font-family: var(--font-two);
+}
+
+// ^------------------------ Noise bg image -------------------------
+.body::before,
+.body::after {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: -100;
+    width: 100%;
+    content: "";
+    background: url('../assets/svg/noise.svg');
+    opacity: 5%;
+}
+
+
+.container {
+    max-width: 1224px;
+    margin: 0 auto;
+}
+
+.header {
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+
+    .header__logo {
+        color: var(--logo-color);
+        font-family: var(--logo-font-family);
+        font-size: var(--logo-font-size);
+    }
+
+}
