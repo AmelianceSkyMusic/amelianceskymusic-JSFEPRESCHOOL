@@ -39,14 +39,16 @@ const showMovieData = (data) => {
             // ----------------------- card -------------------------
             const moviesContainerCard = createElem(wrapperCardDecor, 'movie-card', 'div'); // main card container
 
+                // ----------------------- image block -------------------------
+                const imageWrapper = createElem(moviesContainerCard, 'movie-card__image-wrapper', 'div'); // image decorate div
 
-                const imageDecorWrapper = createElem(moviesContainerCard, 'movie-card__image-decor-wrapper', 'div'); // image decorate div
-
-                    const image = createElem(imageDecorWrapper, 'movie-card__image', 'img');
+                    const image = createElem(imageWrapper, 'movie-card__image', 'img');
                     image.src = `https://image.tmdb.org/t/p/w500${key.poster_path}`;
                     image.alt = key.title;
 
-                    const movieInfo = createElem(imageDecorWrapper, 'movie-card__movie-info', 'p');
+                    const imageDecore = createElem(imageWrapper, 'movie-card__image-decor', 'div');
+
+                    const movieInfo = createElem(imageWrapper, 'movie-card__movie-info', 'p');
                     movieInfo.innerText = `${key.overview}`;
 
 
@@ -70,8 +72,21 @@ const showMovieData = (data) => {
                             const vote = createElem(moviesCardVoteWrapper, 'movie-card__vote', 'p');
                             vote.innerText = key.vote_average;
 
-                        const infoIcon = createElem(moviesCardInfoTitleWrapper, 'movie-card__info-icon', 'div');
-                        infoIcon.style.backgroundImage = 'url("./assets/svg/info.svg")';
+                        const infoButtonWrapper = createElem(moviesCardInfoTitleWrapper, 'movie-card__info-button-wrapper', 'div');
+                        const infoButton = createElem(infoButtonWrapper, 'movie-card__info-button', 'div');
+                        const infoButtonText = createElem(infoButton, 'movie-card__info-button-text', 'p');
+                        infoButtonText.innerText = 'i';
+
+                        // const infoIcon = createElem(moviesCardInfoTitleWrapper, 'movie-card__info-icon', 'div');
+                        // infoIcon.style.backgroundImage = 'url("./assets/svg/info.svg")';
+
+                        infoButtonWrapper.addEventListener('click', () => {
+                            image.classList.toggle('show-overview');
+                            imageDecore.classList.toggle('show-overview');
+                            infoButtonWrapper.classList.toggle('movie-card__button-click');
+                            infoButton.classList.toggle('movie-card__button-click');
+                            infoButtonText.classList.toggle('movie-card__button-click');
+                        });
 
 
                     const title = createElem(movieCardTextWrapper, 'movie-card__title', 'p');

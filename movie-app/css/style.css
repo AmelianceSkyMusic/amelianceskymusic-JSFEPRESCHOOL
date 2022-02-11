@@ -48,7 +48,7 @@
   --font-weight-bold: 700;
   --font-weight-black: 900;
   --font-line-height: 150%;
-  --font-h3-size: 22px;
+  --font-h3-size: 20px;
   --font-h3-color: var(--white-light);
   --font-h3-weight: var(--font-weight-bold);
   --font-h3-line-height: var(--font-line-height);
@@ -63,7 +63,7 @@
   --logo-color: var(--white-light);
   --logo-font-size: 28px;
   --logo-font-family: var(--font-one);
-  --input-bg-color: var(--black-dark);
+  --input-bg-color: var(--gray-dark);
   --input-color: var(--white-dark);
   --font-p: 18px;
   --font-line-p: auto;
@@ -136,6 +136,9 @@ body::-webkit-scrollbar-track {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-top: 36px;
   padding-bottom: 36px;
 }
@@ -201,10 +204,10 @@ body::-webkit-scrollbar-track {
   left: 0;
   border-radius: inherit;
   border: double var(--card-border-width) transparent;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#101010)), -webkit-gradient(linear, left top, left bottom, from(#353535), to(#171717));
-  background-image: -webkit-linear-gradient(top, #181818 0%, #101010 100%), -webkit-linear-gradient(top, #353535 0%, #171717 100%);
-  background-image: -o-linear-gradient(top, #181818 0%, #101010 100%), -o-linear-gradient(top, #353535 0%, #171717 100%);
-  background-image: linear-gradient(180deg, #181818 0%, #101010 100%), linear-gradient(180deg, #353535 0%, #171717 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#181818), to(#101010)), -webkit-gradient(linear, left top, left bottom, from(#353535), color-stop(2%, #171717));
+  background-image: -webkit-linear-gradient(top, #181818 0%, #101010 100%), -webkit-linear-gradient(top, #353535 0%, #171717 2%);
+  background-image: -o-linear-gradient(top, #181818 0%, #101010 100%), -o-linear-gradient(top, #353535 0%, #171717 2%);
+  background-image: linear-gradient(180deg, #181818 0%, #101010 100%), linear-gradient(180deg, #353535 0%, #171717 2%);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   -webkit-box-shadow: 0px 16px 32px #000000aa;
@@ -215,21 +218,27 @@ body::-webkit-scrollbar-track {
   position: relative;
   width: 100%;
   height: 100%;
+  border-radius: 8px;
 }
 
 .movies-container .movie-card::before {
+  -webkit-box-shadow: inset 0px 0px 4px white;
+          box-shadow: inset 0px 0px 4px white;
   position: absolute;
-  top: 0px;
+  border-radius: 32px;
+  top: -24px;
   right: 0px;
-  bottom: 0px;
+  bottom: 24px;
   left: 0px;
   content: "";
   border-radius: inherit;
-  background: url("../assets/svg/noise.svg");
+  background: url("../assets/svg/noise.svg") 5%;
   opacity: 5%;
 }
 
-.movies-container .movie-card__image-decor-wrapper {
+.movies-container .movie-card__image-wrapper {
+  -webkit-box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.8);
+          box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.8);
   position: relative;
   margin: 24px;
   width: calc(100% - 48px);
@@ -244,12 +253,6 @@ body::-webkit-scrollbar-track {
   background-clip: padding-box, border-box;
 }
 
-.movies-container .movie-card__image-decor-wrapper:hover .movie-card__image {
-  -webkit-transform: translateY(-100%);
-      -ms-transform: translateY(-100%);
-          transform: translateY(-100%);
-}
-
 .movies-container .movie-card__image {
   position: relative;
   display: block;
@@ -258,16 +261,43 @@ body::-webkit-scrollbar-track {
   font-size: 0;
   line-height: 0;
   cursor: pointer;
-  -webkit-transition: -webkit-transform 0.5s ease-out;
-  transition: -webkit-transform 0.5s ease-out;
-  -o-transition: transform 0.5s ease-out;
-  transition: transform 0.5s ease-out;
-  transition: transform 0.5s ease-out, -webkit-transform 0.5s ease-out;
+  -webkit-box-shadow: 0px 4px 8px #000000aa;
+          box-shadow: 0px 4px 8px #000000aa;
+  -webkit-transition: -webkit-transform 0.4s ease-in 0.2s;
+  transition: -webkit-transform 0.4s ease-in 0.2s;
+  -o-transition: transform 0.4s ease-in 0.2s;
+  transition: transform 0.4s ease-in 0.2s;
+  transition: transform 0.4s ease-in 0.2s, -webkit-transform 0.4s ease-in 0.2s;
   z-index: 1;
 }
 
+.movies-container .movie-card__image-decor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: inset 0px 4px 24px rgba(255, 255, 255, 0.2);
+          box-shadow: inset 0px 4px 24px rgba(255, 255, 255, 0.2);
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  transition: -webkit-transform 0.2s ease-out;
+  -o-transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+  z-index: 2;
+}
+
+.movies-container .movie-card .show-overview {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
 .movies-container .movie-card__movie-info {
-  padding: 12px;
+  margin: 8px;
+  margin-right: 4px;
+  padding: 4px;
+  padding-right: 8px;
   height: calc(100% - 24px);
   overflow: auto;
   position: absolute;
@@ -323,6 +353,9 @@ body::-webkit-scrollbar-track {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 24px;
   padding-bottom: 12px;
   padding-top: 0px;
@@ -352,19 +385,101 @@ body::-webkit-scrollbar-track {
   line-height: var(--font-p1-line-height);
 }
 
-.movies-container .movie-card__info-icon {
+.movies-container .movie-card__info-button-wrapper {
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
   width: 24px;
   height: 24px;
-  color: #000;
-  -webkit-filter: invert(98%) sepia(1%) saturate(7472%) hue-rotate(188deg) brightness(122%) contrast(60%);
-          filter: invert(98%) sepia(1%) saturate(7472%) hue-rotate(188deg) brightness(122%) contrast(60%);
-  background: none;
-  cursor: pointer;
+  border-radius: 4px;
+  border: double var(--card-border-width) transparent;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(var(--black)), to(var(--black-dark))), -webkit-gradient(linear, left top, left bottom, color-stop(100%, rgba(0, 0, 0, 0.5)), to(rgba(255, 255, 255, 0.2)));
+  background-image: -webkit-linear-gradient(top, var(--black) 0%, var(--black-dark) 100%), -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 100%, rgba(255, 255, 255, 0.2) 100%);
+  background-image: -o-linear-gradient(top, var(--black) 0%, var(--black-dark) 100%), -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 100%, rgba(255, 255, 255, 0.2) 100%);
+  background-image: linear-gradient(180deg, var(--black) 0%, var(--black-dark) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0.5) 100%, rgba(255, 255, 255, 0.2) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  -webkit-box-shadow: 0px 4px 8px #000000aa;
+          box-shadow: 0px 4px 8px #000000aa;
+  -webkit-transition: -webkit-box-shadow 0.1s;
+  transition: -webkit-box-shadow 0.1s;
+  -o-transition: box-shadow 0.1s;
+  transition: box-shadow 0.1s;
+  transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
 }
 
-.movies-container .movie-card__info-icon:hover {
-  -webkit-filter: invert(98%) sepia(3%) saturate(6%) hue-rotate(202deg) brightness(113%) contrast(80%);
-          filter: invert(98%) sepia(3%) saturate(6%) hue-rotate(202deg) brightness(113%) contrast(80%);
+.movies-container .movie-card__info-button-wrapper.movie-card__button-click {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.movies-container .movie-card__info-button-wrapper:hover .movie-card__info-button {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#252525)), -webkit-gradient(linear, left top, left bottom, from(#505050), color-stop(10%, #171717));
+  background-image: -webkit-linear-gradient(top, #2d2d2d 0%, #252525 100%), -webkit-linear-gradient(top, #505050 0%, #171717 10%);
+  background-image: -o-linear-gradient(top, #2d2d2d 0%, #252525 100%), -o-linear-gradient(top, #505050 0%, #171717 10%);
+  background-image: linear-gradient(180deg, #2d2d2d 0%, #252525 100%), linear-gradient(180deg, #505050 0%, #171717 10%);
+}
+
+.movies-container .movie-card__info-button-wrapper:hover .movie-card__button-click {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#252525), to(#212121)), -webkit-gradient(linear, left top, left bottom, from(#353535), color-stop(20%, #171717));
+  background-image: -webkit-linear-gradient(top, #252525 0%, #212121 100%), -webkit-linear-gradient(top, #353535 0%, #171717 20%);
+  background-image: -o-linear-gradient(top, #252525 0%, #212121 100%), -o-linear-gradient(top, #353535 0%, #171717 20%);
+  background-image: linear-gradient(180deg, #252525 0%, #212121 100%), linear-gradient(180deg, #353535 0%, #171717 20%);
+}
+
+.movies-container .movie-card__info-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1px;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border: double 1px transparent;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#282828), to(#202020)), -webkit-gradient(linear, left top, left bottom, from(#505050), color-stop(10%, #171717));
+  background-image: -webkit-linear-gradient(top, #282828 0%, #202020 100%), -webkit-linear-gradient(top, #505050 0%, #171717 10%);
+  background-image: -o-linear-gradient(top, #282828 0%, #202020 100%), -o-linear-gradient(top, #505050 0%, #171717 10%);
+  background-image: linear-gradient(180deg, #282828 0%, #202020 100%), linear-gradient(180deg, #505050 0%, #171717 10%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  -webkit-box-shadow: 0px 2px 2px #000000;
+          box-shadow: 0px 2px 2px #000000;
+  -webkit-transition: background-image 0.1s, -webkit-box-shadow 0.1s;
+  transition: background-image 0.1s, -webkit-box-shadow 0.1s;
+  -o-transition: box-shadow 0.1s, background-image 0.1s;
+  transition: box-shadow 0.1s, background-image 0.1s;
+  transition: box-shadow 0.1s, background-image 0.1s, -webkit-box-shadow 0.1s;
+}
+
+.movies-container .movie-card__info-button.movie-card__button-click {
+  -webkit-box-shadow: 0px 1px 1px #000000;
+          box-shadow: 0px 1px 1px #000000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#181818)), -webkit-gradient(linear, left top, left bottom, from(#353535), color-stop(20%, #171717));
+  background-image: -webkit-linear-gradient(top, #222222 0%, #181818 100%), -webkit-linear-gradient(top, #353535 0%, #171717 20%);
+  background-image: -o-linear-gradient(top, #222222 0%, #181818 100%), -o-linear-gradient(top, #353535 0%, #171717 20%);
+  background-image: linear-gradient(180deg, #222222 0%, #181818 100%), linear-gradient(180deg, #353535 0%, #171717 20%);
+}
+
+.movies-container .movie-card__info-button-text {
+  opacity: 50%;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.movies-container .movie-card__info-button-text.movie-card__button-click {
+  opacity: 100%;
+  text-shadow: 0px 1px 4px #ffffff;
 }
 
 .footer {
@@ -381,6 +496,7 @@ body::-webkit-scrollbar-track {
   height: 64px;
   margin: 0 auto;
   opacity: 50%;
+  padding-bottom: 24px;
 }
 
 .footer__copyright {
