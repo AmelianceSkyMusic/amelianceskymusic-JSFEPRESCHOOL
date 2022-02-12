@@ -210,6 +210,39 @@ body {
     }
 }
 
+.header__search::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    background: url('../assets/svg/clear.svg') no-repeat;
+    filter: invert(35%) sepia(0%) saturate(0%) hue-rotate(211deg) brightness(100%) contrast(90%);
+    background-size: contain;
+}
+
+// .header__search-wrapper {
+//     position: relative;
+// }
+
+// .header__search-clear {
+//     position: absolute;
+//     background: none;
+//     border: 1px solid var(--white-dark);
+//     color: var(--white-dark);
+//     cursor: pointer;
+//     opacity: 50%;
+//     height: 24px;
+//     width: 24px;
+//     top: 0;
+//     bottom: 0;
+//     right: 24px;
+//     transform: translateY(50%);
+// }
+
+// >----------------------------------------------------------------<
+// >                              MAIN                              <
+// >----------------------------------------------------------------<
+
 .movies-container{
     display: flex;
     flex-wrap: wrap;

@@ -133,7 +133,7 @@ const showMovieData = (data, requestValue) => {
 getMovieData(url);
 
 const search = document.querySelector('.header__search');
-search.addEventListener('input', () => {
+search.addEventListener('search', () => {
     const el = event.target;
     const value = el.value;
     let urlRequest;
