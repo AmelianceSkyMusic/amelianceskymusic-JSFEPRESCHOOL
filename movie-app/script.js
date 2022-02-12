@@ -16,7 +16,6 @@ const url =  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.des
 async function getMovieData(url, requestValue = '') {
     const res = await fetch(url);
     const data = await res.json();
-    Msg(data.results);
     showMovieData(data, requestValue);
 }
 
@@ -43,7 +42,6 @@ const showMovieData = (data, requestValue) => {
     }
 
 
-    Msg(data.results.length);
     if (data.results.length > 0) {
         let result = data.results.map((key) => {
 
@@ -125,7 +123,6 @@ const showMovieData = (data, requestValue) => {
         });
     } else {
         const oopsInfo = createElem(moviesContainer, 'movie-card__oops', 'p');
-        Msg(oopsInfo)
         oopsInfo.innerText = `Oops! Can't find anything on your query "${requestValue}"! =(`;
     }
 };
@@ -142,8 +139,9 @@ search.addEventListener('search', () => {
     } else {
         urlRequest =  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=085ded34e7ba5e71fc4264485245f7f0&language=ru-RU&include_image_language=ru,null";
     }
-    // const urlRequest = `https://api.themoviedb.org/3/discover/movie?query=${value}&api_key=085ded34e7ba5e71fc4264485245f7f0&language=ru-RU&include_image_language=ru,null`;
-    // const urlRequest = `https://api.themoviedb.org/3/search/movie?query=${value}&api_key=085ded34e7ba5e71fc4264485245f7f0&language=ru-RU&include_image_language=ru,null`;
-    Msg(urlRequest);
     getMovieData(urlRequest, value);
+});
+
+window.addEventListener( 'load', () => {
+    alert('В рамках учебного проекта автор разрешил себе некие вольноти в приоретете UI над UX, которых бы не допустил в реальной жизни!\n\nЕсли вы не заметили футер — пожалуйста, присмотритесь повнимательней!');
 });
