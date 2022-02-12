@@ -118,7 +118,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 100%;
+    // width: 100%;
     min-height: 100vh;
     background: var(--bg); //linear-gradient(var(--bg-deg), var(--bg-top-color) var(--bg-top-percent), var(--bg-bottom-color) var(--bg-bottom-percent));
 
@@ -128,6 +128,9 @@ body {
     font-weight: var(--font-p1-weight);
     color: var(--font-p1-color);
     line-height: var(--font-p1-line-height);
+
+    max-width: 1440px;
+    margin: 0 auto;
 
     &::-webkit-scrollbar {
         width: 16px;
@@ -163,8 +166,8 @@ body {
 
 
 .container {
-    max-width: 1224px;
-    margin: 0 auto;
+    // max-width: 1224px;
+    margin: 0 4%;
 }
 
 .header {
@@ -172,6 +175,7 @@ body {
     .container {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         align-items: center;
         padding-top: 36px;
         padding-bottom: 36px;
@@ -183,6 +187,21 @@ body {
         font-size: var(--logo-font-size);
     }
 
+}
+
+@media (max-width: 560px) {
+    .header {
+
+        .container {
+            flex-direction: column;
+        }
+        .header__logo {
+            padding-bottom: 36px;
+        }
+        .input-text {
+            width: 240px;
+        }
+    }
 }
 
 .main {
@@ -246,8 +265,8 @@ body {
 .movies-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    row-gap: 36px;
+    justify-content: center;
+    gap: 30px;
     padding-bottom: 36px;
     // position: relative;
 
@@ -371,21 +390,22 @@ body {
                     z-index: -10;
                     // top: 0;
                     // transform: translateY(-50%);
-                    transition-delay: -0.6s ;
+                    // transition-delay: -0.6s ;
                 }
         }
 
-        &__image-decor {
+        &__image-decor { // glass
             position: absolute;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             box-shadow: inset 0px 4px 24px rgba(255, 255, 255, 0.2);
-            transition: transform 0.2s ease-out;
+            transition: height 0.3s ease-out 0.3s;
             z-index: 2;
             &.show-overview{
-                transform: translateY(-100%);
+                // transform: translateY(-100%);
+                height: 0%;
             }
         }
 
@@ -407,8 +427,8 @@ body {
             -webkit-hyphens: auto;
             // opacity: 0%;
             // transform: translateY(100%);
-            transition: height 0.4s 0.3s, margin 0.4s 0.3s, padding 0.4s 0.3s;
-            &.show-overview{
+            transition: height 0.3s 0.0s, margin 0.3s 0.0s, padding 0.3s 0.0s;
+            &.show-overview {
                 margin: 8px;
                 margin-right: 4px;
                 padding: 4px;
@@ -442,7 +462,7 @@ body {
             left: 0;
             padding: 0;
             float: left;
-            transition: all 0.4s 0.3s;
+            transition: all 0.4s 0.0s;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -548,17 +568,19 @@ body {
             &.movie-card__button-click {
                 box-shadow: none;
             };
-            &:hover .movie-card__info-button {
-                // opacity: 100%;
-                // text-shadow: 0px 0px 4px #ffffff;
-                background-image: linear-gradient(180deg, #2d2d2d 0%, #252525 100%), // bg color
-                linear-gradient(180deg, #505050 0%, #171717 10%); // border color
-            };
+            @media (hover: hover) {
+                &:hover .movie-card__info-button {
+                    // opacity: 100%;
+                    // text-shadow: 0px 0px 4px #ffffff;
+                    background-image: linear-gradient(180deg, #2d2d2d 0%, #252525 100%), // bg color
+                    linear-gradient(180deg, #505050 0%, #171717 10%); // border color
+                };
 
-            &:hover .movie-card__button-click {
-                background-image: linear-gradient(180deg, #252525 0%, #212121 100%), // bg color
-                linear-gradient(180deg, #353535 0%, #171717 20%); // border color
-            };
+                &:hover .movie-card__button-click {
+                    background-image: linear-gradient(180deg, #252525 0%, #212121 100%), // bg color
+                    linear-gradient(180deg, #353535 0%, #171717 20%); // border color
+                };
+            }
         }
         &__info-button {
             display: flex;
@@ -676,5 +698,20 @@ body {
                 filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%); //cccccc
             }
         }
+    }
+}
+
+@media (max-width: 460px) {
+    .footer{
+        flex-direction: column;
+        height: 140px;
+        // justify-content: center;
+
+        &__icon-github {
+
+            margin-right: 0;
+
+        }
+
     }
 }
