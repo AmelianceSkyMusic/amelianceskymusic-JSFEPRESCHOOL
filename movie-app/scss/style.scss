@@ -353,11 +353,21 @@ body {
 
 
 
-            // &:hover .movie-card__image-decor {
-            //     // transform: translateY(-100%);
-            //     height: 0%;
-            //     transition: height 0.2s ease-out;
-            // }
+            &:hover .movie-card__image {
+                transform: translateY(-100%);
+                transition: transform 0.4s ease-in-out;
+
+                // height: 0%;
+                // transition: height 0.2s ease-out;
+            }
+
+            &:hover .movie-card__image-decor {
+                transition: height 0.4s ease-in-out;
+
+                // transform: translateY(-100%);
+                height: 0%;
+                // transition: height 0.2s ease-out;
+            }
 
             // &:hover .movie-card__image-back {
             //     height: 0px;
@@ -386,21 +396,24 @@ body {
             object-fit: cover;
             font-size: 0;
             line-height: 0;
+            transition: transform 0.4s ease-in-out;
             // cursor: pointer;
-            // box-shadow: 0px 4px 8px #000000aa;/
+            box-shadow: 0px 4px 8px #000000aa;
             // transform: rotateY(0deg);
-            // transition: all 0.5s ease-in-out;
+            // transform: rotateY(0deg);
+
             // backface-visibility: hidden;
             // &:hover {
                 // transform: rotateY(180deg);
                 // }
 
                 // transform: translateY(-100%)
-                z-index: -10;
+                z-index: 1;
                 &.show-overview{
-                    z-index: -10;
+                    // z-index: -10;
                     // top: 0;
-                    // transform: translateY(-50%);
+                    transition: transform 0.4s ease-in-out;
+                    transform: translateY(-100%);
                     // transition-delay: -0.6s ;
                 }
         }
@@ -412,9 +425,10 @@ body {
             width: 100%;
             height: 100%;
             box-shadow: inset 0px 4px 24px rgba(255, 255, 255, 0.2);
-            transition: height 0.3s ease-out 0.3s;
             z-index: 2;
+            transition: height 0.4s ease-in-out;
             &.show-overview{
+                transition: height 0.4s ease-in-out;
                 // transform: translateY(-100%);
                 height: 0%;
             }
@@ -422,9 +436,11 @@ body {
 
         // ^----------------------- movie info ----------------------
         &__movie-info {
-            height: calc(100% - 0px);
-            margin-right: -8px;
-            padding-bottom: -16px;
+            margin: 8px;
+            margin-right: 4px;
+            padding: 4px;
+            padding-right: 8px;
+            height: calc(100% - 24px);
             overflow:auto;
             position: absolute;
             top: 0;
@@ -438,15 +454,15 @@ body {
             -webkit-hyphens: auto;
             // opacity: 0%;
             // transform: translateY(100%);
-            transition: height 0.3s 0.0s, margin 0.3s 0.0s, padding 0.3s 0.0s;
-            &.show-overview {
-                margin: 8px;
-                margin-right: 4px;
-                padding: 4px;
-                padding-right: 8px;
-                height: calc(100% - 24px);
-                // height: calc(100% - 24px);
-            }
+            // transition: height 0.3s 0.0s, margin 0.3s 0.0s, padding 0.3s 0.0s;
+            // &.show-overview {
+            //     margin: 8px;
+            //     margin-right: 4px;
+            //     padding: 4px;
+            //     padding-right: 8px;
+            //     height: calc(100% - 24px);
+            //     // height: calc(100% - 24px);
+            // }
 
             &::-webkit-scrollbar {
                 width: 8px;
@@ -467,23 +483,23 @@ body {
         }
 
         &__image-back {
-            position: relative;
             display: block;
             top: 0;
-            left: 0;
             padding: 0;
             float: left;
-            transition: all 0.4s 0.0s;
-            width: 100%;
-            height: 100%;
+            width: 0px;
+            height: 0px;
             object-fit: cover;
-
+            z-index: -10;
+            transition: height 0.4s ease-in-out, width 0.4s ease-in-out, padding 0.4s ease-in-out, z-index 0s 4s;
             &.show-overview{
-                width: 86px;
                 height: 129px;
+                width: 86px;
                 padding-right: 8px;
                 padding-top: 4px;
                 padding-bottom: 8px;
+                // transition: all 0s ease-in-out;
+                z-index: 0;
             }
         }
 
