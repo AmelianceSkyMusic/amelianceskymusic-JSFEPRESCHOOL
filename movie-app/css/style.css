@@ -84,6 +84,16 @@
 }
 
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   min-height: 100vh;
   background: var(--bg);
@@ -129,6 +139,12 @@ body::-webkit-scrollbar-track {
   margin: 0 auto;
 }
 
+.header {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+
 .header .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -147,6 +163,12 @@ body::-webkit-scrollbar-track {
   color: var(--logo-color);
   font-family: var(--logo-font-family);
   font-size: var(--logo-font-size);
+}
+
+.main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
 }
 
 .input-text {
@@ -242,6 +264,8 @@ body::-webkit-scrollbar-track {
   position: relative;
   margin: 24px;
   width: calc(100% - 48px);
+  width: 236px;
+  height: 354px;
   overflow: hidden;
   border-radius: 4px;
   border: double var(--card-border-width) transparent;
@@ -258,17 +282,19 @@ body::-webkit-scrollbar-track {
   display: block;
   top: 0;
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   font-size: 0;
   line-height: 0;
-  cursor: pointer;
-  -webkit-box-shadow: 0px 4px 8px #000000aa;
-          box-shadow: 0px 4px 8px #000000aa;
-  -webkit-transition: -webkit-transform 0.4s ease-in 0.2s;
-  transition: -webkit-transform 0.4s ease-in 0.2s;
-  -o-transition: transform 0.4s ease-in 0.2s;
-  transition: transform 0.4s ease-in 0.2s;
-  transition: transform 0.4s ease-in 0.2s, -webkit-transform 0.4s ease-in 0.2s;
-  z-index: 1;
+  z-index: -10;
+}
+
+.movies-container .movie-card__image.show-overview {
+  z-index: -10;
+  -webkit-transition-delay: -0.6s;
+       -o-transition-delay: -0.6s;
+          transition-delay: -0.6s;
 }
 
 .movies-container .movie-card__image-decor {
@@ -287,18 +313,16 @@ body::-webkit-scrollbar-track {
   z-index: 2;
 }
 
-.movies-container .movie-card .show-overview {
+.movies-container .movie-card__image-decor.show-overview {
   -webkit-transform: translateY(-100%);
       -ms-transform: translateY(-100%);
           transform: translateY(-100%);
 }
 
 .movies-container .movie-card__movie-info {
-  margin: 8px;
-  margin-right: 4px;
-  padding: 4px;
-  padding-right: 8px;
-  height: calc(100% - 24px);
+  height: calc(100% - 0px);
+  margin-right: -8px;
+  padding-bottom: -16px;
   overflow: auto;
   position: absolute;
   top: 0;
@@ -308,6 +332,20 @@ body::-webkit-scrollbar-track {
   font-weight: var(--font-p1-weight);
   line-height: var(--font-p1-line-height);
   font-size: var(--font-p1-size);
+  -ms-hyphens: auto;
+      hyphens: auto;
+  -webkit-hyphens: auto;
+  -webkit-transition: height 0.4s 0.3s, margin 0.4s 0.3s, padding 0.4s 0.3s;
+  -o-transition: height 0.4s 0.3s, margin 0.4s 0.3s, padding 0.4s 0.3s;
+  transition: height 0.4s 0.3s, margin 0.4s 0.3s, padding 0.4s 0.3s;
+}
+
+.movies-container .movie-card__movie-info.show-overview {
+  margin: 8px;
+  margin-right: 4px;
+  padding: 4px;
+  padding-right: 8px;
+  height: calc(100% - 24px);
 }
 
 .movies-container .movie-card__movie-info::-webkit-scrollbar {
@@ -323,6 +361,30 @@ body::-webkit-scrollbar-track {
 .movies-container .movie-card__movie-info::-webkit-scrollbar-track {
   border-radius: 2px;
   background-color: linear-gradient(180deg, #181818 0%, #101010 100%);
+}
+
+.movies-container .movie-card__image-back {
+  position: relative;
+  display: block;
+  top: 0;
+  left: 0;
+  padding: 0;
+  float: left;
+  -webkit-transition: all 0.4s 0.3s;
+  -o-transition: all 0.4s 0.3s;
+  transition: all 0.4s 0.3s;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.movies-container .movie-card__image-back.show-overview {
+  width: 86px;
+  height: 129px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 8px;
 }
 
 .movies-container .movie-card__text-wrapper {
@@ -482,7 +544,24 @@ body::-webkit-scrollbar-track {
   text-shadow: 0px 1px 4px #ffffff;
 }
 
+.movies-container .movie-card__oops {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .footer {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
