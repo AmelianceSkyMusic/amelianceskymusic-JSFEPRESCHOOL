@@ -73,7 +73,7 @@ const showMovieData = (data, requestValue) => {
                         // const imageBack = createElem(movieInfo, 'movie-card__image-back', 'img');
 
                         const imageBack = document.createElement('img');
-                        imageBack.classList.add('movie-card__image-back');
+                        imageBack.classList.add('movie-card__image-back', 'show-overview-disable');
                         movieInfo.prepend(imageBack);
                         imageBack.src = posterImg;
 
@@ -109,8 +109,16 @@ const showMovieData = (data, requestValue) => {
                             infoButtonWrapper.addEventListener('click', () => {
                                 image.classList.toggle('show-overview');
                                 imageDecore.classList.toggle('show-overview');
-                                imageBack.classList.toggle('show-overview');
+                                if (imageBack.classList.contains('show-overview')) {
+                                    setTimeout(() => {
+                                        imageBack.classList.remove('show-overview');
+                                    }, 400);
+                                } else {
+                                        imageBack.classList.add('show-overview');
+                                }
+
                                 movieInfo.classList.toggle('show-overview');
+
                                 infoButtonWrapper.classList.toggle('movie-card__button-click');
                                 infoButton.classList.toggle('movie-card__button-click');
                                 infoButtonText.classList.toggle('movie-card__button-click');

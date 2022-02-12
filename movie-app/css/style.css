@@ -137,6 +137,7 @@ body::-webkit-scrollbar-track {
 
 .container {
   margin: 0 4%;
+  max-height: 100%;
 }
 
 .header {
@@ -188,6 +189,18 @@ body::-webkit-scrollbar-track {
           flex: 1 0 auto;
 }
 
+.main .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .input-text {
   font-family: var(--font-two);
   font-weight: var(--font-weight-regular);
@@ -221,6 +234,7 @@ body::-webkit-scrollbar-track {
 }
 
 .movies-container {
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -415,23 +429,26 @@ body::-webkit-scrollbar-track {
   display: block;
   top: 0;
   padding: 0;
-  float: left;
+}
+
+.movies-container .movie-card__image-back.show-overview-disable {
+  z-index: -10;
   width: 0px;
   height: 0px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  z-index: -10;
-  -webkit-transition: height 0.4s ease-in-out, width 0.4s ease-in-out, padding 0.4s ease-in-out, z-index 0s 4s;
-  -o-transition: height 0.4s ease-in-out, width 0.4s ease-in-out, padding 0.4s ease-in-out, z-index 0s 4s;
-  transition: height 0.4s ease-in-out, width 0.4s ease-in-out, padding 0.4s ease-in-out, z-index 0s 4s;
 }
 
 .movies-container .movie-card__image-back.show-overview {
+  float: left;
+  -o-object-fit: cover;
+     object-fit: cover;
   height: 129px;
   width: 86px;
   padding-right: 8px;
   padding-top: 4px;
   padding-bottom: 8px;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
   z-index: 0;
 }
 
@@ -607,11 +624,15 @@ body::-webkit-scrollbar-track {
 }
 
 .movies-container .movie-card__oops {
-  width: 100%;
-  height: 100%;
+  font-weight: 400;
+  opacity: 50%;
+  line-height: 150%;
+  font-size: 36px;
+  padding: 108px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  text-align: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
