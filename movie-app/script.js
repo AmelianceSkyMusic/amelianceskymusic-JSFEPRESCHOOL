@@ -108,7 +108,7 @@ const showMovieData = (data, requestValue) => {
 
                             infoButtonWrapper.addEventListener('click', () => {
                                 image.classList.toggle('show-overview');
-                                // imageDecore.classList.toggle('show-overview');
+                                imageDecore.classList.toggle('show-overview');
                                 imageBack.classList.toggle('show-overview');
                                 movieInfo.classList.toggle('show-overview');
                                 infoButtonWrapper.classList.toggle('movie-card__button-click');
