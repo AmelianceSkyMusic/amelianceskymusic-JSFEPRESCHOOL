@@ -1,0 +1,97 @@
+@font-face {
+  font-family: "Lato";
+  src: url("../../assets/fonts/Lato-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../../assets/fonts/Lato-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("../../assets/fonts/Lato-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Yeseva One";
+  src: url("../../assets/fonts/YesevaOne-Regular.ttf");
+  font-weight: 400;
+}
+
+:root {
+  --font-family__prime:           "Yeseva One", serif;
+  --font-family__secondary:       "Lato", sans-serif;
+  --font-weight__bold:     700;
+  --font-weight__regular:  400;
+  --font-weight__light:    300;
+  --font__font-family_h1: var(--font-family__prime);
+  --font__font-size_h1: 24px;
+  --font__line-height_h1: 100%;
+  --font__font-weight_h1: var(--font-weight__regular);
+  --font__font-family_h2: var(--font-family__secondary);
+  --font__font-size_h2: 48px;
+  --font__line-height_h2: 150%;
+  --font__font-weight_h2: var(--font-weight__bold);
+  --font__font-family_h3: var(--font-family__secondary);
+  --font__font-size_h3: 36px;
+  --font__line-height_h3: 150%;
+  --font__font-weight_h3: var(--font-weight__bold);
+  --font__font-family_p1: var(--font-family__secondary);
+  --font__font-size_p1: 18px;
+  --font__line-height_p1: 150%;
+  --font__font-weight_p1: var(--font-weight__regular);
+  --font__font-family_link: var(--font-family__secondary);
+  --font__font-size_link: 18px;
+  --font__line-height_link: 150%;
+  --font__font-weight_link: var(--font-weight__regular);
+  --font__font-family_block: var(--font-family__secondary);
+  --font__font-size_block: 24px;
+  --font__line-height_block: 1;
+  --font__font-weight_block: var(--font-weight__bold);
+}
+
+.h1 {
+  font-family: var(--font__font-family_h1);
+  font-size: var(--font__font-size_h1);
+  line-height: var(--font__line-height_h1);
+  font-weight: var(--font__font-weight_h1);
+}
+
+.h2 {
+  font-family: var(--font__font-family_h2);
+  font-size: var(--font__font-size_h2);
+  line-height: var(--font__line-height_h2);
+  font-weight: var(--font__font-weight_h2);
+}
+
+.h3 {
+  font-family: var(--font__font-family_h3);
+  font-size: var(--font__font-size_h3);
+  line-height: var(--font__line-height_h3);
+  font-weight: var(--font__font-weight_h3);
+}
+
+.p1 {
+  font-family: var(--font__font-family_p1);
+  font-size: var(--font__font-size_p1);
+  line-height: var(--font__line-height_p1);
+  font-weight: var(--font__font-weight_p1);
+}
+
+.link {
+  font-family: var(--font__font-family_link);
+  font-size: var(--font__font-size_link);
+  line-height: var(--font__line-height_link);
+  font-weight: var(--font__font-weight_link);
+}
+
+.block {
+  font-family: var(--font__font-family_block);
+  font-size: var(--font__font-size_block);
+  line-height: var(--font__line-height_block);
+  font-weight: var(--font__font-weight_block);
+}
