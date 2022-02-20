@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="styles/light.css" media="(prefers-color-scheme: light)"> -->
     <!-- <link rel="stylesheet" href="styles/dark.css" media="(prefers-color-scheme: dark)"> -->
-    <!-- <link rel="stylesheet" href="styles/css/light.css" media="all"> -->
+    <link rel="stylesheet" href="styles/css/light.css" media="not all">
     <link rel="stylesheet" href="styles/css/dark.css" media="all">
     <link rel="stylesheet" href="styles/css/typography.css">
     <link rel="stylesheet" href="styles/css/elements.css">
@@ -25,6 +25,24 @@
         <header class=header>
             <div class="container">
                 <h1 class="h1 header__title">2048</h1>
+                <div class="header__empty"></div>
+                <div class="stats">
+                    <div class="stats-wrapper__game-score-best">
+                        <P class="p1">BEST:</P>
+                        <p class="p1 stats__game-score-best"></p>
+                    </div>
+                    <div class="stats-wrapper__game-score">
+                        <P class="p1">SCORE:</P>
+                        <p class="p1 stats__game-score"></p>
+                    </div>
+                </div>
+                <div class="header__empty"></div>
+                <div class="header__options">
+                    <div class="button__new-game">
+                        <button class="button button__primary stats__new-game">New Game</button>
+                    </div>
+                    <input type="checkbox" class="checkbox icon-primary change-theme"></input>
+                </div>
             </div>
         </header>
 
@@ -54,8 +72,31 @@
                     <div class="block" id="4-2" ></div>
                     <div class="block" id="4-3" ></div>
                     <div class="block" id="4-4" ></div>
+
+                    <div class="blocks-bg">
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                        <div class="blocks-bg__block"></div>
+                    </div>
                 </div>
+
+                <div class="alert__you-lose"></div>
+                <div class="alert__you-win"></div>
             </div>
+
         </main>
 
 
@@ -67,7 +108,7 @@
 
         <footer class="footer">
             <div class="container">
-                <a class="footer__icon-github icon target="_blank" href="https://github.com/AmelianceSkyMusic"></a>
+                <a class="footer__icon-github icon" target="_blank" href="https://github.com/AmelianceSkyMusic"></a>
                 <a class="footer__copyright link" target="_blank" href="https://rsayuaie.taplink.ws/">2022 © AmelianceSkyMusic</a>
                 <a class="footer__icon-rsschool icon" target="_blank" href="https://rs.school/js-stage0/"></a>
             </div>

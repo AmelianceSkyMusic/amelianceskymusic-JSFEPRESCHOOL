@@ -1,0 +1,174 @@
+{
+	"files": [
+		{
+			"path": "random-game/scripts/index.js",
+			"bookmarks": [
+				{
+					"line": 38,
+					"column": 34,
+					"label": "!--INIT"
+				},
+				{
+					"line": 43,
+					"column": 36,
+					"label": "    load Settings"
+				},
+				{
+					"line": 75,
+					"column": 48,
+					"label": "    Init Game"
+				},
+				{
+					"line": 102,
+					"column": 50,
+					"label": "    Collect Settings"
+				},
+				{
+					"line": 111,
+					"column": 42,
+					"label": "    Save Settings"
+				},
+				{
+					"line": 134,
+					"column": 64,
+					"label": "    Reset Settings"
+				},
+				{
+					"line": 151,
+					"column": 29,
+					"label": "    Update Settings"
+				},
+				{
+					"line": 159,
+					"column": 38,
+					"label": "    Start New Game"
+				},
+				{
+					"line": 179,
+					"column": 0,
+					"label": "!--SCORE"
+				},
+				{
+					"line": 181,
+					"column": 25,
+					"label": "    Update Best Score"
+				},
+				{
+					"line": 188,
+					"column": 29,
+					"label": "    Update Game Score"
+				},
+				{
+					"line": 199,
+					"column": 18,
+					"label": "!--CHECKS"
+				},
+				{
+					"line": 201,
+					"column": 37,
+					"label": "    Is Empty Cells"
+				},
+				{
+					"line": 285,
+					"column": 54,
+					"label": "    Is No Empty Steps"
+				},
+				{
+					"line": 313,
+					"column": 18,
+					"label": "    Is No Steps Vertical"
+				},
+				{
+					"line": 341,
+					"column": 24,
+					"label": "    Is No Steps"
+				},
+				{
+					"line": 359,
+					"column": 42,
+					"label": "    Can Move Left"
+				},
+				{
+					"line": 389,
+					"column": 43,
+					"label": "    Can Move Right"
+				},
+				{
+					"line": 394,
+					"column": 36,
+					"label": "    Is 2048"
+				},
+				{
+					"line": 420,
+					"column": 30,
+					"label": "    Check Lose"
+				},
+				{
+					"line": 431,
+					"column": 29,
+					"label": "    Check Win"
+				},
+				{
+					"line": 446,
+					"column": 24,
+					"label": "!--DRAW BLOCKS"
+				},
+				{
+					"line": 448,
+					"column": 31,
+					"label": "    Redraw Blocks"
+				},
+				{
+					"line": 468,
+					"column": 21,
+					"label": "    Generate New Block"
+				},
+				{
+					"line": 498,
+					"column": 45,
+					"label": "    Get Empty Blocks"
+				},
+				{
+					"line": 521,
+					"column": 9,
+					"label": "!--MOVE"
+				},
+				{
+					"line": 523,
+					"column": 16,
+					"label": "    Move Right"
+				},
+				{
+					"line": 573,
+					"column": 14,
+					"label": "    Move Left"
+				},
+				{
+					"line": 621,
+					"column": 12,
+					"label": "    Move Up"
+				},
+				{
+					"line": 669,
+					"column": 12,
+					"label": "    Move Down"
+				},
+				{
+					"line": 718,
+					"column": 23,
+					"label": "!--CONTROLS"
+				},
+				{
+					"line": 720,
+					"column": 37,
+					"label": "    Send Key"
+				},
+				{
+					"line": 778,
+					"column": 37,
+					"label": "    New Game Button"
+				}
+			]
+		}
+	]
+}

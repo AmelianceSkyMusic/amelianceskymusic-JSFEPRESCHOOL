@@ -81,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 /*-------------------------*/
 :root {
   --size-w__block-container_desktop: 1240px;
-  --size-h__block-container-header_desktop: 64px;
+  --size-h__block-container-header_desktop: 88px;
   --size-h__block-container-main_desktop: auto;
   --size-h__block-container-footer_desktop: 64px;
   --size__border: 2px;
@@ -143,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   max-height: 100%;
-  margin: 0 auto;
+  margin: 0 48px;
 }
 
 .header {
@@ -155,11 +155,85 @@ h1, h2, h3, h4, h5, h6 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: var(--size-w__block-container_desktop);
+  max-width: var(--size-w__block-container_desktop);
   height: 100%;
+}
+
+.header .header__title {
+  width: 25%;
+}
+
+.header .stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 24px;
+}
+
+.header .stats-wrapper__game-score, .header .stats-wrapper__game-score-best {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  width: 240px;
+  padding: 8px 12px;
+  color: var(--color__tertiary);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: var(--size__border) solid var(--color__bg_light);
+  border-radius: var(--border-radius__block);
+}
+
+.header .header__options {
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 16px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.header .change-theme {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  -webkit-mask-image: url("../../assets/svg/sun.svg");
+          mask-image: url("../../assets/svg/sun.svg");
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+.header .header__empty {
+  width: 10%;
+  min-width: 0;
 }
 
 .main {
@@ -177,11 +251,12 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: var(--size-w__block-container_desktop);
+  max-width: var(--size-w__block-container_desktop);
   height: 100%;
 }
 
 .blocks {
+  position: relative;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
@@ -194,7 +269,7 @@ h1, h2, h3, h4, h5, h6 {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  cursor: pointer;
+  z-index: 1;
 }
 
 .block {
@@ -212,6 +287,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color__bg_light);
   border-radius: var(--border-radius__block);
   border: var(--size__border) solid var(--color__block_border);
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
 }
 
 .block__2048 {
@@ -220,11 +298,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_2048);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -244,11 +326,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_1024);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -268,11 +354,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_512);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -292,11 +382,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_256);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -316,11 +410,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_128);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -340,11 +438,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_64);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -364,11 +466,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_32);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -388,11 +494,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_16);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -412,11 +522,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_8);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -436,11 +550,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_4);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -460,11 +578,15 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--size__border) solid var(--color__block_2);
   -webkit-box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
           box-shadow: -4px -4px 8px var(--color__block-shadow_outer-top-left), 4px 4px 8px var(--color__block-shadow_outer-bottom-right), inset -4px -4px 8px var(--color__block-shadow_inset-top-left), inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
-  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
-  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart);
-  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart);
+  -webkit-transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: text-shadow var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart);
+  transition: box-shadow var(--time__short) var(--animation__standart), text-shadow var(--time__short) var(--animation__standart), transform var(--time__short) var(--animation__standart), -webkit-box-shadow var(--time__short) var(--animation__standart), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  cursor: pointer;
 }
 
 @media (hover: hover) {
@@ -476,6 +598,46 @@ h1, h2, h3, h4, h5, h6 {
         -ms-transform: scale(0.99);
             transform: scale(0.99);
   }
+}
+
+.blocks-bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: (1fr)[4];
+      grid-template-rows: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 600px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.blocks-bg__block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 108px;
+  height: 108px;
+  background-color: var(--color__bg_light);
+  border-radius: var(--border-radius__block);
+  border: var(--size__border) solid var(--color__block_border);
 }
 
 .footer {
@@ -493,7 +655,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: var(--size-w__block-container_desktop);
+  max-width: var(--size-w__block-container_desktop);
   height: 100%;
 }
 

@@ -29,8 +29,12 @@
     --color-filter__secondary_dark:     invert(100%) sepia(1%) saturate(3943%) hue-rotate(212deg) brightness(109%) contrast(62%);
 
     --color__tertiary_light:     #DEDEDE;
-    --color__tertiary:           #C4C4C4;
+    --color__tertiary:           #666666;
     --color__tertiary_dark:      #333333;
+
+    --color-filter__tertiary_light:     invert(100%) sepia(0%) saturate(5068%) hue-rotate(352deg) brightness(116%) contrast(74%);
+    --color-filter__tertiary:           invert(31%) sepia(73%) saturate(0%) hue-rotate(158deg) brightness(102%) contrast(78%);
+    --color-filter__tertiary_dark:      invert(17%) sepia(0%) saturate(0%) hue-rotate(232deg) brightness(95%) contrast(89%);
 
     // ^------------------------ neomorphism block ------------------------
     --color__block-shadow_outer-top-left: rgba(255, 255, 255, 0.1);

@@ -16,7 +16,7 @@
     // ^------------------------ size ------------------------
     --size-w__block-container_desktop: 1240px; // block container --> 80px * 12 columns / gutter 24 px
 
-    --size-h__block-container-header_desktop: 64px;
+    --size-h__block-container-header_desktop: 88px;
     --size-h__block-container-main_desktop: auto;
     --size-h__block-container-footer_desktop: 64px;
 
@@ -82,7 +82,10 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
     border: var(--size__border) solid $color;
     box-shadow: $block__box-shadow;
     transition: box-shadow var(--time__short) var(--animation__standart),
-                text-shadow var(--time__short) var(--animation__standart);
+                text-shadow var(--time__short) var(--animation__standart),
+                transform var(--time__short) var(--animation__standart);
+    transform: scale(1);
+    cursor: pointer;
     @media (hover: hover) {
         &:hover {
             text-shadow: 0px 0px 32px $color__glow;
@@ -156,7 +159,7 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
 
 .container {
     max-height: 100%;
-    margin: 0 auto;
+    margin: 0 48px;
 }
 
 
@@ -171,10 +174,64 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
     background-color: var(--color__bg);
     & .container {
         display: flex;
-        // justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        width: var(--size-w__block-container_desktop);
+        max-width: var(--size-w__block-container_desktop);
         height: 100%;
+        // justify-content: center;
+    }
+    .header__title {
+        width: 25%;
+    }
+    .stats {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+
+        &-wrapper__game-score,
+        &-wrapper__game-score-best {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 8px;
+            width: 240px;
+            padding: 8px 12px;
+            color: var(--color__tertiary);
+            user-select: none;
+            border: var(--size__border) solid var(--color__bg_light);
+            border-radius: var(--border-radius__block);
+        }
+
+        // &-wrapper__game-score {
+
+        // }
+        // &-wrapper__game-score-best {
+
+        // }
+    }
+    .header__options {
+        width: 25%;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        justify-content: end;
+    }
+
+    .change-theme{
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        // background-image: url("../../assets/svg/sun.svg");
+        mask-image: url("../../assets/svg/sun.svg");
+        mask-repeat: no-repeat;
+        // transition: all 1s var(--animation__standart);
+    }
+
+    .header__empty {
+        width: 10%;
+        min-width: 0;
     }
 }
 
@@ -192,20 +249,21 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
         display: flex;
         justify-content: center;
         align-items: center;
-        width: var(--size-w__block-container_desktop);
+        max-width: var(--size-w__block-container_desktop);
         height: 100%;
     }
 }
 
 // ^------------------------ blocks ------------------------
 .blocks {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 24px;
     max-width: 600px; // ! FIX
     user-select: none;
-    cursor: pointer;
+    z-index: 1;
 }
 
 .block {
@@ -217,16 +275,7 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
     background-color: var(--color__bg_light);
     border-radius: var(--border-radius__block);
     border: var(--size__border) solid var(--color__block_border);
-    // box-shadow: $block__box-shadow;
-    // transition: box-shadow var(--time__short) var(--animation__standart),
-    //             text-shadow var(--time__short) var(--animation__standart);
-
-    // @media (hover: hover) {
-    //     &:hover {
-    //         box-shadow: $block__box-shadow_hover;
-    //     }
-    // }
-
+    transform: scale(0.0);
     &__2048 {
         @include createBlock(var(--color__block_2048), var(--color__block-glow_2048));
     }
@@ -282,6 +331,34 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
     // }
 }
 
+.blocks-bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 600px; // ! FIX
+    user-select: none;
+}
+
+.blocks-bg__block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 108px;
+    height: 108px;
+    background-color: var(--color__bg_light);
+    border-radius: var(--border-radius__block);
+    border: var(--size__border) solid var(--color__block_border);
+}
+
 
 
 
@@ -297,7 +374,7 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: var(--size-w__block-container_desktop);
+        max-width: var(--size-w__block-container_desktop);
         height: 100%;
     }
 

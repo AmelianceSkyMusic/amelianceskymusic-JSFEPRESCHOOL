@@ -37,16 +37,16 @@
 
     // ^-------------------------- buttons --------------------------
 
-    --color__button-primary-fontcolor_normal:    var();
-    --color__button-primary-background_normal:   var();
-    --color__button-primary-background_hover:    var();
+    --color__button-primary-font-color_normal:   var(--color__tertiary_light);
+    --color__button-primary-background_normal:   var(--color__tertiary_dark);
+    --color__button-primary-background_hover:    var(--color__tertiary);
     --color__button-primary-background_active:   var();
     --color__button-primary-background_focus:    var();
     --color__button-primary-background_disabled: var();
     --color__button-primary-background_pressed:  var();
     --color__button-primary-background_loading:  var();
 
-    --color__button-secondary-fontcolor_normal:    var();
+    --color__button-secondary-font-color_normal:   var();
     --color__button-secondary-background_normal:   var();
     --color__button-secondary-background_hover:    var();
     --color__button-secondary-background_active:   var();
@@ -55,6 +55,9 @@
     --color__button-secondary-background_pressed:  var();
     --color__button-secondary-background_loading:  var();
 
+
+    --color__icon-primary:          var(--color__tertiary);
+    --color__icon-primary-hover:    var(--color__tertiary_light);
 
     --color__icon:          var(--color-filter__bg_light);
     --color__icon-hover:    var(--color-filter__secondary_dark);
@@ -155,6 +158,15 @@
 //         color: var(--color__ov_inverse);
 //     }
 // }
+.icon-primary {
+    background-color: var(--color__icon-primary);
+    @media (hover: hover) {
+        &:hover {
+            transition: all var(--time__medium) var(--animation__standart);
+            background-color: var(--color__icon-primary-hover);
+        }
+    }
+}
 
 .icon {
     filter: var(--color__icon);
@@ -166,6 +178,7 @@
     }
 }
 
+
 .link {
     color: var(--color__link);
     text-decoration: none;
@@ -175,4 +188,21 @@
             color: var(--color__link-hover);
         }
     }
+}
+
+.button {
+    padding: 8px 12px;
+    user-select: none;
+    border-radius: 8px;
+
+    // &__primary {
+        color: var(--color__button-primary-font-color_normal);
+        background-color: var(--color__button-primary-background_normal);
+        &:hover {
+            background-color: var(--color__button-primary-background_hover);
+        }
+    // }
+    // &__secondary {
+
+    // }
 }
