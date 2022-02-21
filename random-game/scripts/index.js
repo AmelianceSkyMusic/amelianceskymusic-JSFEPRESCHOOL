@@ -294,7 +294,11 @@ const getmaxBlock = () => {
 const isEmptyCellsNearLeftEdge = () => {
     const table = GS.gameTable; // link
     for (let row = 0; row < table.length; row++) {
-        if (table[row][0] === 0) return true; // check if first element is 0
+        if (table[row][0] === 0 && (
+            table[row][1] > 0 ||
+            table[row][2] > 0 ||
+            table[row][3] > 0
+        )) return true; // check if first element is 0
     }
     return false;
 };
@@ -305,7 +309,11 @@ const isEmptyCellsNearLeftEdge = () => {
 const isEmptyCellsNearRightEdge = () => {
     const table = GS.gameTable; // link
     for (let row = 0; row < table.length; row++) {
-        if (table[row][3] === 0) return true; // check if first element is 0
+        if (table[row][3] === 0 && (
+            table[row][2] > 0 ||
+            table[row][1] > 0 ||
+            table[row][0] > 0
+        )) return true; // check if first element is 0
     }
     return false;
 };
@@ -316,7 +324,11 @@ const isEmptyCellsNearRightEdge = () => {
 const isEmptyCellsNearTopEdge = () => {
     const table = GS.gameTable; // link
     for (let col = 0; col < table.length; col++) {
-        if (table[0][col] === 0) return true; // check if first element is 0
+        if (table[0][col] === 0 && (
+            table[1][col] > 0 ||
+            table[2][col] > 0 ||
+            table[3][col] > 0
+        )) return true; // check if first element is 0
     }
     return false;
 };
@@ -327,7 +339,11 @@ const isEmptyCellsNearTopEdge = () => {
 const isEmptyCellsNearBottomEdge = () => {
     const table = GS.gameTable; // link
     for (let col = 0; col < table.length; col++) {
-        if (table[3][col] === 0) return true; // check if first element is 0
+        if (table[3][col] === 0 && (
+            table[2][col] > 0 ||
+            table[1][col] > 0 ||
+            table[0][col] > 0
+        )) return true; // check if first element is 0
     }
     return false;
 };
@@ -574,6 +590,19 @@ const isPopup = () => {
 // >                         DRAW BLOCKS                            <
 // >----------------------------------------------------------------<
 
+const moveBlocksLeft = () => {
+    const table = GS.gameTable; // link
+
+    for (let x = 0; x < table.length; x++) {
+        for (let y = 1; y < table[x].length; y++) {
+            let blockId = `${x+1}-${y+1}`;
+            let el = document.getElementById(blockId);
+            el.style.left = '-48px';
+        }
+    }
+    return false;
+};
+
 // ^------------------------ redraw blocks ------------------------
 
 const redrawBlocks = () => {
@@ -585,6 +614,8 @@ const redrawBlocks = () => {
             el.removeAttribute('class');
             el.classList.add('block');
             el.classList.add(`block__${gameTable[x][y]}`);
+            el.style.left = '0';
+            el.style.top = '0';
             if (gameTable[x][y] > 0) {
                 el.innerHTML = gameTable[x][y];
             } else {
@@ -701,6 +732,7 @@ const moveRight = () => {
 
 const moveLeft = () => {
     const gameTable = GS.gameTable;
+    let moveTable = [];
     for (let line = 0; line <= 3; line++) { // run lines
         const start = 0;
         let curr = start; // first current postion
@@ -720,6 +752,12 @@ const moveLeft = () => {
                 gameTable[line][next] = 0;
                 curr = curr > start ? curr -= modifier : start;
 
+                // let blockId = `${line+1}-${next+1}`; //!
+                // let el = document.getElementById(blockId); //!
+                // el.style.left = '-48px'; //!
+                moveTable.push([line, next, curr]); //!
+                Msg(moveTable);
+
             } else if (gameTable[line][curr] === gameTable[line][next]) { // if CURRENT === NEXT
 
                 if (curr === lastLock) {
@@ -730,6 +768,13 @@ const moveLeft = () => {
                 gameTable[line][curr] *= 2;
                 GS.gameScore += gameTable[line][curr];
                 gameTable[line][next] = 0;
+
+                // let blockId = `${line+1}-${next+1}`; //!
+                // let el = document.getElementById(blockId); //!
+                // el.style.left = '-48px'; //!
+                moveTable.push([line, next, curr]); //!
+                Msg(moveTable);
+
                 lastLock = curr;
                 curr += modifier;
 
@@ -853,12 +898,14 @@ const sendKey = (elem) => {
                               elem.key === 'ArrowDown';
 
     const checkMoveGeneral = () => {
-        redrawBlocks();
-        if (checkWin()) popupWin();
-        generateNewBlock();
-        if (checkLose()) popupLose();
-        checkLose();
-        updateGameScore();
+        // setTimeout(() => {
+            redrawBlocks();
+            if (checkWin()) popupWin();
+            generateNewBlock();
+            if (checkLose()) popupLose();
+            checkLose();
+            updateGameScore();
+        // }, 8);
     };
 
     if (checkWin()) return;
@@ -880,6 +927,7 @@ const sendKey = (elem) => {
                 isSameCellsNearHorizontal()) {
 
                 moveLeft();
+                // moveBlocksLeft();
                 checkMoveGeneral();
             }
         }

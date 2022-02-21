@@ -83,7 +83,9 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
     box-shadow: $block__box-shadow;
     transition: box-shadow var(--time__short) var(--animation__standart),
                 text-shadow var(--time__short) var(--animation__standart),
-                transform var(--time__short) var(--animation__standart);
+                transform var(--time__short) var(--animation__standart),
+                left 100ms,
+                top 100ms;
     transform: scale(1);
     cursor: pointer;
     @media (hover: hover) {
@@ -270,6 +272,7 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
 }
 
 .block {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
