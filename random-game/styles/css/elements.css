@@ -43,8 +43,8 @@
   --color__button-secondary-background_loading:  var();
   --color__icon-primary:          var(--color__tertiary);
   --color__icon-primary-hover:    var(--color__tertiary_light);
-  --color__icon:          var(--color-filter__bg_light);
-  --color__icon-hover:    var(--color-filter__secondary_dark);
+  --color__icon:          var(--color__tertiary_dark);
+  --color__icon-hover:    var(--color__secondary_dark);
   --color__link:          var(--color__tertiary_dark);
   --color__link-hover:    var(--color__secondary_dark);
   --color__options-item: var(--color__tertiary);
@@ -102,8 +102,7 @@
 }
 
 .icon {
-  -webkit-filter: var(--color__icon);
-          filter: var(--color__icon);
+  background-color: var(--color__icon);
 }
 
 @media (hover: hover) {
@@ -111,8 +110,7 @@
     -webkit-transition: all var(--time__medium) var(--animation__standart);
     -o-transition: all var(--time__medium) var(--animation__standart);
     transition: all var(--time__medium) var(--animation__standart);
-    -webkit-filter: var(--color__icon-hover);
-            filter: var(--color__icon-hover);
+    background-color: var(--color__icon-hover);
   }
 }
 
@@ -147,6 +145,15 @@
 
 .options__item {
   color: var(--color__options-item);
+}
+
+@media (hover: hover) {
+  .options__item:hover {
+    -webkit-transition: all var(--time__short) var(--animation__standart);
+    -o-transition: all var(--time__short) var(--animation__standart);
+    transition: all var(--time__short) var(--animation__standart);
+    color: var(--color__options-item-hover);
+  }
 }
 
 .blackout {

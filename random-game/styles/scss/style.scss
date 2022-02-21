@@ -65,7 +65,7 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
 // >----------------------------------------------------------------<
 
 @mixin bgImgSVG($img) { // image.svg
-    background-image: url("../../assets/svg/"+$img);
+    mask-image: url("../../assets/svg/"+$img);
 }
 
 
