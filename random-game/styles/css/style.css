@@ -205,28 +205,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .header__options {
-  width: 25%;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   gap: 16px;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
+  width: 25%;
 }
 
-.header .change-theme {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+.header .options__open-close-icon {
   width: 24px;
   height: 24px;
   cursor: pointer;
-  -webkit-mask-image: url("../../assets/svg/sun.svg");
-          mask-image: url("../../assets/svg/sun.svg");
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-mask-image: url("../../assets/svg/options.svg");
+          mask-image: url("../../assets/svg/options.svg");
   -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
 }
@@ -242,6 +243,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main .container {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -680,4 +682,53 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-transform: scale(0.6);
       -ms-transform: scale(0.6);
           transform: scale(0.6);
+}
+
+.options {
+  position: absolute;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  top: -12px;
+  right: -12px;
+  z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 24px;
+  width: 240px;
+  padding: 36px;
+  background-color: var(--color__bg_light);
+  border-radius: var(--border-radius__block);
+  -webkit-transition: opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short);
+  transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short);
+  transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 50%;
+  -webkit-transform-origin: right top;
+      -ms-transform-origin: right top;
+          transform-origin: right top;
+}
+
+.options.show {
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  opacity: 100%;
+}
+
+.options__item {
+  cursor: pointer;
 }

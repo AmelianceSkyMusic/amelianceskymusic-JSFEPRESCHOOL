@@ -47,6 +47,13 @@
   --color__icon-hover:    var(--color-filter__secondary_dark);
   --color__link:          var(--color__tertiary_dark);
   --color__link-hover:    var(--color__secondary_dark);
+  --color__options-item: var(--color__tertiary);
+  --color__options-item-hover: var(--color__tertiary_light);
+  --color__blackout: var(--color__bg) ;
+  --opacity__blackout: 0.8;
+  --color__popup-bg: var(--color__bg_light);
+  --padding__out: 36px;
+  --border-radius: 16px;
 }
 
 .h1 {
@@ -136,4 +143,77 @@
 
 .button:hover {
   background-color: var(--color__button-primary-background_hover);
+}
+
+.options__item {
+  color: var(--color__options-item);
+}
+
+.blackout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: var(--color__blackout);
+  opacity: 0;
+  -webkit-transition: opacity var(--time__short);
+  -o-transition: opacity var(--time__short);
+  transition: opacity var(--time__short);
+}
+
+.blackout.show {
+  opacity: var(--opacity__blackout);
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: var(--padding__out);
+  border-radius: var(--border-radius);
+  background-color: var(--color__popup-bg);
+  opacity: 0%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+      -ms-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short);
+  transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short);
+  transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+}
+
+.popup.show {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+      -ms-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  opacity: 100%;
+}
+
+.popup__title {
+  padding-bottom: 18px;
+}
+
+.popup__text {
+  padding-bottom: 24px;
 }

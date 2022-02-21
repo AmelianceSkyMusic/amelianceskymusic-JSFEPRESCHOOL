@@ -65,7 +65,16 @@
     --color__link:          var(--color__tertiary_dark);
     --color__link-hover:    var(--color__secondary_dark);
 
+    --color__options-item: var(--color__tertiary);
+    --color__options-item-hover: var(--color__tertiary_light);
 
+    --color__blackout: var(--color__bg) ;
+    --opacity__blackout: 0.8;
+
+    --color__popup-bg: var(--color__bg_light);
+
+    --padding__out: 36px;
+    --border-radius: 16px;
 }
 
 .h1 {
@@ -205,4 +214,76 @@
     // &__secondary {
 
     // }
+}
+
+.options__item {
+    color: var(--color__options-item);
+    // @media (hover: hover) {
+    //     &:hover {
+    //         transition: all var(--time__medium) var(--animation__standart);
+    //         color: var(--color__options-item-hover);
+    //     }
+    // }
+}
+
+// .zero-block__blackout {
+//     opacity: 0;
+//     transition: opacity var(--time__short);
+// }
+
+// .blackout {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     z-index: 10;
+//     width: 100vw;
+//     height: 100vh;
+//     background-color: var(--color__blackout);
+//     opacity: var(--opacity__blackout);
+// }
+
+.blackout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+    background-color: var(--color__blackout);
+    opacity: 0;
+    transition: opacity var(--time__short);
+    &.show{
+        opacity: var(--opacity__blackout);
+    }
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding__out);
+    border-radius: var(--border-radius);
+    background-color: var(--color__popup-bg);
+    opacity: 0%;
+    transform: translate(-50%, -50%) scale(0.0);
+    transition: transform var(--time__short) var(--animation__standart),
+                opacity var(--time__short);
+    &.show {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 100%;
+    }
+
+    &__title {
+        padding-bottom: 18px;
+    }
+
+    &__text {
+        padding-bottom: 24px;
+    }
 }

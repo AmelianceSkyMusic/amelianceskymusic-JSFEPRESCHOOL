@@ -21,7 +21,7 @@
         <!-- >------------------------------------------------------------ -->
         <!-- >                          HEADER                             -->
         <!-- >------------------------------------------------------------ -->
-
+        <div class="zero-block__blackout"></div>
         <header class=header>
             <div class="container">
                 <h1 class="h1 header__title">2048</h1>
@@ -41,7 +41,14 @@
                     <div class="button__new-game">
                         <button class="button button__primary stats__new-game">New Game</button>
                     </div>
-                    <input type="checkbox" class="checkbox icon-primary change-theme"></input>
+                    <input type="checkbox" class="checkbox icon-primary options__open-close-icon">
+                        <div class="options">
+                            <!-- <h2 class="h2 options__header-title">OPTIONS</h2> -->
+                            <p class="options__item option-item__theme">Theme:</p>
+                            <p class="options__item option-item__game-mode">Game mode:</p>
+                            <p class="options__item option-item__reset-all">Reset All</p>
+                        </div>
+                    </input>
                 </div>
             </div>
         </header>
@@ -93,8 +100,8 @@
                     </div>
                 </div>
 
-                <div class="alert__you-lose"></div>
-                <div class="alert__you-win"></div>
+                <!-- <div class="alert__you-lose"></div> -->
+                <!-- <div class="alert__you-win"></div> -->
             </div>
 
         </main>
@@ -114,6 +121,17 @@
             </div>
         </footer>
     <!-- </div> -->
+        <!-- >------------------------------------------------------------ -->
+        <!-- >                           SETTINGS                          -->
+        <!-- >------------------------------------------------------------ -->
+        <!-- <div class="options"> -->
+            <!-- <div class="container"> -->
+                <!-- <h2 class="h2 options__header-title">OPTIONS</h2> -->
+                <!-- <p class="options__item option-item__theme">Theme:</p> -->
+                <!-- <p class="options__item option-item__game-mode">Game mode:</p> -->
+                <!-- <p class="options__item option-item__reset-all">Reset All</p> -->
+            <!-- </div> -->
+        <!-- </div> -->
 
     <script type="module" src="scripts/index.js"></script>
 </body>
