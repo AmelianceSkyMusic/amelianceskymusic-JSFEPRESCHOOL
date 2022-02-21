@@ -56,14 +56,18 @@ const loadSettings = () => {
 
         bestScore: 0,
         gameScore: 0,
-        scoresTable: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+        scoresTable: [
+            [0, 0], [0, 0], [0, 0], [0, 0],
+            [0, 0], [0, 0], [0, 0], [0, 0],
+            [0, 0], [0, 0],
+        ],
 
         gameTable:  [
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,],
-                    ],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+        ],
 
     };
 
@@ -113,9 +117,9 @@ const initGame = () => {
 // ^------------------------ collect settings --------------------------
 
 const collectSettings = () => {
-    GS.bestScore = GS.bestScore > GS.gameScore ? GS.bestScore : GS.gameScore;
-    GS.scoresTable.push(GS.bestScore);
-    GS.scoresTable.sort((a, b) => b - a).splice(10);
+    let maxBlock = getmaxBlock();
+    GS.scoresTable.push([GS.gameScore, maxBlock]);
+    GS.scoresTable.sort((a, b) => b[0] - a[0]).splice(10);
 };
 
 
@@ -123,7 +127,7 @@ const collectSettings = () => {
 
 const saveSettings = () => {
 
-    // collectSettings();
+    collectSettings();
 
     let savingSettings = {
         theme:          GS.theme,
@@ -133,7 +137,7 @@ const saveSettings = () => {
         scoresTable:    GS.scoresTable,
 
         gameTable:      GS.gameTable,
-        gameMode:  GS.gameMode,
+        gameMode:       GS.gameMode,
     };
 
     localStorage.setItem('settings', JSON.stringify(savingSettings)); // write
@@ -150,17 +154,23 @@ const resetAllSettings = () => {
 
         bestScore: 0,
         gameScore: 0,
-        scoresTable: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+        scoresTable: [
+            [0, 0], [0, 0], [0, 0], [0, 0],
+            [0, 0], [0, 0], [0, 0], [0, 0],
+            [0, 0], [0, 0],
+        ],
 
         gameTable:  [
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,],
-                    ],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+        ],
 
     };
     GS = {...GS, ...resetSettings};
+
+    localStorage.setItem('settings', JSON.stringify(GS)); // write
 };
 
 // ^------------------------ reset settings ------------------------
@@ -170,14 +180,16 @@ const resetCurrentGameSettings = () => {
     const resetCurrentGameSettings = {
         gameScore: 0,
         gameTable:  [
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,],
-                    [0, 0, 0, 0,]
-                    ],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+            [0, 0, 0, 0,],
+        ],
     };
 
     GS = {...GS, ...resetCurrentGameSettings};
+
+    localStorage.setItem('settings', JSON.stringify(GS)); // write
 };
 
 
@@ -231,6 +243,21 @@ const updateGameScore = () => {
 // >----------------------------------------------------------------<
 // >                             CHECKS                             <
 // >----------------------------------------------------------------<
+
+// ^------------------------ Get Max Block ------------------------
+
+const getmaxBlock = () => {
+    const table = GS.gameTable;
+    let block = 0;
+    for (let row = 0; row < table.length; row++) { // run lines
+        for (let col = 0; col < table[row].length - 1; col++) {
+            if (table[row][col] > block) {
+                block = table[row][col];
+            }
+        }
+    }
+    return block;
+};
 
 // ^------------------------ can move left ------------------------
 
@@ -462,32 +489,32 @@ const isNoSteps = () => {
 };
 
 
-// ^------------------------ is table changed ------------------------
+// ^------------------------ Is Table Changed ------------------------
 
-const isGametableChangedTrue = () => { // TODO: create fubction comparing changes in table
+// const isGametableChangedTrue = () => { // TODO: create fubction comparing changes in table
 
-};
+// };
 
 
-// ^------------------------ is 2048 ------------------------
+// ^------------------------ Is Wanted Block ------------------------
 
-const is2048 = () => {  // TODO: NEEDS REFACTORING
+const isWantedBlock = () => {  // TODO: NEEDS REFACTORING
     const table = GS.gameTable; // link
     // horizontal
     for (let row = 0; row <= 3; row++) { // run lines
-        if( table[row][0] === GS.gameMode ||
-            table[row][1] === GS.gameMode ||
-            table[row][2] === GS.gameMode ||
-            table[row][3] === GS.gameMode ) {
+        if( table[row][0] >= GS.gameMode ||
+            table[row][1] >= GS.gameMode ||
+            table[row][2] >= GS.gameMode ||
+            table[row][3] >= GS.gameMode ) {
             return true;
         }
     }
     // vertical
     for (let col = 0; col <= 3; col++) { // run lines
-        if( table[0][col] === GS.gameMode ||
-            table[1][col] === GS.gameMode ||
-            table[2][col] === GS.gameMode ||
-            table[3][col] === GS.gameMode ) {
+        if( table[0][col] >= GS.gameMode ||
+            table[1][col] >= GS.gameMode ||
+            table[2][col] >= GS.gameMode ||
+            table[3][col] >= GS.gameMode ) {
             return true;
         }
     }
@@ -498,21 +525,47 @@ const is2048 = () => {  // TODO: NEEDS REFACTORING
 // ^------------------------ check lose ------------------------
 
 const checkLose = () => {
-    if (isNoSteps()) {
-        setTimeout(() => {
-            createPopup('SORRY! YOU LOSE!', `Your Score: ${GS.gameScore}    Best Score: ${GS.bestScore}` , 'Try Again!', startNewGame);
-        }, 500);
-    }
+    if (isNoSteps()) return true;
+    return false;
+};
+
+
+// ^------------------------ Popup Lose ------------------------
+
+const popupLose = () => {
+    setTimeout(() => {
+        createPopup('SORRY! YOU LOSE!', `<pre>Your Score: ${GS.gameScore}  |  Best Score: ${GS.bestScore}<pre>` , 'Try Again!', startNewGame);
+    }, 500);
 };
 
 // ^------------------------ check win ------------------------
 
 const checkWin = () => {
-    if (is2048()) {
-        setTimeout(() => {
-            createPopup('YOU WIN!', `Your Score: ${GS.gameScore}    Best Score: ${GS.bestScore}` , 'Try Again!', startNewGame);
-        }, 500);
+    if (isWantedBlock()) return true;
+    return false;
+};
+
+
+// ^------------------------ Popup Win ------------------------
+
+const popupWin = () => {
+    setTimeout(() => {
+        createPopup('YOU WIN!', `<pre>Your Score: ${GS.gameScore}  |  Best Score: ${GS.bestScore}<pre>` , 'Try Again!', startNewGame);
+    }, 500);
+};
+
+
+// ^------------------------ Is Popup ------------------------
+
+const isPopup = () => {
+    const popup = document.querySelector('.popup');
+    if (!popup) {
+        return false;
+    } else {
+        return true;
     }
+    // Msg(zeroBlock.classList.contains('popup'));
+    // return zeroBlock.classList.contains('popup');
 };
 
 
@@ -794,75 +847,61 @@ const moveDown = () => {
 // ^------------------------ send key ------------------------
 
 const sendKey = (elem) => {
-    const isInputUserAcrion = elem.key === 'ArrowRight' || // block other key inputs
+    const isInputUserAction = elem.key === 'ArrowRight' || // block other key inputs
                               elem.key === 'ArrowLeft' ||
                               elem.key === 'ArrowUp' ||
                               elem.key === 'ArrowDown';
-        // Msg(asm.getRandomNumber(1, 4))
 
-    if (isInputUserAcrion) {
+    const checkMoveGeneral = () => {
+        redrawBlocks();
+        if (checkWin()) popupWin();
+        generateNewBlock();
+        if (checkLose()) popupLose();
+        checkLose();
+        updateGameScore();
+    };
+
+    if (checkWin()) return;
+
+    if (isInputUserAction) {
 
         if (elem.key === 'ArrowRight') {
             if( isEmptyCellsNearRightEdge() ||
-            isEmptyCellsBetweenNumbersColumns() ||
-            isSameCellsNearHorizontal()) {
+                isEmptyCellsBetweenNumbersColumns() ||
+                isSameCellsNearHorizontal()) {
 
-            moveRight();
-            redrawBlocks();
-            checkWin();
-            generateNewBlock();
-            checkLose();
-        }
+                moveRight();
+                checkMoveGeneral();
+            }
         }
         if (elem.key === 'ArrowLeft') {
-            Msg(isEmptyCellsNearLeftEdge())
-            Msg(isEmptyCellsBetweenNumbersColumns())
-            Msg(isSameCellsNearHorizontal())
-            Msg('------------------')
             if( isEmptyCellsNearLeftEdge() ||
                 isEmptyCellsBetweenNumbersColumns() ||
                 isSameCellsNearHorizontal()) {
 
                 moveLeft();
-                redrawBlocks();
-                checkWin();
-                generateNewBlock();
-                checkLose();
+                checkMoveGeneral();
             }
         }
         if (elem.key === 'ArrowUp') {
             if( isEmptyCellsNearTopEdge() ||
-            isEmptyCellsBetweenNumbersRows() ||
-            isSameCellsNearVertical()) {
+                isEmptyCellsBetweenNumbersRows() ||
+                isSameCellsNearVertical()) {
 
-            moveUp();
-            redrawBlocks();
-            checkWin();
-            generateNewBlock();
-            checkLose();
-        }
+                moveUp();
+                checkMoveGeneral();
+            }
         }
         if (elem.key === 'ArrowDown') {
             if( isEmptyCellsNearBottomEdge() ||
-            isEmptyCellsBetweenNumbersRows() ||
-            isSameCellsNearVertical()) {
+                isEmptyCellsBetweenNumbersRows() ||
+                isSameCellsNearVertical()) {
 
-            moveDown();
-            redrawBlocks();
-            checkWin();
-            generateNewBlock();
-            checkLose();
+                moveDown();
+                checkMoveGeneral();
+            }
         }
-        }
-        // redrawBlocks(GS.gameTable);
-        // if (isEmptyCells()) generateNewBlock();
-        // generateNewBlock();
-
     }
-
-
-    // draw
-    // updateSettings();
 };
 
 document.addEventListener('keydown', sendKey);
@@ -929,19 +968,6 @@ const hideBlackout = () => {
 
 // ^------------------------ Close Options ------------------------
 
-const openOptions = () => {
-    let show = options.classList.contains('show');
-
-    if (!show) {
-        optionsOpenCloseIcon.style.webkitMaskImage = 'url("assets/svg/close.svg")';
-        optionsOpenCloseIcon.style.maskImage = 'url("assets/svg/close.svg")';
-        blackout.classList.add('blackout');
-        showBlackout();
-        options.classList.add('show');
-        optionsOpenCloseIcon.style.zIndex = '200';
-    }
-};
-
 const closeOptions = () => {
     let show = options.classList.contains('show');
 
@@ -958,6 +984,22 @@ const closeOptions = () => {
 blackout.addEventListener('click', closeOptions);
 
 
+// ^------------------------ Open Options ------------------------
+
+const openOptions = () => {
+    let show = options.classList.contains('show');
+
+    if (!show) {
+        optionsOpenCloseIcon.style.webkitMaskImage = 'url("assets/svg/close.svg")';
+        optionsOpenCloseIcon.style.maskImage = 'url("assets/svg/close.svg")';
+        blackout.classList.add('blackout');
+        showBlackout();
+        options.classList.add('show');
+        optionsOpenCloseIcon.style.zIndex = '200';
+    }
+};
+
+
 // ^------------------------ Open Close Options ------------------------
 
 const optionsOpenCloseIcon = document.querySelector('.options__open-close-icon');
@@ -968,6 +1010,7 @@ const openCloseOptions = () => {
 
     if (show) {
         closeOptions();
+        if (checkWin()) popupWin();
     } else {
         openOptions();
     }
@@ -1032,6 +1075,38 @@ const changeGameMode = (event) => {
 optionItemGameMode.addEventListener('click', changeGameMode);
 
 
+// ^------------------------ Show Top ------------------------
+
+const optionShowTop = document.querySelector('.option-item__show-top');
+
+const showTop = () => {
+    closeOptions();
+
+    const scoresTable = GS.scoresTable;
+    let scores = '';
+    const maxScoreTextLenght = String(scoresTable[0][0]).length;
+    Msg(maxScoreTextLenght)
+
+    for (let i = 0; i < scoresTable.length; i++) {
+        scores += `<pre>` +
+        ' '.repeat(maxScoreTextLenght - String(scoresTable[i][0]).length) +
+        `<b>${scoresTable[i][0]}</b>` +
+        ` | Best block: ${scoresTable[i][1]}<br><pre>`;
+    }
+    // for (let i = 0; i < scoresTable.length; i++) {
+    //     scores += `<pre>` +
+    //     '0'.repeat(2 - String(i+1).length) +
+    //     `${i+1}: <b>${scoresTable[i][0]}</b>` +
+    //     ' '.repeat(maxScoreTextLenght - String(scoresTable[i][0]).length) +
+    //     ` | Best block: ${scoresTable[i][1]}<br><pre>`;
+    // }
+
+    createPopup('TOP', scores , 'Close');
+};
+
+optionShowTop.addEventListener('click', showTop);
+
+
 // ^------------------------ Reset All ------------------------
 
 const optionItemResetAll = document.querySelector('.option-item__reset-all');
@@ -1058,8 +1133,8 @@ const logo = document.querySelector('.header__title');
 
 const toogleBlackout = () => {
     Msg('hello');
-    const main = document.querySelector('.body');
-    const blackout = createHTMLElem(main, 'blackout', 'div');
+    const zeroBlock = document.querySelector('.zero-block');
+    const blackout = createHTMLElem(zeroBlock, 'blackout', 'div');
 
     setTimeout(() => {
         blackout.classList.add('show');
@@ -1074,9 +1149,9 @@ const toogleBlackout = () => {
 };
 
 
-const createPopup = (title, text, button, action) => {
-    const main = document.querySelector('.body');
-    const popup = createHTMLElem(main, 'popup', 'div');
+const createPopup = (title, text, button, action = () => {}) => {
+    const zeroBlock = document.querySelector('.zero-block');
+    const popup = createHTMLElem(zeroBlock, 'popup', 'div');
         const popupTitle = createHTMLElem(popup, 'popup__title', 'h2');
         popupTitle.classList.add('h2');
         const popuptext = createHTMLElem(popup, 'popup__text', 'p');
@@ -1105,5 +1180,6 @@ const createPopup = (title, text, button, action) => {
 };
 
 logo.addEventListener('click', () => {
-    createPopup('YOU WIN!', `Your Score: ${GS.gameScore}Best Score: ${GS.bestScore}` , 'Try Again!');
+    let maxBlock = getmaxBlock();
+    createPopup('2048!', `Current max block: <b>${maxBlock}</b>` , 'Ok');
 });

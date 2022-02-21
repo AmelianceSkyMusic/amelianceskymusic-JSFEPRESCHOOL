@@ -703,7 +703,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 24px;
+  gap: 16px;
   width: 240px;
   padding: 36px;
   background-color: var(--color__bg_light);
@@ -729,6 +729,18 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 100%;
 }
 
+.options .options__header-title {
+  padding-bottom: 8px;
+}
+
 .options__item {
   cursor: pointer;
+}
+
+.options .option-item__show-top {
+  padding-bottom: 16px;
+}
+
+.options .option-item__game-mode {
+  padding-bottom: 16px;
 }
