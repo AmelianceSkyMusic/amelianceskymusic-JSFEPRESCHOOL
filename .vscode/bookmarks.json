@@ -9,234 +9,269 @@
 					"label": "    load Settings"
 				},
 				{
-					"line": 83,
+					"line": 87,
 					"column": 48,
 					"label": "    Init Game"
 				},
 				{
-					"line": 112,
+					"line": 116,
 					"column": 50,
 					"label": "    Collect Settings"
 				},
 				{
-					"line": 121,
+					"line": 125,
 					"column": 42,
 					"label": "    Save Settings"
 				},
 				{
-					"line": 165,
+					"line": 175,
 					"column": 64,
 					"label": "    Reset Settings"
 				},
 				{
-					"line": 183,
+					"line": 195,
 					"column": 29,
 					"label": "    Update Settings"
 				},
 				{
-					"line": 191,
+					"line": 203,
 					"column": 38,
 					"label": "    Start New Game"
 				},
 				{
-					"line": 212,
+					"line": 224,
 					"column": 0,
 					"label": "!--SCORE"
 				},
 				{
-					"line": 214,
+					"line": 226,
 					"column": 25,
 					"label": "    Update Best Score"
 				},
 				{
-					"line": 221,
+					"line": 233,
 					"column": 29,
 					"label": "    Update Game Score"
 				},
 				{
-					"line": 232,
+					"line": 244,
 					"column": 18,
 					"label": "!--CHECKS"
 				},
 				{
-					"line": 234,
+					"line": 246,
+					"column": 29,
+					"label": "    Get Max Block"
+				},
+				{
+					"line": 261,
 					"column": 13,
 					"label": "    -Can Move Left"
 				},
 				{
-					"line": 264,
+					"line": 291,
 					"column": 29,
 					"label": "    Is Empty Cells Near Left Edge"
 				},
 				{
-					"line": 275,
+					"line": 302,
 					"column": 29,
 					"label": "    Is Empty Cells Near Right Edge"
 				},
 				{
-					"line": 286,
+					"line": 313,
 					"column": 29,
 					"label": "    Is Empty Cells Near Top Edge"
 				},
 				{
-					"line": 297,
+					"line": 324,
 					"column": 29,
 					"label": "    Is Empty Cells Near Bottom Edge"
 				},
 				{
-					"line": 308,
+					"line": 335,
 					"column": 29,
 					"label": "    Is Empty Cells Between Numbers Columns"
 				},
 				{
-					"line": 336,
+					"line": 363,
 					"column": 64,
 					"label": "    Is Empty Cells Between Numbers Rows"
 				},
 				{
-					"line": 363,
+					"line": 390,
 					"column": 37,
 					"label": "    -Is Empty Cells"
 				},
 				{
-					"line": 386,
+					"line": 413,
 					"column": 38,
 					"label": "    Is Same Cells Near Horizontal"
 				},
 				{
-					"line": 401,
+					"line": 428,
 					"column": 29,
 					"label": "    Is Same Cells Near Vertical"
 				},
 				{
-					"line": 416,
+					"line": 443,
 					"column": 29,
 					"label": "    Is Empty Cells"
 				},
 				{
-					"line": 431,
+					"line": 458,
 					"column": 24,
 					"label": "    -Is No Empty Steps"
 				},
 				{
-					"line": 443,
+					"line": 470,
 					"column": 26,
 					"label": "    -Is No Steps Vertical"
 				},
 				{
-					"line": 454,
+					"line": 481,
 					"column": 24,
 					"label": "    Is No Steps"
 				},
 				{
-					"line": 471,
-					"column": 36,
-					"label": "    Is 2048"
+					"line": 491,
+					"column": 24,
+					"label": "    -Is Table Changed"
 				},
 				{
-					"line": 497,
+					"line": 498,
+					"column": 29,
+					"label": "    Is Wanted Block"
+				},
+				{
+					"line": 524,
 					"column": 30,
 					"label": "    Check Lose"
 				},
 				{
-					"line": 507,
+					"line": 532,
+					"column": 39,
+					"label": "    Popup Lose"
+				},
+				{
+					"line": 540,
 					"column": 29,
 					"label": "    Check Win"
 				},
 				{
-					"line": 521,
+					"line": 548,
+					"column": 29,
+					"label": "    Popup Win"
+				},
+				{
+					"line": 557,
+					"column": 29,
+					"label": "    Is Popup"
+				},
+				{
+					"line": 574,
 					"column": 24,
 					"label": "!--DRAW BLOCKS"
 				},
 				{
-					"line": 523,
+					"line": 576,
 					"column": 31,
 					"label": "    Redraw Blocks"
 				},
 				{
-					"line": 544,
+					"line": 597,
 					"column": 21,
 					"label": "    Generate New Block"
 				},
 				{
-					"line": 571,
+					"line": 624,
 					"column": 45,
 					"label": "    Get Empty Blocks"
 				},
 				{
-					"line": 594,
+					"line": 647,
 					"column": 9,
 					"label": "!--MOVE"
 				},
 				{
-					"line": 596,
+					"line": 649,
 					"column": 16,
 					"label": "    Move Right"
 				},
 				{
-					"line": 646,
+					"line": 699,
 					"column": 14,
 					"label": "    Move Left"
 				},
 				{
-					"line": 694,
+					"line": 747,
 					"column": 12,
 					"label": "    Move Up"
 				},
 				{
-					"line": 742,
+					"line": 795,
 					"column": 12,
 					"label": "    Move Down"
 				},
 				{
-					"line": 791,
+					"line": 844,
 					"column": 23,
 					"label": "!--CONTROLS"
 				},
 				{
-					"line": 793,
+					"line": 846,
 					"column": 37,
 					"label": "    Send Key"
 				},
 				{
-					"line": 870,
+					"line": 909,
 					"column": 37,
 					"label": "    New Game Button"
 				},
 				{
-					"line": 877,
+					"line": 916,
 					"column": 25,
 					"label": "    -Change Theme"
 				},
 				{
-					"line": 911,
+					"line": 950,
 					"column": 17,
 					"label": "!--OPTIONS"
 				},
 				{
-					"line": 929,
-					"column": 42,
-					"label": "    Close Options"
+					"line": 986,
+					"column": 33,
+					"label": "    Open Options"
 				},
 				{
-					"line": 960,
+					"line": 1002,
 					"column": 40,
 					"label": "    Open Close Options"
 				},
 				{
-					"line": 993,
+					"line": 1036,
 					"column": 29,
 					"label": "    Change Theme"
 				},
 				{
-					"line": 1017,
+					"line": 1060,
 					"column": 29,
 					"label": "    Change Game Mode"
 				},
 				{
-					"line": 1034,
+					"line": 1109,
 					"column": 29,
 					"label": "    Reset All"
+				}
+			]
+		},
+		{
+			"path": "random-game/styles/scss/style.scss",
+			"bookmarks": [
+				{
+					"line": 370,
+					"column": 5,
+					"label": "!--FOOTER"
 				}
 			]
 		}

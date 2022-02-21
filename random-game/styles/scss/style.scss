@@ -436,7 +436,7 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 24px;
+    gap: 16px;
     width: 240px;
     padding: 36px;
     background-color: var(--color__bg_light);
@@ -451,7 +451,17 @@ $block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-le
         transform: scale(1);
         opacity: 100%;
     }
+    & .options__header-title {
+        padding-bottom: 8px;
+    }
     &__item {
         cursor: pointer;
+        // gap: 16px;
+    }
+    & .option-item__show-top {
+        padding-bottom: 16px;
+    }
+    & .option-item__game-mode {
+        padding-bottom: 16px;
     }
 }
