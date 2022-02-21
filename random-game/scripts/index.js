@@ -1101,7 +1101,7 @@ const showTop = () => {
     //     ` | Best block: ${scoresTable[i][1]}<br><pre>`;
     // }
 
-    createPopup('TOP', scores , 'Close');
+    createPopup('TOP 10', scores , 'Close');
 };
 
 optionShowTop.addEventListener('click', showTop);

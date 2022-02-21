@@ -59,8 +59,8 @@
     --color__icon-primary:          var(--color__tertiary);
     --color__icon-primary-hover:    var(--color__tertiary_light);
 
-    --color__icon:          var(--color-filter__bg_light);
-    --color__icon-hover:    var(--color-filter__secondary_dark);
+    --color__icon:          var(--color__tertiary_dark);
+    --color__icon-hover:    var(--color__secondary_dark);
 
     --color__link:          var(--color__tertiary_dark);
     --color__link-hover:    var(--color__secondary_dark);
@@ -178,11 +178,11 @@
 }
 
 .icon {
-    filter: var(--color__icon);
+    background-color: var(--color__icon);
     @media (hover: hover) {
         &:hover {
             transition: all var(--time__medium) var(--animation__standart);
-            filter: var(--color__icon-hover);
+            background-color: var(--color__icon-hover);
         }
     }
 }
@@ -218,12 +218,12 @@
 
 .options__item {
     color: var(--color__options-item);
-    // @media (hover: hover) {
-    //     &:hover {
-    //         transition: all var(--time__medium) var(--animation__standart);
-    //         color: var(--color__options-item-hover);
-    //     }
-    // }
+    @media (hover: hover) {
+        &:hover {
+            transition: all var(--time__short) var(--animation__standart);
+            color: var(--color__options-item-hover);
+        }
+    }
 }
 
 // .zero-block__blackout {

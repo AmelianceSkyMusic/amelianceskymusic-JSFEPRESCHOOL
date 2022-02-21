@@ -664,7 +664,8 @@ h1, h2, h3, h4, h5, h6 {
 .footer__icon-github {
   font-size: 0;
   line-height: 0;
-  background-image: url("../../assets/svg/github-icon.svg");
+  -webkit-mask-image: url("../../assets/svg/github-icon.svg");
+          mask-image: url("../../assets/svg/github-icon.svg");
   height: 40px;
   width: 40px;
   margin-right: 72px;
@@ -676,7 +677,8 @@ h1, h2, h3, h4, h5, h6 {
 .footer__icon-rsschool {
   font-size: 0;
   line-height: 0;
-  background-image: url("../../assets/svg/rs_school_js-logo.svg");
+  -webkit-mask-image: url("../../assets/svg/rs_school_js-logo.svg");
+          mask-image: url("../../assets/svg/rs_school_js-logo.svg");
   height: 40px;
   width: 112px;
   -webkit-transform: scale(0.6);
