@@ -1,0 +1,457 @@
+// >----------------------------------------------------------------<
+// >                            IMPORT                              <
+// >----------------------------------------------------------------<
+
+@import "_nullstyle";
+
+
+
+
+// >----------------------------------------------------------------<
+// >                              ROOT                              <
+// >----------------------------------------------------------------<
+
+:root {
+
+    // ^------------------------ size ------------------------
+    --size-w__block-container_desktop: 1240px; // block container --> 80px * 12 columns / gutter 24 px
+
+    --size-h__block-container-header_desktop: 88px;
+    --size-h__block-container-main_desktop: auto;
+    --size-h__block-container-footer_desktop: 64px;
+
+    --size__border: 2px;
+
+    --border-radius__block: 16px;
+
+    --time__short: 0.1s;
+    --time__medium: 0.3s;
+    --animation__standart: ease-in-out;
+
+}
+
+
+
+
+// >----------------------------------------------------------------<
+// >                          VARIBLES                              <
+// >----------------------------------------------------------------<
+
+$block__box-shadow:  -4px -4px 8px var(--color__block-shadow_outer-top-left),
+                    4px 4px 8px var(--color__block-shadow_outer-bottom-right),
+                    inset -4px -4px 8px var(--color__block-shadow_inset-top-left),
+                    inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
+
+$block__box-shadow_hover:   -1px -1px 4px var(--color__block-shadow_outer-top-left),
+                            1px 1px 4px var(--color__block-shadow_outer-bottom-right),
+                            inset -4px -4px 8px var(--color__block-shadow_inset-top-left),
+                            inset 4px 4px 8px var(--color__block-shadow_inset-bottom-right);
+
+
+
+
+// >----------------------------------------------------------------<
+// >                            EXTENDS                             <
+// >----------------------------------------------------------------<
+
+// %message-shared {
+//     transition: ;
+// }
+
+
+
+// >----------------------------------------------------------------<
+// >                            MIXINS                              <
+// >----------------------------------------------------------------<
+
+@mixin bgImgSVG($img) { // image.svg
+    background-image: url("../../assets/svg/"+$img);
+}
+
+
+@mixin setFont($font-family, $font-size, $font-line-height, $font-weight) {
+    font-family: $font-family;
+    font-size: $font-size;
+    line-height: $font-line-height;
+    font-weight: $font-weight;
+}
+
+@mixin createBlock($color, $color__glow) {
+    color: $color;
+    text-shadow: 0px 0px 16px $color__glow;
+    border: var(--size__border) solid $color;
+    box-shadow: $block__box-shadow;
+    transition: box-shadow var(--time__short) var(--animation__standart),
+                text-shadow var(--time__short) var(--animation__standart),
+                transform var(--time__short) var(--animation__standart);
+    transform: scale(1);
+    cursor: pointer;
+    @media (hover: hover) {
+        &:hover {
+            text-shadow: 0px 0px 32px $color__glow;
+            box-shadow: $block__box-shadow_hover;
+            transform: scale(0.99);
+        }
+    }
+}
+
+
+
+
+// >----------------------------------------------------------------<
+// >                         START SETTINGS                         <
+// >----------------------------------------------------------------<
+
+*,  *::before, *::after {
+    box-sizing: border-box; // ! why?????????
+    -webkit-tap-highlight-color: transparent; // disable blue tap for sensor device
+}
+
+
+// ^------------------------ footer to buttom ------------------------
+
+.body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header { flex: 1 0 0 auto; }
+.main { flex: 1 0 auto; }
+.footer { flex: 0 0 auto; }
+
+
+// ^------------------------  ------------------------
+
+.body {
+    // position: relative;
+    max-width: 1440px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: var(--color__bg);
+    overflow: hidden;
+    @include setFont(   var(--font__font-family_p1),
+                        var(--font__font-size_p1),
+                        var(--font__line-height_p1),
+                        var(--font__font-weight_p1));
+    color: var(--color__secondary_dark);
+
+    // z-index: -1000;
+}
+
+// ^------------------------ Noise bg image -------------------------
+// .body::before,
+// .body::after {
+//     position: fixed;
+//     top: 0px;
+//     right: 0px;
+//     bottom: 0px;
+//     left: 0px;
+//     z-index: -100;
+//     width: 100%;
+//     content: "";
+//     background: url('../../assets/svg/noise.svg');
+//     opacity: 5%;
+// }
+
+
+// ^------------------------ block container ------------------------
+
+.container {
+    max-height: 100%;
+    margin: 0 48px;
+}
+
+
+
+
+// >----------------------------------------------------------------<
+// >                             HEADER                             <
+// >----------------------------------------------------------------<
+
+.header {
+    height: var(--size-h__block-container-header_desktop);
+    background-color: var(--color__bg);
+    & .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: var(--size-w__block-container_desktop);
+        height: 100%;
+        // justify-content: center;
+    }
+    .header__title {
+        width: 25%;
+    }
+    .stats {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+
+        &-wrapper__game-score,
+        &-wrapper__game-score-best {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 8px;
+            width: 240px;
+            padding: 8px 12px;
+            color: var(--color__tertiary);
+            user-select: none;
+            border: var(--size__border) solid var(--color__bg_light);
+            border-radius: var(--border-radius__block);
+        }
+
+        // &-wrapper__game-score {
+
+        // }
+        // &-wrapper__game-score-best {
+
+        // }
+    }
+    .header__options {
+        position: relative;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 16px;
+        width: 25%;
+    }
+
+    .options__open-close-icon {
+        // z-index: 200;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        appearance: none;
+        // background-image: url("../../assets/svg/sun.svg");
+        mask-image: url("../../assets/svg/options.svg");
+        mask-repeat: no-repeat;
+        // transition: all 1s var(--animation__standart);
+    }
+
+    .header__empty {
+        width: 10%;
+        min-width: 0;
+    }
+}
+
+
+
+
+// >----------------------------------------------------------------<
+// >                              MAIN                              <
+// >----------------------------------------------------------------<
+
+.main {
+    height: var(--size-h__block-container-main_desktop);
+    background-color: var(--color__bg);
+    & .container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: var(--size-w__block-container_desktop);
+        height: 100%;
+    }
+}
+
+// ^------------------------ blocks ------------------------
+.blocks {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 600px; // ! FIX
+    user-select: none;
+    z-index: 1;
+}
+
+.block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 108px;
+    height: 108px;
+    background-color: var(--color__bg_light);
+    border-radius: var(--border-radius__block);
+    border: var(--size__border) solid var(--color__block_border);
+    transform: scale(0.0);
+    &__2048 {
+        @include createBlock(var(--color__block_2048), var(--color__block-glow_2048));
+    }
+
+    &__1024 {
+        @include createBlock(var(--color__block_1024), var(--color__block-glow_1024));
+    }
+
+    &__512 {
+        @include createBlock(var(--color__block_512), var(--color__block-glow_512));
+    }
+
+    &__256 {
+        @include createBlock(var(--color__block_256), var(--color__block-glow_256));
+    }
+
+    &__128 {
+        @include createBlock(var(--color__block_128), var(--color__block-glow_128));
+    }
+
+    &__64 {
+        @include createBlock(var(--color__block_64), var(--color__block-glow_64));
+    }
+
+    &__32 {
+        @include createBlock(var(--color__block_32), var(--color__block-glow_32));
+    }
+
+    &__16 {
+        @include createBlock(var(--color__block_16), var(--color__block-glow_16));
+    }
+
+    &__8 {
+        @include createBlock(var(--color__block_8), var(--color__block-glow_8));
+    }
+
+    &__4 {
+        @include createBlock(var(--color__block_4), var(--color__block-glow_4));
+    }
+
+    &__2 {
+        @include createBlock(var(--color__block_2), var(--color__block-glow_2));
+    }
+
+    // &__0 {
+    //     @include createBlock(var(--color__block_0), var(--color__block-glow_0));
+    //     box-shadow: none;
+    //     @media (hover: hover) {
+    //         &:hover {
+    //             box-shadow: none;
+    //         }
+    //     }
+    // }
+}
+
+.blocks-bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 600px; // ! FIX
+    user-select: none;
+}
+
+.blocks-bg__block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 108px;
+    height: 108px;
+    background-color: var(--color__bg_light);
+    border-radius: var(--border-radius__block);
+    border: var(--size__border) solid var(--color__block_border);
+}
+
+
+
+
+
+// >----------------------------------------------------------------<
+// >                             FOOTER                             <
+// >----------------------------------------------------------------<
+
+.footer {
+    height: var(--size-h__block-container-footer_desktop);
+    background-color: var(--color__bg);
+    & .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: var(--size-w__block-container_desktop);
+        height: 100%;
+    }
+
+    // &__copyright {
+        // color: #3c3c3c;
+        // text-decoration: none;
+        // @media (hover: hover) {
+        //     &:hover {
+        //         transition: all var(--time__medium) var(--animation__standart);
+        //         color: #cccccc;
+        //     }
+        // }
+    // }
+    &__icon-github {
+        font-size: 0;
+        line-height: 0;
+        @include bgImgSVG("github-icon.svg");
+        height: 40px;
+        width: 40px;
+        margin-right: 72px;
+        // margin-right: auto;
+        transform: scale(0.6);
+        // filter: invert(22%) sepia(0%) saturate(13%) hue-rotate(209deg) brightness(92%) contrast(109%); // 2c2c2c
+        // @media (hover: hover) {
+        //     &:hover {
+        //         transition: all var(--time__medium) var(--animation__standart);
+        //         filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%); //cccccc
+        //     }
+        // }
+    }
+
+    &__icon-rsschool {
+        font-size: 0;
+        line-height: 0;
+        @include bgImgSVG("rs_school_js-logo.svg");
+        height: 40px;
+        width: 112px;
+        transform: scale(0.6);
+        // filter: invert(22%) sepia(0%) saturate(13%) hue-rotate(209deg) brightness(92%) contrast(109%); // 2c2c2c
+        // @media (hover: hover) {
+        //     &:hover {
+        //         transition: all var(--time__medium) var(--animation__standart);
+        //         filter: invert(89%) sepia(0%) saturate(0%) hue-rotate(202deg) brightness(92%) contrast(92%); //cccccc
+        //     }
+        // }
+    }
+}
+
+
+.options {
+    position: absolute;
+    user-select: none;
+    top: -12px;
+    right: -12px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    width: 240px;
+    padding: 36px;
+    background-color: var(--color__bg_light);
+    border-radius: var(--border-radius__block);
+    transition: transform var(--time__short) var(--animation__standart),
+                opacity var(--time__short);
+    transform: scale(0);
+    opacity: 50%;
+    transform-origin: right top; // set transform point like bounding box in AE
+    // display: none;
+    &.show {
+        transform: scale(1);
+        opacity: 100%;
+    }
+    &__item {
+        cursor: pointer;
+    }
+}

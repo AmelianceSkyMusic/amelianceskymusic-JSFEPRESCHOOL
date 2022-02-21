@@ -1,0 +1,219 @@
+:root {
+  --color__h1: var();
+  --color__h2: var();
+  --color__h3: var();
+  --color__h4: var();
+  --color__h5: var();
+  --color__h6: var();
+  --color__s1: var();
+  --color__s2: var();
+  --color__p1: var();
+  --color__p2: var();
+  --color__cp: var();
+  --color__bt: var();
+  --color__ov: var();
+  --color__h1_inverse: var();
+  --color__h2_inverse: var();
+  --color__h3_inverse: var();
+  --color__h4_inverse: var();
+  --color__h5_inverse: var();
+  --color__h6_inverse: var();
+  --color__s1_inverse: var();
+  --color__s2_inverse: var();
+  --color__p1_inverse: var();
+  --color__p2_inverse: var();
+  --color__ct_inverse: var();
+  --color__bt_inverse: var();
+  --color__ov_inverse: var();
+  --color__button-primary-font-color_normal:   var(--color__tertiary_light);
+  --color__button-primary-background_normal:   var(--color__tertiary_dark);
+  --color__button-primary-background_hover:    var(--color__tertiary);
+  --color__button-primary-background_active:   var();
+  --color__button-primary-background_focus:    var();
+  --color__button-primary-background_disabled: var();
+  --color__button-primary-background_pressed:  var();
+  --color__button-primary-background_loading:  var();
+  --color__button-secondary-font-color_normal:   var();
+  --color__button-secondary-background_normal:   var();
+  --color__button-secondary-background_hover:    var();
+  --color__button-secondary-background_active:   var();
+  --color__button-secondary-background_focus:    var();
+  --color__button-secondary-background_disabled: var();
+  --color__button-secondary-background_pressed:  var();
+  --color__button-secondary-background_loading:  var();
+  --color__icon-primary:          var(--color__tertiary);
+  --color__icon-primary-hover:    var(--color__tertiary_light);
+  --color__icon:          var(--color-filter__bg_light);
+  --color__icon-hover:    var(--color-filter__secondary_dark);
+  --color__link:          var(--color__tertiary_dark);
+  --color__link-hover:    var(--color__secondary_dark);
+  --color__options-item: var(--color__tertiary);
+  --color__options-item-hover: var(--color__tertiary_light);
+  --color__blackout: var(--color__bg) ;
+  --opacity__blackout: 0.8;
+  --color__popup-bg: var(--color__bg_light);
+  --padding__out: 36px;
+  --border-radius: 16px;
+}
+
+.h1 {
+  color: var(--color__h1);
+}
+
+.h1.inverse {
+  color: var(--color__h1_inverse);
+}
+
+.h2 {
+  color: var(--color__h2);
+}
+
+.h2.inverse {
+  color: var(--color__h2_inverse);
+}
+
+.h3 {
+  color: var(--color__h3);
+}
+
+.h3.inverse {
+  color: var(--color__h3_inverse);
+}
+
+.p1 {
+  color: var(--color__p1);
+}
+
+.p1.inverse {
+  color: var(--color__p1_inverse);
+}
+
+.icon-primary {
+  background-color: var(--color__icon-primary);
+}
+
+@media (hover: hover) {
+  .icon-primary:hover {
+    -webkit-transition: all var(--time__medium) var(--animation__standart);
+    -o-transition: all var(--time__medium) var(--animation__standart);
+    transition: all var(--time__medium) var(--animation__standart);
+    background-color: var(--color__icon-primary-hover);
+  }
+}
+
+.icon {
+  -webkit-filter: var(--color__icon);
+          filter: var(--color__icon);
+}
+
+@media (hover: hover) {
+  .icon:hover {
+    -webkit-transition: all var(--time__medium) var(--animation__standart);
+    -o-transition: all var(--time__medium) var(--animation__standart);
+    transition: all var(--time__medium) var(--animation__standart);
+    -webkit-filter: var(--color__icon-hover);
+            filter: var(--color__icon-hover);
+  }
+}
+
+.link {
+  color: var(--color__link);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .link:hover {
+    -webkit-transition: all var(--time__medium) var(--animation__standart);
+    -o-transition: all var(--time__medium) var(--animation__standart);
+    transition: all var(--time__medium) var(--animation__standart);
+    color: var(--color__link-hover);
+  }
+}
+
+.button {
+  padding: 8px 12px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border-radius: 8px;
+  color: var(--color__button-primary-font-color_normal);
+  background-color: var(--color__button-primary-background_normal);
+}
+
+.button:hover {
+  background-color: var(--color__button-primary-background_hover);
+}
+
+.options__item {
+  color: var(--color__options-item);
+}
+
+.blackout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: var(--color__blackout);
+  opacity: 0;
+  -webkit-transition: opacity var(--time__short);
+  -o-transition: opacity var(--time__short);
+  transition: opacity var(--time__short);
+}
+
+.blackout.show {
+  opacity: var(--opacity__blackout);
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: var(--padding__out);
+  border-radius: var(--border-radius);
+  background-color: var(--color__popup-bg);
+  opacity: 0%;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+      -ms-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+  transition: opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+  -o-transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short);
+  transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short);
+  transition: transform var(--time__short) var(--animation__standart), opacity var(--time__short), -webkit-transform var(--time__short) var(--animation__standart);
+}
+
+.popup.show {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+      -ms-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  opacity: 100%;
+}
+
+.popup__title {
+  padding-bottom: 18px;
+}
+
+.popup__text {
+  padding-bottom: 24px;
+}
